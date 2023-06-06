@@ -2,7 +2,7 @@
 
 namespace Api\Controller;
 
-abstract class Controller
+class VendaController extends Controller
 {
 
     
