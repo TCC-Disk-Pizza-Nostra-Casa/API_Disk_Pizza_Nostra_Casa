@@ -1,0 +1,39 @@
+Funcionario (
+
+id,
+administrador,
+nome,
+email,
+senha,
+data_cadastro
+
+)
+
+Produto (
+
+id,
+nome,
+estoque,
+preco,
+observacoes
+
+)
+
+Venda (
+
+id,
+data_venda,
+delivery,
+valor_total,
+id_funcionario
+
+)
+
+Venda_Produto (
+
+id_produto,
+id_venda,
+quantidade_produto,
+valor_item_venda
+
+)
