@@ -1,14 +1,19 @@
 <?php
 
-$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
-switch ($url)
+switch($url)
 {
-    case '':
-        break;
+
+    case "/":
+        echo "Início.";
+    break;
 
     default:
-        break;
+        //echo "Erro 404!";
+        http_response_code(404);
+    break;
+    
 }
 
 ?>
