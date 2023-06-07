@@ -2,6 +2,8 @@
 
 namespace Api\Model;
 
+use Api\DAO\VendaDAO;
+
 class VendaModel extends Model
 {
     

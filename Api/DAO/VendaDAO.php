@@ -2,7 +2,9 @@
 
 namespace Api\DAO;
 
-class FuncionarioDAO extends DAO
+use Api\Model\VendaModel;
+
+class VendaDAO extends DAO
 {
     
     public function __construct()

@@ -2,6 +2,8 @@
 
 namespace Api\Model;
 
+use Api\DAO\ProdutoDAO;
+
 class ProdutoModel extends Model
 {
     

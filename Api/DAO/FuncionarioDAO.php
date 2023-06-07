@@ -2,6 +2,8 @@
 
 namespace Api\DAO;
 
+use Api\Model\FuncionarioModel;
+
 class FuncionarioDAO extends DAO
 {
     
