@@ -44,6 +44,13 @@ class FuncionarioModel extends Model
 
     }
 
+    public function LoginValidation(string $usuario, string $senha)
+    {
+
+        $this->rows = (new FuncionarioDAO())->Login($usuario, $senha);
+
+    }
+
 }
 
 ?>

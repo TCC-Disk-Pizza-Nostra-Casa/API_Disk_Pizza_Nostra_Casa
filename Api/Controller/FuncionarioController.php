@@ -2,6 +2,7 @@
 
 namespace Api\Controller;
 
+use Api\DAO\FuncionarioDAO;
 use Api\Model\FuncionarioModel;
 use Exception;
 
@@ -107,6 +108,23 @@ class FuncionarioController extends Controller
             parent::SendExceptionAsJson($ex);
 
         }
+
+    }
+
+    public static function LoginAsyncFuncionario() : void
+    {
+
+        $json_object = json_decode(file_get_contents("php://input"));
+
+        $model = new FuncionarioModel();
+
+        $usuario = $json_object[0];
+
+        $senha = $json_object[1];
+
+        $model->LoginValidation($usuario, $senha);
+
+        parent::SendReturnAsJson($model->rows);
 
     }
 

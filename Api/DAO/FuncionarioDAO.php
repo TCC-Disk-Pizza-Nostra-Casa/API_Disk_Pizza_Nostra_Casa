@@ -17,7 +17,8 @@ class FuncionarioDAO extends DAO
     public function Insert(FuncionarioModel $model) : FuncionarioModel
     {
 
-        $sql = "INSERT INTO Funcionario(nome, email, senha, administrador, data_cadastro) VALUES(?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Funcionario(nome, email, senha, " .
+               "administrador, data_cadastro) VALUES(?, ?, MD5(?), ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -42,7 +43,7 @@ class FuncionarioDAO extends DAO
     public function Update(FuncionarioModel $model) : bool
     {
 
-        $sql = "UPDATE Funcionario SET nome = ?, email = ?, senha = ?, " .
+        $sql = "UPDATE Funcionario SET nome = ?, email = ?, senha = MD5(?), " .
                "administrador = ?, data_cadastro = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
@@ -79,7 +80,9 @@ class FuncionarioDAO extends DAO
     public function Select() : array
     {
 
-        $sql = "SELECT * FROM Funcionario ORDER BY id ASC";
+        $sql = "SELECT Funcionario.*, " .
+               "DATE_FORMAT(Funcionario.data_cadastro, 'dd/MM/yyyy hh:mm:ss') " .
+               "FROM Funcionario ORDER BY nome ASC";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -94,13 +97,32 @@ class FuncionarioDAO extends DAO
 
         $parametro = [":filtro" => "%" . $value . "%"];
 
-        $sql = "SELECT * FROM Funcionario WHERE nome LIKE :filtro ORDER BY nome ASC";
+        $sql = "SELECT Funcionario.*, " .
+               "DATE_FORMAT(Funcionario.data_cadastro, 'dd/MM/yyyy hh:mm:ss') " .
+               "FROM Funcionario WHERE nome LIKE :filtro ORDER BY nome ASC";
         
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->execute($parametro);
 
         return $stmt->fetchAll(DAO::FETCH_CLASS, "Api\Model\FuncionarioModel");
+
+    }
+
+    public function Login(string $usuario, string $senha) : array
+    {
+
+        $sql = "SELECT * FROM Funcionario WHERE nome = ? AND senha = MD5(?)";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $usuario);
+
+        $stmt->bindValue(2, $senha);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(DAO::FETCH_CLASS);
 
     }
     
