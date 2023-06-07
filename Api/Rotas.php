@@ -27,6 +27,10 @@ switch($url)
         FuncionarioController::SearchAsyncFuncionario();
     break;
 
+    case "/funcionario/login":
+        FuncionarioController::LoginAsyncFuncionario();
+    break;
+
     default:
         //echo "Erro 404!";
         http_response_code(404);
