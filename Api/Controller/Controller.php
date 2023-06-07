@@ -28,7 +28,7 @@ abstract class Controller
 
     }*/
 
-    protected static function Pegar_Retorno_Como_Json($dados) : void
+    protected static function SendReturnAsJson($dados) : void
     {
 
         header("Access-Control-Allow-Origin: *");
@@ -41,7 +41,7 @@ abstract class Controller
 
     }
 
-    protected static function Converter_Exceception_Para_Json(Exception $ex) : void
+    protected static function SendExceptionAsJson(Exception $ex) : void
     {
 
         $exception = [
