@@ -17,7 +17,8 @@ class FuncionarioDAO extends DAO
     public function Insert(FuncionarioModel $model) : FuncionarioModel
     {
 
-        $sql = "INSERT INTO Funcionario(nome, email, senha, administrador, data_cadastro) VALUES(?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Funcionario(nome, email, senha, ".
+               "administrador, data_cadastro) VALUES(?, ?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -79,7 +80,9 @@ class FuncionarioDAO extends DAO
     public function Select() : array
     {
 
-        $sql = "SELECT * FROM Funcionario ORDER BY id ASC";
+        $sql = "SELECT Funcionario.*, " .
+               "DATE_FORMAT(Funcionario.data_cadastro, 'dd/MM/yyyy hh:mm:ss') " .
+               "FROM Funcionario ORDER BY nome ASC";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -94,7 +97,9 @@ class FuncionarioDAO extends DAO
 
         $parametro = [":filtro" => "%" . $value . "%"];
 
-        $sql = "SELECT * FROM Funcionario WHERE nome LIKE :filtro ORDER BY nome ASC";
+        $sql = "SELECT Funcionario.*, ".
+               "DATE_FORMAT(Funcionario.data_cadastro, 'dd/MM/yyyy hh:mm:ss') ".
+               "FROM Funcionario WHERE nome LIKE :filtro ORDER BY nome ASC";
         
         $stmt = $this->conexao->prepare($sql);
 
