@@ -1,0 +1,1 @@
+O propósito desta view é somente para testes. Este projeto não será uma aplicação web.
