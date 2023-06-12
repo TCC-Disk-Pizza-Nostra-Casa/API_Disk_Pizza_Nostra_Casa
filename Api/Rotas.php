@@ -1,6 +1,7 @@
 <?php
 
 use Api\Controller\FuncionarioController;
+use Api\Controller\ProdutoController;
 
 $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
@@ -30,6 +31,24 @@ switch($url)
     case "/funcionario/login":
         FuncionarioController::LoginAsyncFuncionario();
     break;
+
+
+    case "/produto/save":
+        ProdutoController::SaveAsyncProduto();
+    break;
+
+    case "/produto/delete":
+        ProdutoController::DeleteAsyncProduto();
+    break;
+
+    case "/produto/list":
+        ProdutoController::GetListAsyncProduto();
+    break;
+
+    case "/produto/search":
+        ProdutoController::SearchAsyncProduto();
+    break;
+
 
     default:
         //echo "Erro 404!";
