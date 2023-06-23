@@ -18,18 +18,39 @@ CREATE SCHEMA IF NOT EXISTS `db_pizzaria` DEFAULT CHARACTER SET utf8mb4 COLLATE 
 USE `db_pizzaria` ;
 
 -- -----------------------------------------------------
+-- Table `db_pizzaria`.`cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_pizzaria`.`cliente` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(255) NOT NULL,
+  `genero` VARCHAR(20) NULL DEFAULT 'Não Informado',
+  `email` VARCHAR(70) NULL DEFAULT 'Não Informado',
+  `telefone` VARCHAR(20) NULL DEFAULT 'Não Informado',
+  `data_nascimento` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email` (`email` ASC) VISIBLE,
+  UNIQUE INDEX `telefone` (`telefone` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `db_pizzaria`.`funcionario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pizzaria`.`funcionario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `administrador` TINYINT(1) NULL DEFAULT '0',
   `nome` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(70) NULL DEFAULT NULL,
+  `genero` VARCHAR(20) NULL DEFAULT 'Não Informado',
+  `email` VARCHAR(70) NULL DEFAULT 'Não Informado',
+  `telefone` VARCHAR(20) NULL DEFAULT 'Não Informado',
   `senha` VARCHAR(50) NOT NULL,
   `data_cadastro` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email` (`email` ASC) VISIBLE,
+  UNIQUE INDEX `telefone` (`telefone` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -42,10 +63,10 @@ CREATE TABLE IF NOT EXISTS `db_pizzaria`.`produto` (
   `nome` VARCHAR(255) NOT NULL,
   `estoque` INT NOT NULL,
   `preco` DOUBLE NOT NULL,
-  `observacoes` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
+  `observacoes` VARCHAR(255) NULL DEFAULT 'Nenhuma observação',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `nome` (`nome` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -59,19 +80,23 @@ CREATE TABLE IF NOT EXISTS `db_pizzaria`.`venda` (
   `delivery` TINYINT(1) NULL DEFAULT '0',
   `valor_total` DOUBLE NULL DEFAULT NULL,
   `id_funcionario` INT NULL DEFAULT NULL,
+  `id_cliente` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `id_funcionario` (`id_funcionario` ASC) VISIBLE,
+  INDEX `id_cliente` (`id_cliente` ASC) VISIBLE,
   CONSTRAINT `venda_ibfk_1`
     FOREIGN KEY (`id_funcionario`)
-    REFERENCES `db_pizzaria`.`funcionario` (`id`))
+    REFERENCES `db_pizzaria`.`funcionario` (`id`),
+  CONSTRAINT `venda_ibfk_2`
+    FOREIGN KEY (`id_cliente`)
+    REFERENCES `db_pizzaria`.`cliente` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `db_pizzaria`.`venda_produto`
+-- Table `db_pizzaria`.`venda_produto_assoc`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_pizzaria`.`venda_produto_assoc` (
   `id_produto` INT NULL DEFAULT NULL,
@@ -80,10 +105,10 @@ CREATE TABLE IF NOT EXISTS `db_pizzaria`.`venda_produto_assoc` (
   `valor_item_venda` DOUBLE NULL DEFAULT NULL,
   INDEX `id_produto` (`id_produto` ASC) VISIBLE,
   INDEX `id_venda` (`id_venda` ASC) VISIBLE,
-  CONSTRAINT `venda_produto_ibfk_1`
+  CONSTRAINT `venda_produto_assoc_ibfk_1`
     FOREIGN KEY (`id_produto`)
     REFERENCES `db_pizzaria`.`produto` (`id`),
-  CONSTRAINT `venda_produto_ibfk_2`
+  CONSTRAINT `venda_produto_assoc_ibfk_2`
     FOREIGN KEY (`id_venda`)
     REFERENCES `db_pizzaria`.`venda` (`id`))
 ENGINE = InnoDB

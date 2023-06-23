@@ -1,6 +1,7 @@
 <?php
 
 use Api\Controller\FuncionarioController;
+use Api\Controller\ClienteController;
 use Api\Controller\ProdutoController;
 
 $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
@@ -30,6 +31,23 @@ switch($url)
 
     case "/funcionario/login":
         FuncionarioController::LoginAsyncFuncionario();
+    break;
+
+
+    case "/cliente/save":
+        ClienteController::SaveAsyncCliente();
+    break;
+
+    case "/cliente/delete":
+        ClienteController::DeleteAsyncCliente();
+    break;
+
+    case "/cliente/list":
+        ClienteController::GetListAsyncCliente();
+    break;
+
+    case "/cliente/search":
+        ClienteController::SearchAsyncCliente();
     break;
 
 

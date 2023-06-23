@@ -17,7 +17,7 @@ class ProdutoDAO extends DAO
     public function Insert(ProdutoModel $model) : ProdutoModel
     {
 
-        $sql = "INSERT INTO Produto(nome, estoque, preco, observacoes) VALUES (?, ?, ?, ?);";
+        $sql = "INSERT INTO Produto(nome, estoque, preco, observacoes) VALUES(?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -40,7 +40,8 @@ class ProdutoDAO extends DAO
     public function Update(ProdutoModel $model) : bool
     {
 
-        $sql = "UPDATE Produto SET nome =?, estoque =?, preco =?, observacoes =? WHERE id =?;";
+        $sql = "UPDATE Produto SET nome = ?, estoque = ?, preco = ?, " .
+               "observacoes = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -61,7 +62,7 @@ class ProdutoDAO extends DAO
     public function Delete(int $id) : bool
     {
 
-        $sql = "DELETE FROM Produto WHERE id = ?;";
+        $sql = "DELETE FROM Produto WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -92,8 +93,6 @@ class ProdutoDAO extends DAO
         $sql = "SELECT * FROM Produto WHERE nome LIKE :filtro ORDER BY nome ASC";
 
         $stmt = $this->conexao->prepare($sql);
-
-        $stmt->bindValue(1, $value);
 
         $stmt->execute($parametro);
 

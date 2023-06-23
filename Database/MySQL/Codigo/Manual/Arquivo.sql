@@ -7,9 +7,22 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 id INT AUTO_INCREMENT PRIMARY KEY,
 administrador BOOLEAN DEFAULT FALSE,
 nome VARCHAR(255) NOT NULL,
-email VARCHAR(70) UNIQUE DEFAULT NULL,
+genero VARCHAR(20) DEFAULT "Não Informado",
+email VARCHAR(70) UNIQUE DEFAULT "Não Informado",
+telefone VARCHAR(20) UNIQUE DEFAULT "Não Informado",
 senha VARCHAR(50) NOT NULL,
 data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
+
+CREATE TABLE IF NOT EXISTS Cliente (
+
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(255) NOT NULL,
+genero VARCHAR(20) DEFAULT "Não Informado",
+email VARCHAR(70) UNIQUE DEFAULT "Não Informado",
+telefone VARCHAR(20) UNIQUE DEFAULT "Não Informado",
+data_nascimento TIMESTAMP DEFAULT NULL
 
 );
 
@@ -19,7 +32,7 @@ id INT AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(255) UNIQUE NOT NULL,
 estoque INT NOT NULL,
 preco DOUBLE NOT NULL,
-observacoes VARCHAR(255)
+observacoes VARCHAR(255) DEFAULT "Nenhuma observação"
 
 );
 
@@ -30,8 +43,10 @@ data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 delivery BOOLEAN DEFAULT FALSE,
 valor_total DOUBLE,
 id_funcionario INT,
+id_cliente INT,
 
-FOREIGN KEY(id_funcionario) REFERENCES Funcionario(id)
+FOREIGN KEY(id_funcionario) REFERENCES Funcionario(id),
+FOREIGN KEY(id_cliente) REFERENCES Cliente(id)
 
 );
 

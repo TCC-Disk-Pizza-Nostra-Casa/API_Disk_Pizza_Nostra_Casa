@@ -2,13 +2,13 @@
 
 namespace Api\Controller;
 
-use Api\Model\FuncionarioModel;
+use Api\Model\ClienteModel;
 use Exception;
 
-class FuncionarioController extends Controller
+class ClienteController extends Controller
 {
-    
-    public static function SaveAsyncFuncionario() : void
+
+    public static function SaveAsyncCliente() : void
     {
 
         try
@@ -16,7 +16,7 @@ class FuncionarioController extends Controller
 
             $json_object = json_decode(file_get_contents("php://input"));
 
-            $model = new FuncionarioModel();
+            $model = new ClienteModel();
 
             $model->id = $json_object->id;
 
@@ -24,15 +24,9 @@ class FuncionarioController extends Controller
 
             $model->genero = $json_object->genero;
 
-            $model->email = $json_object->email;
-
             $model->telefone = $json_object->telefone;
 
-            $model->senha = $json_object->senha;
-
-            $model->administrador = $json_object->administrador;
-
-            $model->data_cadastro = $json_object->data_cadastro;
+            $model->data_nascimento = $json_object->data_nascimento;
 
             parent::SendReturnAsJson($model->Save());
 
@@ -47,7 +41,7 @@ class FuncionarioController extends Controller
 
     }
 
-    public static function DeleteAsyncFuncionario() : void
+    public static function DeleteAsyncCliente() : void
     {
 
         try
@@ -55,7 +49,7 @@ class FuncionarioController extends Controller
 
             $id = json_decode(file_get_contents("php://input"));
 
-            parent::SendReturnAsJson((new FuncionarioModel())->Erase((int) $id));
+            parent::SendReturnAsJson((new ClienteModel())->Erase((int) $id));
 
         }
 
@@ -68,13 +62,13 @@ class FuncionarioController extends Controller
 
     }
 
-    public static function GetListAsyncFuncionario() : void
+    public static function GetListAsyncCliente() : void
     {
 
         try
         {
 
-            $model = new FuncionarioModel();
+            $model = new ClienteModel();
 
             $model->GetRows();
 
@@ -91,7 +85,7 @@ class FuncionarioController extends Controller
 
     }
 
-    public static function SearchAsyncFuncionario() : void
+    public static function SearchAsyncCliente() : void
     {
 
         try
@@ -99,7 +93,7 @@ class FuncionarioController extends Controller
 
             $filtro = json_decode(file_get_contents("php://input"));
 
-            $model = new FuncionarioModel();
+            $model = new ClienteModel();
 
             $model->GetRows($filtro);
 
@@ -113,23 +107,6 @@ class FuncionarioController extends Controller
             parent::SendExceptionAsJson($ex);
 
         }
-
-    }
-
-    public static function LoginAsyncFuncionario() : void
-    {
-
-        $json_object = json_decode(file_get_contents("php://input"));
-
-        $model = new FuncionarioModel();
-
-        $usuario = $json_object[0];
-
-        $senha = $json_object[1];
-
-        $model->LoginValidation($usuario, $senha);
-
-        parent::SendReturnAsJson($model->rows);
 
     }
 
