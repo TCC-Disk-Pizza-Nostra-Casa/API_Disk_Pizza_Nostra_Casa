@@ -3,9 +3,21 @@ Funcionario (
 id,
 administrador,
 nome,
+gênero,
 email,
+telefone,
 senha,
 data_cadastro
+
+)
+
+Cliente (
+
+id,
+nome,
+gênero,
+telefone,
+data_nascimento
 
 )
 
@@ -25,11 +37,12 @@ id,
 data_venda,
 delivery,
 valor_total,
-id_funcionario
+id_funcionario,
+id_cliente
 
 )
 
-Venda_Produto (
+Venda_Produto_Assoc (
 
 id_produto,
 id_venda,

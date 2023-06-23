@@ -17,20 +17,24 @@ class FuncionarioDAO extends DAO
     public function Insert(FuncionarioModel $model) : FuncionarioModel
     {
 
-        $sql = "INSERT INTO Funcionario(nome, email, senha, " .
-               "administrador, data_cadastro) VALUES(?, ?, MD5(?), ?, ?)";
+        $sql = "INSERT INTO Funcionario(nome, genero, email, telefone, senha, " .
+               "administrador, data_cadastro) VALUES(?, ?, ?, ?, MD5(?), ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
 
-        $stmt->bindValue(2, $model->email);
+        $stmt->bindValue(2, $model->genero);
 
-        $stmt->bindValue(3, $model->senha);
+        $stmt->bindValue(3, $model->email);
 
-        $stmt->bindValue(4, $model->administrador);
+        $stmt->bindValue(4, $model->telefone);
 
-        $stmt->bindValue(5, $model->data_cadastro);
+        $stmt->bindValue(5, $model->senha);
+
+        $stmt->bindValue(6, $model->administrador);
+
+        $stmt->bindValue(7, $model->data_cadastro);
 
         $stmt->execute();
 
@@ -43,22 +47,26 @@ class FuncionarioDAO extends DAO
     public function Update(FuncionarioModel $model) : bool
     {
 
-        $sql = "UPDATE Funcionario SET nome = ?, email = ?, senha = MD5(?), " .
-               "administrador = ?, data_cadastro = ? WHERE id = ?";
+        $sql = "UPDATE Funcionario SET nome = ?, genero = ?, email = ?, telefone = ?, " .
+               "senha = MD5(?), administrador = ?, data_cadastro = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
 
-        $stmt->bindValue(2, $model->email);
+        $stmt->bindValue(2, $model->genero);
 
         $stmt->bindValue(3, $model->email);
 
-        $stmt->bindValue(4, $model->administrador);
+        $stmt->bindValue(4, $model->telefone);
 
-        $stmt->bindValue(5, $model->data_cadastro);
+        $stmt->bindValue(5, $model->senha);
 
-        $stmt->bindValue(6, $model->id);
+        $stmt->bindValue(6, $model->administrador);
+
+        $stmt->bindValue(7, $model->data_cadastro);
+
+        $stmt->bindValue(8, $model->id);
 
         return $stmt->execute();
 

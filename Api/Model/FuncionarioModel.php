@@ -7,10 +7,12 @@ use Api\DAO\FuncionarioDAO;
 class FuncionarioModel extends Model
 {
     
-    public $id, $nome, $email, $senha, $administrador, $data_cadastro;
+    public $id, $nome, $genero, $email, $telefone, $senha, $administrador, $data_cadastro;
 
     public function Save()
     {
+
+        //return ($this->id == null) ? (new FuncionarioDAO())->Insert($this) : (new FuncionarioDAO())->Update($this);
 
         if($this->id == null)
         {
