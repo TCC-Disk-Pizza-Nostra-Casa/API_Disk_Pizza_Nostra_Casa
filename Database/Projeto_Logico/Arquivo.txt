@@ -15,7 +15,7 @@ Cliente (
 
 id,
 nome,
-gênero,
+cpf,
 telefone,
 data_nascimento
 
