@@ -67,8 +67,12 @@ class ProdutoController extends Controller
         
         try 
         {
-        
-            
+
+            $model = new ProdutoModel();
+
+            $model->GetRows();
+
+            parent::SendReturnAsJson($model->rows);
 
         } 
         
