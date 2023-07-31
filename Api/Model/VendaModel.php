@@ -7,10 +7,11 @@ use Api\DAO\VendaDAO;
 class VendaModel extends Model
 {
     
-    public $id, $delivery, $valor_total, $id_funcionario; // $data_venda;
+    public $id, $delivery, $valor_total, $id_funcionario, $data_venda;
     
     public function save(){
-        
+        $dao = new VendaDAO();
+        $dao->insert($this);
     }
 }
 
