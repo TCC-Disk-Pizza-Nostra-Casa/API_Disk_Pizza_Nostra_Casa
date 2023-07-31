@@ -14,7 +14,10 @@ class VendaDAO extends DAO
         
     }
 
-    
+    public function insert()
+    {
+
+    }
 }
 
 ?>

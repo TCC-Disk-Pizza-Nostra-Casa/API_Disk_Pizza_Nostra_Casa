@@ -91,6 +91,15 @@ abstract class Controller
 
     }
 
+    protected static function fillModel($model, $objectToFill): object{
+        foreach ((get_object_vars($objectToFill)) as $key => $value):
+            $attributeName = strtolower($key);
+            $model->$attributeName = $value;
+        endforeach;
+
+        return $model;
+    }
+
 }
 
 ?>

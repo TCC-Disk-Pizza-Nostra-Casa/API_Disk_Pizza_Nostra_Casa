@@ -70,10 +70,8 @@ switch($url)
 
 
     case "/venda/save":
-        VendaController::
+        VendaController::SaveAsyncVenda();
     break;
-
-    <br>
 
     default:
         //echo "Erro 404!";
