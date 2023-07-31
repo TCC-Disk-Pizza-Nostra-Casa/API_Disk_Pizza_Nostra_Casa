@@ -3,6 +3,7 @@
 use Api\Controller\FuncionarioController;
 use Api\Controller\ClienteController;
 use Api\Controller\ProdutoController;
+use Api\Controller\VendaController;
 
 $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
@@ -67,6 +68,12 @@ switch($url)
         ProdutoController::SearchAsyncProduto();
     break;
 
+
+    case "/venda/save":
+        VendaController::
+    break;
+
+    <br>
 
     default:
         //echo "Erro 404!";

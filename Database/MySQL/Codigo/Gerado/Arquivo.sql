@@ -23,7 +23,7 @@ USE `db_pizzaria` ;
 CREATE TABLE IF NOT EXISTS `db_pizzaria`.`cliente` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(255) NOT NULL,
-  `genero` VARCHAR(20) NULL DEFAULT 'Não Informado',
+  `cpf` CHAR(11) NULL DEFAULT 'Nenhum',
   `email` VARCHAR(70) NULL DEFAULT 'Não Informado',
   `telefone` VARCHAR(20) NULL DEFAULT 'Não Informado',
   `data_nascimento` TIMESTAMP NULL DEFAULT NULL,

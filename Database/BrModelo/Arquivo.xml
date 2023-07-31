@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <MER>
 	<Informacoes>
-		<Posicao Left="0" Top="0"/>
+		<Posicao Left="8" Top="160"/>
 		<TotalItens Valor="128"/>
 		<Tipo Valor="CONCEITUAL"/>
 		<Versao Valor="2.0.0"/>
@@ -821,10 +821,10 @@
             </Ligacao>
           </Ligacoes>
         </Atributo>
-        <Atributo nome="Gênero" id="257">
+        <Atributo nome="Cpf" id="257">
           <Left Valor="465"/>
           <Top Valor="306"/>
-          <Width Valor="68"/>
+          <Width Valor="45"/>
           <Height Valor="16"/>
           <Fonte default="-1"/>
           <Atributos/>
