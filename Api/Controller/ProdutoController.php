@@ -91,7 +91,13 @@ class ProdutoController extends Controller
         try 
         {
         
-            
+            $filtro = json_decode(file_get_contents("php://input"));
+
+            $model = new ProdutoModel();
+
+            $model->GetRows($filtro);
+
+            parent::SendReturnAsJson($model->rows);
 
         } 
         
