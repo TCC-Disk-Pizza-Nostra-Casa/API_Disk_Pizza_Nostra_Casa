@@ -14,9 +14,16 @@ class VendaDAO extends DAO
         
     }
 
-    public function insert()
+    public function insert(VendaModel $model) : bool
     {
+        $sql = "INSERT INTO Venda ";
 
+        /* Farei uma inserção dinâmica */
+
+        $stmt = $this->conexao->prepare($sql);
+
+
+        return $stmt->execute();
     }
 }
 
