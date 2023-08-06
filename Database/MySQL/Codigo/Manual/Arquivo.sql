@@ -7,10 +7,11 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 id INT AUTO_INCREMENT PRIMARY KEY,
 administrador BOOLEAN DEFAULT FALSE,
 nome VARCHAR(255) NOT NULL,
-cpf CHAR(11) NULL DEFAULT 'Nenhum',
-email VARCHAR(70) UNIQUE DEFAULT "Não Informado",
-telefone VARCHAR(20) UNIQUE DEFAULT "Não Informado",
-senha VARCHAR(50) NOT NULL,
+genero VARCHAR(20) DEFAULT "Não informado",
+cpf CHAR(11) UNIQUE NOT NULL,
+email VARCHAR(60) UNIQUE DEFAULT "Não informado",
+telefone VARCHAR(20) UNIQUE DEFAULT "Não informado",
+senha VARCHAR(32) NOT NULL,
 data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
@@ -19,9 +20,10 @@ CREATE TABLE IF NOT EXISTS Cliente (
 
 id INT AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(255) NOT NULL,
-cpf CHAR(11) NULL DEFAULT 'Nenhum',
-email VARCHAR(70) UNIQUE DEFAULT "Não Informado",
-telefone VARCHAR(20) UNIQUE DEFAULT "Não Informado",
+genero VARCHAR(20) DEFAULT "Não informado",
+cpf CHAR(11) UNIQUE NOT NULL,
+email VARCHAR(60) UNIQUE DEFAULT "Não informado",
+telefone VARCHAR(20) UNIQUE DEFAULT "Não informado",
 data_nascimento TIMESTAMP DEFAULT NULL
 
 );
@@ -52,12 +54,12 @@ FOREIGN KEY(id_cliente) REFERENCES Cliente(id)
 
 CREATE TABLE IF NOT EXISTS Venda_Produto_Assoc (
 
-id_produto INT,
 id_venda INT,
+id_produto INT,
 quantidade_produto INT,
 valor_item_venda DOUBLE,
 
-FOREIGN KEY(id_produto) REFERENCES Produto(id),
-FOREIGN KEY(id_venda) REFERENCES Venda(id)
+FOREIGN KEY(id_venda) REFERENCES Venda(id),
+FOREIGN KEY(id_produto) REFERENCES Produto(id)
 
 );
