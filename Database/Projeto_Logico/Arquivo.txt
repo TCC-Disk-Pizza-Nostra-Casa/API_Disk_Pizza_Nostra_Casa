@@ -3,7 +3,8 @@ Funcionario (
 id,
 administrador,
 nome,
-gênero,
+genero,
+cpf,
 email,
 telefone,
 senha,
@@ -15,6 +16,7 @@ Cliente (
 
 id,
 nome,
+genero,
 cpf,
 telefone,
 data_nascimento
@@ -44,8 +46,8 @@ id_cliente
 
 Venda_Produto_Assoc (
 
-id_produto,
 id_venda,
+id_produto,
 quantidade_produto,
 valor_item_venda
 
