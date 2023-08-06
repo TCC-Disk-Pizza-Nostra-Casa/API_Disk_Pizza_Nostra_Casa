@@ -9,10 +9,10 @@ class VendaModel extends Model
     
     public $delivery, $valor_total, $id_funcionario, $id_cliente, $data_venda, $id_produto, $id_venda, $quantidade_produto, $valor_item_venda;
     
-    public function save()
+    public function save() : bool
     {
         $dao = new VendaDAO();
-        $dao->insert($this);
+        return $dao->insert($this);
     }
 }
 
