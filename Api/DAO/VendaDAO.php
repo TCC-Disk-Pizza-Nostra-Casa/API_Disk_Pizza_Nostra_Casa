@@ -24,7 +24,7 @@ class VendaDAO extends DAO
         $allowedColumns = [
             "delivery", "valor_total", "id_funcionario", "id_cliente"
         ];
-        $this->autoInsert("venda", $allowedColumns, $model);
+        $this->automatedInsert("venda", $allowedColumns, $model);
         $model->id_venda = $this->conexao->lastInsertId();
         return $model;
     }
@@ -34,7 +34,7 @@ class VendaDAO extends DAO
             "id_venda", "id_produto", "quantidade_produto", "valor_item_venda"
         ];
 
-        return $this->autoInsert("venda_produto_assoc", $allowedColumns, $model);
+        return $this->automatedInsert("venda_produto_assoc", $allowedColumns, $model);
     }
 }
 
