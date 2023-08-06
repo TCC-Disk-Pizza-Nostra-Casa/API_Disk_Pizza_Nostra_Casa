@@ -45,9 +45,22 @@ abstract class DAO extends PDO
 
     }
 
-    public function autoInsert(string $table, array $allowedColumns, object $model) : bool
+    public function automatedInsert(string $table, array $allowedColumns, object $model) : bool
     {
         /* Automação de inserções banco de dados*/
+
+        $insert = $this->buildInsertStatement($table, $allowedColumns);
+
+        $stmt = $this->conexao->prepare($insert);
+
+        $this->bindValuesToStatement($stmt, $allowedColumns, $model);
+        
+        return $stmt->execute();
+    }
+
+    public function buildInsertStatement(string $table, array $allowedColumns) : string
+    {
+        /** constrói inserção do sql */
 
         $column = implode(",", $allowedColumns);
         /* string com campos; exemplo:  (id_cliente, id_venda)*/
@@ -58,14 +71,10 @@ abstract class DAO extends PDO
 
         $insert = "INSERT INTO " . $table . " (" . $column . ") values (" . $placeholderString . ")";
 
-        $stmt = $this->conexao->prepare($insert);
-
-        $this->autoBind($stmt, $allowedColumns, $model);
-        
-        return $stmt->execute();
+        return $insert;
     }
 
-    public function autoBind(PDOStatement $stmt, array $columnList, object $valueObject) : void
+    public function bindValuesToStatement(PDOStatement $stmt, array $columnList, object $valueObject) : void
     {
         /* Automação de declarações preparadas (prepared statements) */
         /* $valueObject é um objeto com dados que serão atribuídos */
