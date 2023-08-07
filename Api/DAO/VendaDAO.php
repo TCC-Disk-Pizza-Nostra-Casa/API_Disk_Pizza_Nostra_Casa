@@ -62,7 +62,7 @@ class VendaDAO extends DAO
         $allowedColumns = [
             "delivery"
         ];
-
+      
         return $this->automatedUpdate("Venda", $allowedColumns, $model);
     }
 }
