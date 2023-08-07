@@ -32,37 +32,38 @@ class VendaDAO extends DAO
 
     public function insertTableVenda_Produto_Assoc(VendaModel $model) : bool
     {
+        $response = false; 
         $allowedColumns = [
-            "id_venda", "id_produto", "quantidade_produto", "valor_item_venda"
+            "id_venda", "id_produto", "quantidade_produto"
         ];
 
-        //exit(var_dump($model));
+        $quantidadeProduto = count($model->id_produto);
         
-        foreach ($model->id_produto as $idToInsert)
+        for ($index = 1; $index < $quantidadeProduto; $index ++)
         {
             $objectToInsert = $model;
-            $objectToInsert->id_produto = $idToInsert;
 
-            return $this->automatedInsert("venda_produto_assoc", $allowedColumns, $objectToInsert);
+            $objectToInsert->id_produto = $model->id_produto[$index];
+            $objectToInsert->quantidade_produto = $model->quantidade_produto[$index];
+            
+            $response += $this->automatedInsert("venda_produto_assoc", $allowedColumns, $objectToInsert);
         }
+
+        return $response;
     }
 
     public function update(VendaModel $model) : bool
     {
-        $this->updateTableVenda();
-        return $this->updateTableVenda_Produto_Assoc();
+        return $this->updateTableVenda($model);
     }
 
-    public function updateTableVenda() : void
+    public function updateTableVenda(VendaModel $model) : bool
     {
         $allowedColumns = [
             "delivery"
         ];
-    }
 
-    public function updateTableVenda_Produto_Assoc() : bool
-    {
-        return 1;
+        return $this->automatedUpdate("Venda", $allowedColumns, $model);
     }
 }
 

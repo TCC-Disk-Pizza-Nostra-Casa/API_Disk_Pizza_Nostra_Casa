@@ -76,7 +76,9 @@ abstract class DAO extends PDO
 
     public function automatedUpdate(string $table, array $allowedColumns, object $model) : bool
     {
-        $update = $this->buildUpdateStatement($table);
+        /* Automação de atualização no banco de dados. */
+
+        $update = $this->buildUpdateStatement($table, $allowedColumns);
 
         $stmt = $this->conexao->prepare($update);
 
@@ -85,9 +87,15 @@ abstract class DAO extends PDO
         return $stmt->execute();
     }
 
-    public function buildUpdateStatement(string $table) : string
+    public function buildUpdateStatement(string $table, array $allowedColumns) : string
     {
-        return "foo";
+
+        $column = implode(",", $allowedColumns);
+        /** transforma array em string com separador, que aqui é "," */
+
+        $update = "UPDATE " . $column . "";
+
+        return $update;
     }
 
     public function bindValuesToStatement(PDOStatement $stmt, array $columnList, object $valueObject) : void
