@@ -56,6 +56,7 @@ abstract class DAO extends PDO
         $this->bindValuesToStatement($stmt, $allowedColumns, $model);
         
         return $stmt->execute();
+      
     }
 
     public function buildInsertStatement(string $table, array $allowedColumns) : string
@@ -72,6 +73,32 @@ abstract class DAO extends PDO
         $insert = "INSERT INTO " . $table . " (" . $column . ") values (" . $placeholderString . ")";
 
         return $insert;
+      
+    }
+
+    public function automatedUpdate(string $table, array $allowedColumns, object $model) : bool
+    {
+        /* Automação de atualização no banco de dados. */
+
+        $update = $this->buildUpdateStatement($table, $allowedColumns);
+
+        $stmt = $this->conexao->prepare($update);
+
+        $this->bindValuesToStatement($stmt, $allowedColumns, $model);
+
+        return $stmt->execute();
+    }
+
+    public function buildUpdateStatement(string $table, array $allowedColumns) : string
+    {
+
+        $column = implode(",", $allowedColumns);
+        /** transforma array em string com separador, que aqui é "," */
+
+        $update = "UPDATE " . $column . "";
+
+        return $update;
+      
     }
 
     public function bindValuesToStatement(PDOStatement $stmt, array $columnList, object $valueObject) : void
@@ -85,7 +112,6 @@ abstract class DAO extends PDO
             $stmt->bindValue($index++, $valueObject->$attributeName);
         }
     }
-
 }
 
 ?>
