@@ -74,6 +74,22 @@ abstract class DAO extends PDO
         return $insert;
     }
 
+    public function automatedUpdate(string $table, array $allowedColumns, object $model) : bool
+    {
+        $update = $this->buildUpdateStatement($table);
+
+        $stmt = $this->conexao->prepare($update);
+
+        $this->bindValuesToStatement($stmt, $allowedColumns, $model);
+
+        return $stmt->execute();
+    }
+
+    public function buildUpdateStatement(string $table) : string
+    {
+        return "foo";
+    }
+
     public function bindValuesToStatement(PDOStatement $stmt, array $columnList, object $valueObject) : void
     {
         /* Automação de declarações preparadas (prepared statements) */
@@ -85,7 +101,6 @@ abstract class DAO extends PDO
             $stmt->bindValue($index++, $valueObject->$attributeName);
         }
     }
-
 }
 
 ?>

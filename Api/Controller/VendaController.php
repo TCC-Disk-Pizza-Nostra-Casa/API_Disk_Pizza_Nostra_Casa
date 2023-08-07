@@ -9,7 +9,8 @@ class VendaController extends Controller{
 
     public static function SaveAsyncVenda() : void
     {
-        try{
+        try
+        {
 
             $data = json_decode(file_get_contents("php://input"));
 

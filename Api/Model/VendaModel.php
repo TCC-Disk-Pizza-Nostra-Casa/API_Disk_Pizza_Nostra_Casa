@@ -11,8 +11,17 @@ class VendaModel extends Model
     
     public function save() : bool
     {
-        $dao = new VendaDAO();
-        return $dao->insert($this);
+
+        if ($this->id_venda == null){
+            
+            return (new VendaDAO())->insert($this);
+
+        }else{
+
+            return (new VendaDAO())->update($this);
+            
+        }
+        
     }
 }
 
