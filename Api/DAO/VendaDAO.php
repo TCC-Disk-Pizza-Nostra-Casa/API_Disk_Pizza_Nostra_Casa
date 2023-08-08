@@ -60,11 +60,12 @@ class VendaDAO extends DAO
     public function updateTableVenda(VendaModel $model) : bool
     {
         $allowedColumns = [
-            "delivery"
+            "delivery", "id"
         ];
       
         return $this->automatedUpdate("Venda", $allowedColumns, $model);
     }
+
 }
 
 /* 
