@@ -73,7 +73,6 @@ abstract class DAO extends PDO
         $insert = "INSERT INTO " . $table . " (" . $column . ") values (" . $placeholderString . ")";
 
         return $insert;
-      
     }
 
     public function automatedUpdate(string $table, array $allowedColumns, object $model) : bool
