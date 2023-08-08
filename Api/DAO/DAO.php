@@ -89,17 +89,29 @@ abstract class DAO extends PDO
         return $stmt->execute();
     }
 
-    public function buildUpdateStatement(string $table, array $allowedColumns) : string
+    public function buildUpdateStatement(string $table, array $columnsToUpdate) : string
     {
+        $column = "";
 
-        $column = implode(",", $allowedColumns);
-        /** transforma array em string com separador, que aqui é "," */
+        $index = (count($columnsToUpdate)) - 1;
+        foreach ($columnsToUpdate as $field){
+            if ($field <> "id"){
+                if ($index != 1){
+                    $column .= $field . "=?, ";
+               }else{
+                    $column .= $field . "=? ";
+                }
+            }
 
-        $update = "UPDATE " . $column . "";
+            $index --;
+        }
 
+        $update = "UPDATE " . $table . " SET " . $column . "where id = ? ";
+        
         return $update;
-      
+
     }
+
 
     public function bindValuesToStatement(PDOStatement $stmt, array $columnList, object $valueObject) : void
     {
