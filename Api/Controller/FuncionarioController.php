@@ -124,11 +124,11 @@ class FuncionarioController extends Controller
 
         $model = new FuncionarioModel();
 
-        $usuario = $json_object[0];
+        $cpf = $json_object[0];
 
         $senha = $json_object[1];
 
-        $model->LoginValidation($usuario, $senha);
+        $model->LoginValidation($cpf, $senha);
 
         parent::SendReturnAsJson($model->rows);
 
