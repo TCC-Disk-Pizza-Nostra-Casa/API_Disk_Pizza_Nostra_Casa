@@ -18,7 +18,7 @@ class FuncionarioDAO extends DAO
     {
 
         $sql = "INSERT INTO Funcionario(nome, genero, cpf, rg, cargo, cep, email, telefone, senha, " .
-               "observacoes, administrador, data_cadastro) VALUES(?, ?, ?, ?, ?, ?, ?, ?, MD5(?), ?, ?, ?)";
+               "observacoes, administrador, ativo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, MD5(?), ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -44,7 +44,7 @@ class FuncionarioDAO extends DAO
 
         $stmt->bindValue(11, $model->administrador);
 
-        $stmt->bindValue(12, $model->data_cadastro);
+        $stmt->bindValue(12, $model->ativo);
 
         $stmt->execute();
 
@@ -59,7 +59,7 @@ class FuncionarioDAO extends DAO
 
         $sql = "UPDATE Funcionario SET nome = ?, genero = ? cpf = ?, rg = ?, cargo = ?, " .
                "cep = ?, email = ?, telefone = ?, senha = MD5(?), observacoes = ?, " .
-               "administrador = ?, data_cadastro = ? WHERE id = ?";
+               "administrador = ?, ativo = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -85,7 +85,7 @@ class FuncionarioDAO extends DAO
 
         $stmt->bindValue(11, $model->administrador);
 
-        $stmt->bindValue(12, $model->data_cadastro);
+        $stmt->bindValue(12, $model->ativo);
 
         $stmt->bindValue(13, $model->id);
 
@@ -93,10 +93,23 @@ class FuncionarioDAO extends DAO
 
     }
 
-    public function Disable(int $id) : bool
+    public function Reactivate(int $id) : bool
     {
 
-        $sql = "DELETE FROM Funcionario WHERE id = ?";
+        $sql = "UPDATE Funcionario SET ativo = 1 WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        return $stmt->execute();
+
+    }
+
+    public function Deactivate(int $id) : bool
+    {
+
+        $sql = "UPDATE Funcionario SET ativo = 0 WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 

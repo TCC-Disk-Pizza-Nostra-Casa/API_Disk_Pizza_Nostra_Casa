@@ -8,7 +8,8 @@ cpf,
 email,
 telefone,
 senha,
-data_cadastro
+data_cadastro,
+ativo
 
 )
 
@@ -19,7 +20,8 @@ nome,
 genero,
 cpf,
 telefone,
-data_nascimento
+data_nascimento,
+ativo
 
 )
 
@@ -39,6 +41,7 @@ id,
 data_venda,
 delivery,
 valor_total,
+
 id_funcionario,
 id_cliente
 
@@ -48,7 +51,8 @@ Venda_Produto_Assoc (
 
 id_venda,
 id_produto,
+
 quantidade_produto,
-valor_item_venda
+valor_total_item_venda
 
 )
