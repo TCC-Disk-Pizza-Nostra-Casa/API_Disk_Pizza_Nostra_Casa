@@ -1,9 +1,14 @@
 <?php
 
-use Api\Controller\FuncionarioController;
-use Api\Controller\ClienteController;
-use Api\Controller\ProdutoController;
-use Api\Controller\VendaController;
+use Api\Controller\
+{
+
+    FuncionarioController,
+    ClienteController,
+    ProdutoController,
+    VendaController
+
+};
 
 $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
@@ -18,8 +23,12 @@ switch($url)
         FuncionarioController::SaveAsyncFuncionario();
     break;
 
-    case "/funcionario/delete":
-        FuncionarioController::DeleteAsyncFuncionario();
+    case "/funcionario/enable":
+        FuncionarioController::EnableAsyncFuncionario();
+    break;
+
+    case "/funcionario/disable":
+        FuncionarioController::DisableAsyncFuncionario();
     break;
 
     case "/funcionario/list":

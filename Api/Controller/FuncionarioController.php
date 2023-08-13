@@ -25,15 +25,27 @@ class FuncionarioController extends Controller
 
             $model->genero = $json_object->genero;
 
+            $model->cpf = str_replace([".","-"], "", $json_object->cpf);
+
+            $model->rg = str_replace([".","-"], "", $json_object->rg);
+
+            $model->cargo = $json_object->cargo;
+
+            $model->cep = str_replace([".","-"], "", $json_object->cep);
+
             $model->email = $json_object->email;
 
-            $model->telefone = $json_object->telefone;
+            $model->telefone = str_replace(["(",")"," ","-"], "", $json_object->telefone);
 
             $model->senha = $json_object->senha;
+
+            $model->observacoes = $json_object->observacoes;
 
             $model->administrador = $json_object->administrador;
 
             $model->data_cadastro = $json_object->data_cadastro;
+
+            $model->ativo = $json_object->ativo;
 
             parent::SendReturnAsJson($model->Save());
 
@@ -48,7 +60,7 @@ class FuncionarioController extends Controller
 
     }
 
-    public static function DeleteAsyncFuncionario() : void
+    public static function EnableAsyncFuncionario() : void
     {
 
         try
@@ -56,7 +68,28 @@ class FuncionarioController extends Controller
 
             $id = json_decode(file_get_contents("php://input"));
 
-            parent::SendReturnAsJson((new FuncionarioModel())->Erase((int) $id));
+            parent::SendReturnAsJson((new FuncionarioModel())->Enable((int) $id));
+
+        }
+
+        catch(Exception $ex)
+        {
+
+            parent::SendExceptionAsJson($ex);
+
+        }
+
+    }
+
+    public static function DisableAsyncFuncionario() : void
+    {
+
+        try
+        {
+
+            $id = json_decode(file_get_contents("php://input"));
+
+            parent::SendReturnAsJson((new FuncionarioModel())->Disable((int) $id));
 
         }
 
