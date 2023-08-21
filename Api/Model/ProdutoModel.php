@@ -9,7 +9,7 @@ class ProdutoModel extends Model
     
     public $id, $nome, $estoque, $preco, $observacoes;
     
-    public function Save()
+    public function Save() : ?ProdutoModel
     {
 
         return ($this->id == null) ? (new ProdutoDAO())->Insert($this) : (new ProdutoDAO())->Update($this);
