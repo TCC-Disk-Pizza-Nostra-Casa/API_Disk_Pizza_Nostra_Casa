@@ -25,7 +25,7 @@ class VendaDAO extends DAO
         $allowedColumns = [
             "delivery", "id_funcionario", "id_cliente"
         ];
-        $this->automatedInsert("venda", $allowedColumns, $model);
+        $this->automatedInsert("Venda", $allowedColumns, $model);
         $model->id_venda = $this->conexao->lastInsertId();
         return $model;
     }
@@ -46,7 +46,7 @@ class VendaDAO extends DAO
             $objectToInsert->id_produto = $model->id_produto[$index];
             $objectToInsert->quantidade_produto = $model->quantidade_produto[$index];
             
-            $response += $this->automatedInsert("venda_produto_assoc", $allowedColumns, $objectToInsert);
+            $response += $this->automatedInsert("Venda_Produto_Assoc", $allowedColumns, $objectToInsert);
         }
 
         return $response;
@@ -71,10 +71,10 @@ class VendaDAO extends DAO
 /* 
 
 inserções para teste das tabelas da venda:
-insert into cliente(nome, cpf) values ("teste", "12345678909");
-insert into funcionario(nome, senha, cpf, rg, cep, cargo, telefone) values ("teste", "123", "12345678909", "123456789", "17209233", "balconista", "996592724");
-insert into produto(nome, estoque, preco) values ("teste", 1, 2); 
-insert into produto(nome, estoque, preco) values ("asdf", 1, 2); 
+insert into Cliente(nome, cpf) values ("teste", "12345678909");
+insert into Funcionario(nome, senha, cpf, rg, cep, cargo, telefone) values ("teste", "123", "12345678909", "123456789", "17209233", "balconista", "996592724");
+insert into Produto(nome, estoque, preco) values ("teste", 1, 2);
+insert into Produto(nome, estoque, preco) values ("asdf", 1, 2);
 
 envio de solicitação http com envio de json para api para o recurso /venda/save pelo curl:
 curl -X POST -H "Content-Type: application/json" -d '{
