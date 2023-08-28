@@ -1,6 +1,6 @@
 <?php
 
-define("BASEDIR", dirname(__FILE__, 2) . "\\");
+define("BASEDIR", dirname(__FILE__, 2) . "/");
 
 //define("VIEWS", dirname(__FILE__));
 
