@@ -71,10 +71,9 @@ class VendaDAO extends DAO
 /* 
 
 inserções para teste das tabelas da venda:
-insert into cliente(nome, cpf) values ("teste", "12345678909");
-insert into funcionario(nome, senha, cpf, rg, cep, cargo, telefone) values ("teste", "123", "12345678909", "123456789", "17209233", "balconista", "996592724");
+insert into cliente(nome) values ("teste");
+insert into funcionario(nome, senha) values ("teste", "123");
 insert into produto(nome, estoque, preco) values ("teste", 1, 2); 
-insert into produto(nome, estoque, preco) values ("asdf", 1, 2); 
 
 envio de solicitação http com envio de json para api para o recurso /venda/save pelo curl:
 curl -X POST -H "Content-Type: application/json" -d '{
