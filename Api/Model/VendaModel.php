@@ -23,6 +23,11 @@ class VendaModel extends Model
         }
         
     }
+
+    public function getRows()
+    {
+        $this->rows = (new VendaDAO)->select();
+    }
 }
 
 ?>

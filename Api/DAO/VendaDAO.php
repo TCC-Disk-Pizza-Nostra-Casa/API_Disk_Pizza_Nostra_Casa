@@ -3,6 +3,7 @@
 namespace Api\DAO;
 
 use Api\Model\VendaModel;
+use PDO;
 
 class VendaDAO extends DAO
 {
@@ -12,6 +13,15 @@ class VendaDAO extends DAO
 
         parent::__construct();
         
+    }
+
+    public function select()
+    {
+        $sql = "select * from Venda";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
     public function insert(VendaModel $model) : bool
