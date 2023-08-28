@@ -79,12 +79,10 @@ insert into Produto(nome, estoque, preco) values ("asdf", 1, 2);
 envio de solicitação http com envio de json para api para o recurso /venda/save pelo curl:
 curl -X POST -H "Content-Type: application/json" -d '{
     "delivery": "1",
-    "valor_total": "100",
     "id_funcionario": "1",
     "id_cliente": "1",
     "id_produto": ["1", "2"],
-    "quantidade_produto": ["1", "2"],
-    "valor_item_venda": "1"
+    "quantidade_produto": ["100", "200"]
 }' http://localhost:8000/venda/save
 
 */

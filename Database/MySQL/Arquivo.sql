@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS Venda (
 id INT AUTO_INCREMENT PRIMARY KEY,
 data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 delivery BOOLEAN DEFAULT FALSE,
-valor_total DOUBLE,
+valor_total DOUBLE DEFAULT 0,
 
 id_funcionario INT,
 FOREIGN KEY(id_funcionario) REFERENCES Funcionario(id),
@@ -68,21 +68,21 @@ id_produto INT,
 FOREIGN KEY(id_produto) REFERENCES Produto(id),
 
 quantidade_produto INT,
-valor_total_item_venda DOUBLE
+valor_total_item_venda DOUBLE DEFAULT 0
 
 );
 
 DELIMITER $$
-USE `db_pizzaria`$$
-CREATE DEFINER = CURRENT_USER TRIGGER `db_pizzaria`.`venda_produto_assoc_BEFORE_INSERT` BEFORE INSERT ON `venda_produto_assoc` FOR EACH ROW
+USE db_pizzaria $$
+CREATE DEFINER = CURRENT_USER TRIGGER Venda_Produto_Assoc_BEFORE_INSERT BEFORE INSERT ON Venda_Produto_Assoc FOR EACH ROW
 BEGIN
 	DECLARE valor_produto double;
     DECLARE valor_total_item double;
-	set valor_produto = (select preco from produto where id=new.id_produto);
+	set valor_produto = (select preco from Produto where id=new.id_produto);
 	set valor_total_item = new.quantidade_produto * valor_produto;
 	set new.valor_total_item_venda=valor_total_item;
     
-    update venda set valor_total = valor_total + valor_total_item where id = new.id_venda;
+    update Venda set valor_total = valor_total + valor_total_item where id = new.id_venda;
 END$$
 
 DELIMITER ;
