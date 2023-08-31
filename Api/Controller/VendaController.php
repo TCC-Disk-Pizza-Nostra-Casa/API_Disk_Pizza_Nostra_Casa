@@ -46,6 +46,11 @@ class VendaController extends Controller{
 
         }
     }
+    
+    public static function SearchAsyncVenda() : void
+    {
+
+    }
 }
 
 ?>

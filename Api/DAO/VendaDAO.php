@@ -24,6 +24,10 @@ class VendaDAO extends DAO
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    public function search(string $query){
+
+    }
+
     public function insert(VendaModel $model) : bool
     {
         $model = $this->insertTableVenda($model);
