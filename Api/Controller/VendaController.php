@@ -29,6 +29,28 @@ class VendaController extends Controller{
         }
     }
 
+    public static function GetListAsyncVenda() : void
+    {
+        try
+        {
+
+            $model = new VendaModel();
+            $model->getRows();
+            parent::SendReturnAsJson($model->rows);
+
+        }
+        catch(Exception $ex)
+        {
+
+            parent::SendExceptionAsJson($ex);
+
+        }
+    }
+    
+    public static function SearchAsyncVenda() : void
+    {
+
+    }
 }
 
 ?>

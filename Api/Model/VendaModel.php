@@ -11,17 +11,15 @@ class VendaModel extends Model
     
     public function save() : bool
     {
-      
-        if ($this->id == null){
-            
-            return (new VendaDAO())->insert($this);
+        $response = ($this->id == null) ? (new VendaDAO())->insert($this) : (new VendaDAO())->update($this);
 
-        }else{
-
-            return (new VendaDAO())->update($this);
-            
-        }
+        return $response;
         
+    }
+
+    public function getRows(string $query = null)
+    {
+        $this->rows = ($query == null) ? (new VendaDAO)->select() : (new VendaDAO)->search($query);
     }
 }
 
