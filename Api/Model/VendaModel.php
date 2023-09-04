@@ -7,7 +7,7 @@ use Api\DAO\VendaDAO;
 class VendaModel extends Model
 {
     
-    public $id, $delivery, $valor_total, $id_funcionario, $id_cliente, $data_venda, $id_produto, $id_venda, $quantidade_produto, $valor_item_venda;
+    public $id, $delivery, $valor_total, $id_funcionario, $id_cliente, $data_venda;
     
     public function save() : bool
     {
