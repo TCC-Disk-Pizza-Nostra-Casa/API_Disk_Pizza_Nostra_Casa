@@ -9,13 +9,14 @@ use Exception;
 class ProdutoController extends Controller
 {
 
-    public static function SaveAsyncProduto() : void
+    public static function SaveAsyncProduto()
     {
         
         try 
         {
-        
             $json_object = json_decode(file_get_contents("php://input"));
+
+            var_dump($json_object);
 
             $model = new ProdutoModel();
 
