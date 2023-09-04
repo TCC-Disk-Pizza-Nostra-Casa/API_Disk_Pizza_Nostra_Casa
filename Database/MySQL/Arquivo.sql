@@ -69,4 +69,5 @@ FOREIGN KEY(id_produto) REFERENCES Produto(id),
 
 quantidade_produto INT,
 valor_total_item_venda DOUBLE DEFAULT 0
+  
 );
