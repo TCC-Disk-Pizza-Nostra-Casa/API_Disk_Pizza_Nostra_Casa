@@ -9,9 +9,12 @@ class VendaModel extends Model
     
     public $id, $delivery, $valor_total, $id_funcionario, $id_cliente, $data_venda;
     
-    public function save() : bool
+    public function save(VendaProdutoAssocModel $modelVendaProdutoAssocModel) : bool
     {
-        $response = ($this->id == null) ? (new VendaDAO())->insert($this) : (new VendaDAO())->update($this);
+
+        $response = ($this->id == null) ? (new VendaDAO())->insert($this, $modelVendaProdutoAssocModel) : (new VendaDAO())->update($this);
+        
+        $response += $modelVendaProdutoAssocModel->save();
 
         return $response;
         

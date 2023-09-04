@@ -3,6 +3,7 @@
 namespace Api\Controller;
 
 use Api\Model\VendaModel;
+use Api\Model\VendaProdutoAssocModel;
 use Exception;
 
 class VendaController extends Controller{
@@ -14,11 +15,13 @@ class VendaController extends Controller{
 
             $data = json_decode(file_get_contents("php://input"));
 
-            $model = new VendaModel();
-            
-            parent::fillModel($model, $data);
-            
-            parent::SendReturnAsJson($model->save());
+            $Venda = new VendaModel();
+            parent::fillModel($Venda, $data);
+
+            $vendaProdutoAssoc = new VendaProdutoAssocModel();
+            parent::fillModel($vendaProdutoAssoc, $data);
+
+            parent::SendReturnAsJson($Venda->save($vendaProdutoAssoc));
             
         }
         catch(Exception $ex)

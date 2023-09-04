@@ -54,7 +54,7 @@ abstract class DAO extends PDO
         $stmt = $this->conexao->prepare($insert);
 
         $this->bindValuesToStatement($stmt, $allowedColumns, $model);
-        
+
         return $stmt->execute();
       
     }
