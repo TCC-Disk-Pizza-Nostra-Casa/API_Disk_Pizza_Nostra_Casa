@@ -45,7 +45,7 @@ class FuncionarioController extends Controller
 
             $model->data_cadastro = $json_object->data_cadastro;
 
-            $model->ativo = $json_object->ativo;
+            ($json_object->ativo) ? $model->ativo = 1 : $model->ativo = 0;
 
             parent::SendReturnAsJson($model->Save());
 
