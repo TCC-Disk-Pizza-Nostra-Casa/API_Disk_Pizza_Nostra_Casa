@@ -82,6 +82,14 @@ switch($url)
         VendaController::SaveAsyncVenda();
     break;
 
+    case "/venda/list":
+        VendaController::GetListAsyncVenda();
+    break;
+
+    case "/venda/search":
+        VendaController::SearchAsyncVenda();
+    break;
+
     default:
         //echo "Erro 404!";
         http_response_code(404);

@@ -3,6 +3,7 @@
 namespace Api\DAO;
 
 use Api\Model\VendaModel;
+use PDO;
 
 class VendaDAO extends DAO
 {
@@ -14,42 +15,26 @@ class VendaDAO extends DAO
         
     }
 
-    public function insert(VendaModel $model) : bool
+    public function select()
     {
-        $model = $this->insertTableVenda($model);
-        return $this->insertTableVenda_Produto_Assoc($model);
+        $sql = "select * from Venda";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function insertTableVenda(VendaModel $model) : VendaModel
+    public function search(string $query){
+
+    }
+
+    public function insert(VendaModel $model) : void
     {
         $allowedColumns = [
             "delivery", "id_funcionario", "id_cliente"
         ];
-        $this->automatedInsert("venda", $allowedColumns, $model);
-        $model->id_venda = $this->conexao->lastInsertId();
-        return $model;
-    }
-
-    public function insertTableVenda_Produto_Assoc(VendaModel $model) : bool
-    {
-        $response = false; 
-        $allowedColumns = [
-            "id_venda", "id_produto", "quantidade_produto"
-        ];
-
-        $quantidadeProduto = count($model->id_produto);
-
-        for ($index = 0; $index < $quantidadeProduto; $index ++)
-        {
-            $objectToInsert = clone $model;
-
-            $objectToInsert->id_produto = $model->id_produto[$index];
-            $objectToInsert->quantidade_produto = $model->quantidade_produto[$index];
-            
-            $response += $this->automatedInsert("venda_produto_assoc", $allowedColumns, $objectToInsert);
-        }
-
-        return $response;
+        $this->automatedInsert("Venda", $allowedColumns, $model);
+        $model->id = $this->conexao->lastInsertId();
     }
 
     public function update(VendaModel $model) : bool
@@ -71,19 +56,18 @@ class VendaDAO extends DAO
 /* 
 
 inserções para teste das tabelas da venda:
-insert into cliente(nome) values ("teste");
-insert into funcionario(nome, senha) values ("teste", "123");
-insert into produto(nome, estoque, preco) values ("teste", 1, 2); 
+insert into Cliente(nome, cpf) values ("teste", "12345678909");
+insert into Funcionario(nome, senha, cpf, rg, cep, cargo, telefone) values ("teste", "123", "12345678909", "123456789", "17209233", "balconista", "996592724");
+insert into Produto(nome, estoque, preco) values ("teste", 1, 2);
+insert into Produto(nome, estoque, preco) values ("asdf", 1, 2);
 
 envio de solicitação http com envio de json para api para o recurso /venda/save pelo curl:
 curl -X POST -H "Content-Type: application/json" -d '{
     "delivery": "1",
-    "valor_total": "100",
     "id_funcionario": "1",
     "id_cliente": "1",
     "id_produto": ["1", "2"],
-    "quantidade_produto": ["1", "2"],
-    "valor_item_venda": "1"
+    "quantidade_produto": ["100", "200"]
 }' http://localhost:8000/venda/save
 
 */
