@@ -28,42 +28,13 @@ class VendaDAO extends DAO
 
     }
 
-    public function insert(VendaModel $model) : bool
-    {
-        $model = $this->insertTableVenda($model);
-        return $this->insertTableVenda_Produto_Assoc($model);
-    }
-
-    public function insertTableVenda(VendaModel $model) : VendaModel
+    public function insert(VendaModel $model) : void
     {
         $allowedColumns = [
             "delivery", "id_funcionario", "id_cliente"
         ];
         $this->automatedInsert("Venda", $allowedColumns, $model);
-        $model->id_venda = $this->conexao->lastInsertId();
-        return $model;
-    }
-
-    public function insertTableVenda_Produto_Assoc(VendaModel $model) : bool
-    {
-        $response = false; 
-        $allowedColumns = [
-            "id_venda", "id_produto", "quantidade_produto"
-        ];
-
-        $quantidadeProduto = count($model->id_produto);
-
-        for ($index = 0; $index < $quantidadeProduto; $index ++)
-        {
-            $objectToInsert = clone $model;
-
-            $objectToInsert->id_produto = $model->id_produto[$index];
-            $objectToInsert->quantidade_produto = $model->quantidade_produto[$index];
-            
-            $response += $this->automatedInsert("Venda_Produto_Assoc", $allowedColumns, $objectToInsert);
-        }
-
-        return $response;
+        $model->id = $this->conexao->lastInsertId();
     }
 
     public function update(VendaModel $model) : bool
