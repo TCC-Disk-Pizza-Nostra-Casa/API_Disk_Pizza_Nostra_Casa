@@ -98,7 +98,11 @@ abstract class Controller
             //Nome do atributo do objeto model que receberá o seu respectivo valor
             $attributeName = strtolower($key);
 
-            $model->$attributeName = $value;
+            if (property_exists($model, $attributeName))
+            {
+                $model->$attributeName = $value;
+            }
+            
         endforeach;
     }
 

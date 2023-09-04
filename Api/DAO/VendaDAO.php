@@ -3,6 +3,7 @@
 namespace Api\DAO;
 
 use Api\Model\VendaModel;
+use Api\Model\VendaProdutoAssocModel;
 use PDO;
 
 class VendaDAO extends DAO
@@ -28,27 +29,31 @@ class VendaDAO extends DAO
 
     }
 
-    public function insert(VendaModel $model) : void
+    public function insert(VendaModel $modelVenda, VendaProdutoAssocModel $modelVendaProdutoAssocModel) : bool
     {
+        
         $allowedColumns = [
-            "delivery", "id_funcionario", "id_cliente"
+            "delivery", "id_funcionario", "id_cliente", "valor_total"
         ];
-        $this->automatedInsert("Venda", $allowedColumns, $model);
-        $model->id = $this->conexao->lastInsertId();
+
+        $response = $this->automatedInsert("Venda", $allowedColumns, $modelVenda);
+
+        $modelVenda->id = $this->conexao->lastInsertId();
+
+        $modelVendaProdutoAssocModel->id_venda = $modelVenda->id;
+
+        return $response;
     }
 
     public function update(VendaModel $model) : bool
     {
-        return $this->updateTableVenda($model);
-    }
 
-    public function updateTableVenda(VendaModel $model) : bool
-    {
         $allowedColumns = [
             "delivery", "id"
         ];
       
         return $this->automatedUpdate("Venda", $allowedColumns, $model);
+
     }
 
 }
@@ -67,7 +72,9 @@ curl -X POST -H "Content-Type: application/json" -d '{
     "id_funcionario": "1",
     "id_cliente": "1",
     "id_produto": ["1", "2"],
-    "quantidade_produto": ["100", "200"]
+    "quantidade_produto": ["100", "200"],
+    "valor_total": "600",
+    "valor_item_venda": ["200", "400"]
 }' http://localhost:8000/venda/save
 
 */
