@@ -41,11 +41,11 @@ class FuncionarioController extends Controller
 
             $model->observacoes = $json_object->observacoes;
 
-            $model->administrador = $json_object->administrador;
+            ($json_object->administrador) ? $model->administrador = 1 : $model->administrador = 0;
 
             $model->data_cadastro = $json_object->data_cadastro;
 
-            $model->ativo = $json_object->ativo;
+            ($json_object->ativo) ? $model->ativo = 1 : $model->ativo = 0;
 
             parent::SendReturnAsJson($model->Save());
 

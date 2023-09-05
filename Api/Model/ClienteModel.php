@@ -7,26 +7,12 @@ use Api\DAO\ClienteDAO;
 class ClienteModel extends Model
 {
 
-    public $id, $nome, $genero, $telefone, $data_nascimento;
+    public $id, $nome, $email, $telefone;
 
     public function Save()
     {
 
-        //return ($this->id == null) ? (new ClienteDAO())->Insert($this) : (new ClienteDAO())->Update($this);
-
-        if($this->id == null)
-        {
-
-            return (new ClienteDAO())->Insert($this);
-
-        }
-
-        else
-        {
-
-            return (new ClienteDAO())->Update($this);
-
-        }
+        return ($this->id == null) ? (new ClienteDAO())->Insert($this) : (new ClienteDAO())->Update($this);
 
     }
 

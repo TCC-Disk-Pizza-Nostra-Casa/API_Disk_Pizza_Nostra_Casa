@@ -17,18 +17,15 @@ class ClienteDAO extends DAO
     public function Insert(ClienteModel $model) : ClienteModel
     {
 
-        $sql = "INSERT INTO Cliente(nome, genero, telefone, " .
-               "data_nascimento) VALUES(?, ?, ?, ?)";
+        $sql = "INSERT INTO Cliente (nome, email, telefone) VALUES (?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
 
-        $stmt->bindValue(2, $model->genero);
+        $stmt->bindValue(2, $model->email);
 
         $stmt->bindValue(3, $model->telefone);
-
-        $stmt->bindValue(4, $model->data_nascimento);
 
         $stmt->execute();
 
@@ -41,20 +38,17 @@ class ClienteDAO extends DAO
     public function Update(ClienteModel $model) : bool
     {
 
-        $sql = "UPDATE Cliente SET nome = ?, genero = ?, " .
-               "telefone = ?, data_nascimento = ? WHERE id = ?";
+        $sql = "UPDATE Cliente SET nome = ?, email = ?, telefone = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
 
-        $stmt->bindValue(2, $model->genero);
+        $stmt->bindValue(2, $model->email);
 
         $stmt->bindValue(3, $model->telefone);
 
-        $stmt->bindValue(4, $model->data_nascimento);
-
-        $stmt->bindValue(5, $model->id);
+        $stmt->bindValue(4, $model->id);
 
         return $stmt->execute();
 
@@ -76,9 +70,7 @@ class ClienteDAO extends DAO
     public function Select() : array
     {
 
-        $sql = "SELECT Cliente.*, " .
-               "DATE_FORMAT(Cliente.data_nascimento, 'dd/MM/yyyy hh:mm:ss') " .
-               "FROM Cliente ORDER BY nome ASC";
+        $sql = "SELECT * FROM Cliente ORDER BY nome ASC";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -93,9 +85,7 @@ class ClienteDAO extends DAO
 
         $parametro = [":filtro" => "%" . $value . "%"];
 
-        $sql = "SELECT Cliente.*, " .
-               "DATE_FORMAT(Cliente.data_nascimento, 'dd/MM/yyyy hh:mm:ss') " .
-               "FROM Cliente WHERE nome LIKE :filtro ORDER BY nome ASC";
+        $sql = "SELECT * FROM Cliente WHERE nome LIKE :filtro ORDER BY nome ASC";
         
         $stmt = $this->conexao->prepare($sql);
 
