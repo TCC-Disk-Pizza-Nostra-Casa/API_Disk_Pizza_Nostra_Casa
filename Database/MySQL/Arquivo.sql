@@ -70,19 +70,3 @@ FOREIGN KEY(id_produto) REFERENCES Produto(id),
 quantidade_produto INT,
 valor_total_item_venda DOUBLE DEFAULT 0
 );
-
-USE `db_pizzaria`;
-
-DELIMITER $$
-USE db_pizzaria $$
-CREATE
-DEFINER=root@localhost
-TRIGGER db_pizzaria.triggerUpdateEstoque
-AFTER INSERT ON db_pizzaria.venda_produto_assoc
-FOR EACH ROW
-BEGIN
-	update produto set estoque = estoque - new.quantidade_produto where id = new.id_produto;
-END$$
-
-
-DELIMITER ;

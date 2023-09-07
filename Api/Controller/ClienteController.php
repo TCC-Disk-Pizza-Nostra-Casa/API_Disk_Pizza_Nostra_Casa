@@ -20,14 +20,9 @@ class ClienteController extends Controller
             $model = new ClienteModel();
 
             $model->id = $json_object->id;
-
             $model->nome = $json_object->nome;
-
-            $model->genero = $json_object->genero;
-
+            $model->email = $json_object->email;
             $model->telefone = $json_object->telefone;
-
-            $model->data_nascimento = $json_object->data_nascimento;
 
             parent::SendReturnAsJson($model->Save());
 
