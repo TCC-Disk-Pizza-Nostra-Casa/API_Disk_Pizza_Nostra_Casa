@@ -15,11 +15,13 @@ class FuncionarioController extends Controller
         try
         {
 
+            // Enviando dados.
+
             $json_object = json_decode(file_get_contents("php://input"));
 
             $model = new FuncionarioModel();
 
-            $model->id = $json_object->id;
+            //$model->id = $json_object->id;
 
             $model->nome = $json_object->nome;
 
@@ -41,11 +43,15 @@ class FuncionarioController extends Controller
 
             $model->observacoes = $json_object->observacoes;
 
-            ($json_object->administrador) ? $model->administrador = 1 : $model->administrador = 0;
+            $model->administrador = $json_object->administrador;
 
-            $model->data_cadastro = $json_object->data_cadastro;
+            // Recebendo dados.
 
-            ($json_object->ativo) ? $model->ativo = 1 : $model->ativo = 0;
+            /*$model_retornada = $model->Save();
+
+            $model_retornada->data_cadastro = date("d/m/Y H:i:s", $model_retornada->data_cadastro);
+
+            parent::SendReturnAsJson($model_retornada);*/
 
             parent::SendReturnAsJson($model->Save());
 
