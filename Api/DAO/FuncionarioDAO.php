@@ -18,7 +18,7 @@ class FuncionarioDAO extends DAO
     {
 
         $sql = "INSERT INTO Funcionario(nome, genero, cpf, rg, cargo, cep, email, telefone, senha, " .
-               "observacoes, administrador, ativo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, MD5(?), ?, ?, ?)";
+               "observacoes, administrador) VALUES(?, ?, ?, ?, ?, ?, ?, ?, MD5(?), ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -43,8 +43,6 @@ class FuncionarioDAO extends DAO
         $stmt->bindValue(10, $model->observacoes);
 
         $stmt->bindValue(11, $model->administrador);
-
-        $stmt->bindValue(12, $model->ativo);
 
         $stmt->execute();
 
@@ -59,7 +57,7 @@ class FuncionarioDAO extends DAO
 
         $sql = "UPDATE Funcionario SET nome = ?, genero = ? cpf = ?, rg = ?, cargo = ?, " .
                "cep = ?, email = ?, telefone = ?, senha = MD5(?), observacoes = ?, " .
-               "administrador = ?, ativo = ? WHERE id = ?";
+               "administrador = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -85,22 +83,7 @@ class FuncionarioDAO extends DAO
 
         $stmt->bindValue(11, $model->administrador);
 
-        $stmt->bindValue(12, $model->ativo);
-
-        $stmt->bindValue(13, $model->id);
-
-        return $stmt->execute();
-
-    }
-
-    public function Reactivate(int $id) : bool
-    {
-
-        $sql = "UPDATE Funcionario SET ativo = 1 WHERE id = ?";
-
-        $stmt = $this->conexao->prepare($sql);
-
-        $stmt->bindValue(1, $id);
+        $stmt->bindValue(12, $model->id);
 
         return $stmt->execute();
 
@@ -110,6 +93,19 @@ class FuncionarioDAO extends DAO
     {
 
         $sql = "UPDATE Funcionario SET ativo = 0 WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        return $stmt->execute();
+
+    }
+
+    public function Reactivate(int $id) : bool
+    {
+
+        $sql = "UPDATE Funcionario SET ativo = 1 WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 

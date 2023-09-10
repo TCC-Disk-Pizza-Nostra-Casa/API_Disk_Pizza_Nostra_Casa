@@ -12,9 +12,9 @@ class FuncionarioModel extends Model
     public function Save()
     {
 
-        //return ($this->id == null) ? (new FuncionarioDAO())->Insert($this) : (new FuncionarioDAO())->Update($this);
+        return ($this->id == null) ? (new FuncionarioDAO())->Insert($this) : (new FuncionarioDAO())->Update($this);
 
-        if($this->id == null)
+        /*if($this->id == null)
         {
 
             return (new FuncionarioDAO())->Insert($this);
@@ -26,7 +26,7 @@ class FuncionarioModel extends Model
 
             return (new FuncionarioDAO())->Update($this);
 
-        }
+        }*/
 
     }
 
