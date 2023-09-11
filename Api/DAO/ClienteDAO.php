@@ -38,7 +38,7 @@ class ClienteDAO extends DAO
     public function Update(ClienteModel $model) : bool
     {
 
-        $sql = "UPDATE Cliente SET nome = ?, email = ?, telefone = ? WHERE id = ?";
+        $sql = "UPDATE Cliente SET nome = ?, email = ?, telefone = ?, ativo = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -48,7 +48,9 @@ class ClienteDAO extends DAO
 
         $stmt->bindValue(3, $model->telefone);
 
-        $stmt->bindValue(4, $model->id);
+        $stmt->bindValue(4, $model->ativo);
+
+        $stmt->bindValue(5, $model->id);
 
         return $stmt->execute();
 

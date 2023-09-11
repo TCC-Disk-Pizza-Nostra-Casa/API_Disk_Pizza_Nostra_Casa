@@ -23,6 +23,7 @@ class ClienteController extends Controller
             $model->nome = $json_object->nome;
             $model->email = $json_object->email;
             $model->telefone = $json_object->telefone;
+            $model->ativo = ($json_object->ativo) ? 1 : 0;
 
             parent::SendReturnAsJson($model->Save());
 
