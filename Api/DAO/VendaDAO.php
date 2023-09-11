@@ -18,11 +18,17 @@ class VendaDAO extends DAO
 
     public function select()
     {
-        $sql = "select * from Venda";
+        $sql = "select v.id, data_venda, delivery, valor_total, f.nome as funcionario, c.nome as cliente, p.nome as produto, vp.quantidade_produto, vp.valor_total_item_venda from Venda as v join Venda_Produto_Assoc as vp on v.id = vp.id_venda join Produto as p on vp.id_produto = p.id join Cliente as c on v.id_cliente = c.id join Funcionario as f on v.id_funcionario = v.id";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
+        
+        $response = $stmt->fetchAll(PDO::FETCH_CLASS);
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS);
+        foreach($response as $result){
+            
+        }
+        
+        exit(var_dump($response));
     }
 
     public function search(string $query){
