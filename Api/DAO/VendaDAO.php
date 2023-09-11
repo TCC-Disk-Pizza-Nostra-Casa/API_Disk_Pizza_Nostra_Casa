@@ -74,7 +74,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
     "id_produto": ["1", "2"],
     "quantidade_produto": ["100", "200"],
     "valor_total": "600",
-    "valor_item_venda": ["200", "400"]
+    "valor_total_item_venda": ["200", "400"]
 }' http://localhost:8000/venda/save
 
 */

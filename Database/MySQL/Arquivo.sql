@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS Venda_Produto_Assoc (
 
     id_produto INT,
     FOREIGN KEY(id_produto) REFERENCES Produto(id),
-
+  
     quantidade_produto INT,
     valor_total_item_venda DOUBLE DEFAULT 0
   
