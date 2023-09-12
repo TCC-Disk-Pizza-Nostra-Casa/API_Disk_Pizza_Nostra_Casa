@@ -12,14 +12,19 @@ class VendaProdutoAssocDAO extends DAO{
         parent::__construct();
     }
 
-    public function select(){
-        $sql = "select v.id_venda, p.nome, v.quantidade_produto, v.valor_total_item_venda from Venda_Produto_Assoc as v join Produto as p on v.id_produto = p.id where id = ?";
+    public function select(int $id_venda) : array
+    {
+        $sql = "select v.id_venda, p.nome as produto, v.quantidade_produto, v.valor_total_item_venda from Venda_Produto_Assoc as v join Produto as p on v.id_produto = p.id where id_venda = ?";
        
         $stmt = $this->conexao->prepare($sql);
 
+        $stmt->bindValue(1, $id_venda);
+
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS);
+        $response = $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        return $response;
     }
 
     public function insert(VendaProdutoAssocModel $model) : bool

@@ -18,14 +18,26 @@ class VendaDAO extends DAO
 
     public function select()
     {
-        $sql = "select v.id, data_venda, delivery, valor_total, f.nome as funcionario, c.nome as cliente, p.nome as produto, vp.quantidade_produto, vp.valor_total_item_venda from Venda as v join Venda_Produto_Assoc as vp on v.id = vp.id_venda join Produto as p on vp.id_produto = p.id join Cliente as c on v.id_cliente = c.id join Funcionario as f on v.id_funcionario = v.id";
+        $sql = "select v.id,  date_format(data_venda, '%d de %M de %Y %H:%i') as data_venda, delivery, valor_total, f.nome as funcionario, c.nome as cliente, p.nome as produto, vp.quantidade_produto, vp.valor_total_item_venda from Venda as v join Venda_Produto_Assoc as vp on v.id = vp.id_venda join Produto as p on vp.id_produto = p.id join Cliente as c on v.id_cliente = c.id join Funcionario as f on v.id_funcionario = v.id group by id";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
         
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);
 
-        foreach($response as $result){
+        $index = 0;
+        while ($index < count($response)){
+
+            $id = $response[$index]->id;
             
+            $response[$index]->produto = array();
+            
+            $vendaItemList = (new VendaProdutoAssocDAO)->select($id);
+
+            foreach ($vendaItemList as $item){
+                $response[$index]->produto[] = $item->produto;
+            }
+
+            $index ++;
         }
         
         exit(var_dump($response));
