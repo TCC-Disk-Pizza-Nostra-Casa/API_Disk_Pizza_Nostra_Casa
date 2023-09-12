@@ -6,7 +6,9 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    genero VARCHAR(20) DEFAULT "Não informado",
+    nome_social varchar(255) DEFAULT "Não possui",
+    genero VARCHAR(30) DEFAULT "Não informado",
+    pronome varchar(13) DEFAULT "Não informado",
     cpf CHAR(11) UNIQUE NOT NULL,
     rg CHAR(9) UNIQUE NOT NULL,
     cargo VARCHAR(20) NOT NULL,
@@ -17,6 +19,7 @@ CREATE TABLE IF NOT EXISTS Funcionario (
     administrador BOOL DEFAULT 0,
     observacoes VARCHAR(255) DEFAULT "Nenhuma observação",
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ativo BOOL DEFAULT 1
 
 );
@@ -25,11 +28,29 @@ CREATE TABLE IF NOT EXISTS Cliente (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    genero VARCHAR(20) DEFAULT "Não informado",
+    nome_social varchar(255) DEFAULT "Não possui",
+    genero VARCHAR(30) DEFAULT "Não informado",
+    pronome varchar(13) DEFAULT "Não informado",
     cpf CHAR(11) UNIQUE NOT NULL,
+    cep CHAR(8) NOT NULL,
     email VARCHAR(60) UNIQUE DEFAULT "Não informado",
     telefone VARCHAR(20) UNIQUE DEFAULT "Não informado",
+    observacoes VARCHAR(255) DEFAULT "Nenhuma observação",
     data_nascimento TIMESTAMP DEFAULT NULL,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOL DEFAULT 1
+
+);
+
+CREATE TABLE IF NOT EXISTS Fornecedor (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cnpj CHAR(14) UNIQUE NOT NULL,
+    telefone VARCHAR(20) UNIQUE DEFAULT "Não informado",
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ativo BOOL DEFAULT 1
 
 );
@@ -40,7 +61,12 @@ CREATE TABLE IF NOT EXISTS Produto (
     nome VARCHAR(255) UNIQUE NOT NULL,
     estoque INT NOT NULL,
     preco DOUBLE NOT NULL,
-    observacoes VARCHAR(255) DEFAULT "Nenhuma observação"
+    observacoes VARCHAR(255) DEFAULT "Nenhuma observação",
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    id_fornecedor INT,
+    FOREIGN KEY(id_fornecedor) REFERENCES Fornecedor(id)
 
 );
 

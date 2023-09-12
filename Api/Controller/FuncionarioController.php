@@ -21,11 +21,15 @@ class FuncionarioController extends Controller
 
             $model = new FuncionarioModel();
 
-            //$model->id = $json_object->id;
+            $model->id = $json_object->id;
 
             $model->nome = $json_object->nome;
 
+            $model->nome_social = $json_object->nome_social;
+
             $model->genero = $json_object->genero;
+
+            $model->pronome = $json_object->pronome;
 
             $model->cpf = str_replace([".","-"], "", $json_object->cpf);
 
@@ -42,6 +46,8 @@ class FuncionarioController extends Controller
             $model->senha = $json_object->senha;
 
             $model->observacoes = $json_object->observacoes;
+
+            $model->data_modificacao = $json_object->data_modificacao;
 
             $model->administrador = $json_object->administrador;
 

@@ -17,15 +17,28 @@ class ClienteDAO extends DAO
     public function Insert(ClienteModel $model) : ClienteModel
     {
 
-        $sql = "INSERT INTO Cliente (nome, email, telefone) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO Cliente(nome, nome_social, genero, pronome, cpf, " .
+               "cep, email, telefone, observacoes) VALUES(?,?,?,?,?,?,?,?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
 
-        $stmt->bindValue(2, $model->email);
+        $stmt->bindValue(2, $model->nome_social);
 
-        $stmt->bindValue(3, $model->telefone);
+        $stmt->bindValue(3, $model->genero);
+
+        $stmt->bindValue(4, $model->pronome);
+
+        $stmt->bindValue(5, $model->cpf);
+
+        $stmt->bindValue(6, $model->cep);
+
+        $stmt->bindValue(7, $model->email);
+
+        $stmt->bindValue(8, $model->telefone);
+
+        $stmt->bindValue(9, $model->observacoes);
 
         $stmt->execute();
 
@@ -38,28 +51,54 @@ class ClienteDAO extends DAO
     public function Update(ClienteModel $model) : bool
     {
 
-        $sql = "UPDATE Cliente SET nome = ?, email = ?, telefone = ?, ativo = ? WHERE id = ?";
+        $sql = "UPDATE Cliente SET nome = ?, nome_social = ?, genero = ?, pronome = ?, cpf = ?, " .
+               "cep = ?, email = ?, telefone = ?, observacoes = ?, data_modificacao = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
 
-        $stmt->bindValue(2, $model->email);
+        $stmt->bindValue(2, $model->nome_social);
 
-        $stmt->bindValue(3, $model->telefone);
+        $stmt->bindValue(3, $model->genero);
 
-        $stmt->bindValue(4, $model->ativo);
+        $stmt->bindValue(4, $model->pronome);
 
-        $stmt->bindValue(5, $model->id);
+        $stmt->bindValue(5, $model->cpf);
+
+        $stmt->bindValue(6, $model->cep);
+
+        $stmt->bindValue(7, $model->email);
+
+        $stmt->bindValue(8, $model->telefone);
+
+        $stmt->bindValue(9, $model->observacoes);
+
+        $stmt->bindValue(10, $model->data_modificacao);
+
+        $stmt->bindValue(11, $model->id);
 
         return $stmt->execute();
 
     }
 
-    public function Delete(int $id) : bool
+    public function Deactivate(int $id) : bool
     {
 
-        $sql = "DELETE FROM Cliente WHERE id = ?";
+        $sql = "UPDATE Cliente SET ativo = 0 WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        return $stmt->execute();
+
+    }
+
+    public function Reactivate(int $id) : bool
+    {
+
+        $sql = "UPDATE Cliente SET ativo = 1 WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 

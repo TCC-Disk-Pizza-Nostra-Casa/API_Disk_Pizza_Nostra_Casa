@@ -7,7 +7,9 @@ use Api\DAO\ClienteDAO;
 class ClienteModel extends Model
 {
 
-    public $id, $nome, $email, $telefone, $ativo;
+    public $id, $nome, $nome_social, $genero, $pronome, $cpf, $cep, $email, $telefone;
+
+    public $observacoes, $data_nascimento, $data_cadastro, $data_modificacao, $ativo;
 
     public function Save()
     {
@@ -16,10 +18,17 @@ class ClienteModel extends Model
 
     }
 
-    public function Erase(int $id)
+    public function Enable(int $id)
     {
 
-        return (new ClienteDAO())->Delete($id);
+        return (new ClienteDAO())->Reactivate($id);
+
+    }
+
+    public function Disable(int $id)
+    {
+
+        return (new ClienteDAO())->Deactivate($id);
 
     }
 

@@ -7,33 +7,26 @@ use Api\DAO\ProdutoDAO;
 class ProdutoModel extends Model
 {
     
-    public $id, $nome, $estoque, $preco, $observacoes;
+    public $id, $nome, $estoque, $preco, $observacoes, $data_cadastro, $data_modificacao, $fk_fornecedor;
     
-    public function Save() : ?ProdutoModel
+    public function Save()
     {
 
         return ($this->id == null) ? (new ProdutoDAO())->Insert($this) : (new ProdutoDAO())->Update($this);
 
-        /*if($this->id == null)
-        {
+    }
 
-            return (new ProdutoDAO())->Insert($this);  
+    public function Enable(int $id)
+    {
 
-        }
-
-        else
-        {
-
-            return (new ProdutoDAO())->Update($this);
-
-        }*/
+        return (new ProdutoDAO())->Reactivate($id);
 
     }
 
-    public function Delete(int $id)
+    public function Disable(int $id)
     {
 
-        return (new ProdutoDAO())->Delete($id);
+        return (new ProdutoDAO())->Deactivate($id);
 
     }
 
@@ -43,6 +36,7 @@ class ProdutoModel extends Model
         $this->rows = ($query == null) ? (new ProdutoDAO())->Select() : (new ProdutoDAO())->Search($query);
 
     }
+
 }
 
 ?>

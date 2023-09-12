@@ -2,50 +2,47 @@
 
 namespace Api\Controller;
 
-use Api\Model\ProdutoModel;
+use Api\Model\FornecedorModel;
 
 use Exception;
 
-class ProdutoController extends Controller
+class FornecedorController extends Controller
 {
 
-    public static function SaveAsyncProduto()
+    public static function SaveAsyncFornecedor() : void
     {
-        
-        try 
+
+        try
         {
+
             $json_object = json_decode(file_get_contents("php://input"));
 
-            $model = new ProdutoModel();
+            $model = new FornecedorModel();
 
             $model->id = $json_object->id;
 
             $model->nome = $json_object->nome;
-            
-            $model->estoque = $json_object->estoque;
-            
-            $model->preco = $json_object->preco;
-            
-            $model->observacoes = $json_object->observacoes;
+
+            $model->cnpj = str_replace([".","-","/"], "", $json_object->cpf);
+
+            $model->telefone = str_replace(["(",")"," ","-"], "", $json_object->telefone);
 
             $model->data_modificacao = $json_object->data_modificacao;
 
-            $model->fk_fornecedor = $json_object->fk_fornecedor;
-
             parent::SendReturnAsJson($model->Save());
 
-        } 
-        
-        catch(Exception $ex) 
+        }
+
+        catch(Exception $ex)
         {
-            
+
             parent::SendExceptionAsJson($ex);
 
         }
 
     }
 
-    public static function EnableAsyncProduto() : void
+    public static function EnableAsyncFornecedor() : void
     {
 
         try
@@ -53,7 +50,7 @@ class ProdutoController extends Controller
 
             $id = json_decode(file_get_contents("php://input"));
 
-            parent::SendReturnAsJson((new ProdutoModel())->Enable((int) $id));
+            parent::SendReturnAsJson((new FornecedorModel())->Enable((int) $id));
 
         }
 
@@ -66,7 +63,7 @@ class ProdutoController extends Controller
 
     }
 
-    public static function DisableAsyncProduto() : void
+    public static function DisableAsyncFornecedor() : void
     {
 
         try
@@ -74,7 +71,7 @@ class ProdutoController extends Controller
 
             $id = json_decode(file_get_contents("php://input"));
 
-            parent::SendReturnAsJson((new ProdutoModel())->Disable((int) $id));
+            parent::SendReturnAsJson((new FornecedorModel())->Disable((int) $id));
 
         }
 
@@ -87,54 +84,54 @@ class ProdutoController extends Controller
 
     }
 
-    public static function GetListAsyncProduto() : void
+    public static function GetListAsyncFornecedor() : void
     {
-        
-        try 
+
+        try
         {
 
-            $model = new ProdutoModel();
+            $model = new FornecedorModel();
 
             $model->GetRows();
 
             parent::SendReturnAsJson($model->rows);
 
-        } 
-        
-        catch(Exception $ex) 
+        }
+
+        catch(Exception $ex)
         {
-            
+
             parent::SendExceptionAsJson($ex);
 
         }
 
     }
 
-    public static function SearchAsyncProduto() : void
+    public static function SearchAsyncFornecedor() : void
     {
-        
-        try 
+
+        try
         {
-        
+
             $filtro = json_decode(file_get_contents("php://input"));
 
-            $model = new ProdutoModel();
+            $model = new FornecedorModel();
 
             $model->GetRows($filtro);
 
             parent::SendReturnAsJson($model->rows);
 
-        } 
-        
-        catch(Exception $ex) 
+        }
+
+        catch(Exception $ex)
         {
-            
+
             parent::SendExceptionAsJson($ex);
 
         }
 
     }
-    
+
 }
 
 ?>
