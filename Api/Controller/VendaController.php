@@ -52,9 +52,24 @@ class VendaController extends Controller{
     
     public static function SearchAsyncVenda() : void
     {
+
+        try{
+            
         $filter = self::getData();
 
-        (new VendaModel())->getRows($filter);
+        $model = new VendaModel();
+        $model->getRows($filter);
+
+        parent::SendReturnAsJson($model->rows);
+
+        }
+        catch (Exception $ex)
+        {
+
+            parent::SendExceptionAsJson($ex);
+
+        }
+
     }
 
     public static function getData()
