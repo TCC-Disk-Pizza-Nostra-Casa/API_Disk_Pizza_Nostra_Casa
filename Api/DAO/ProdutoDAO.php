@@ -17,7 +17,7 @@ class ProdutoDAO extends DAO
     public function Insert(ProdutoModel $model) : ProdutoModel
     {
 
-        $sql = "INSERT INTO Produto(nome, estoque, preco, observacoes) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Produto(nome, estoque, preco, observacoes, id_fornecedor) VALUES (?,?,?,?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -28,6 +28,8 @@ class ProdutoDAO extends DAO
         $stmt->bindValue(3, $model->preco);
         
         $stmt->bindValue(4, $model->observacoes);
+
+        $stmt->bindValue(5, $model->fk_fornecedor);
 
         $stmt->execute();
 
@@ -41,7 +43,7 @@ class ProdutoDAO extends DAO
     {
 
         $sql = "UPDATE Produto SET nome = ?, estoque = ?, preco = ?, " .
-               "observacoes = ? WHERE id = ?";
+               "observacoes = ?, fk_fornecedor = ?, data_modificacao = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -53,23 +55,40 @@ class ProdutoDAO extends DAO
         
         $stmt->bindValue(4, $model->observacoes);
         
-        $stmt->bindValue(5, $model->id);
+        $stmt->bindValue(5, $model->fk_fornecedor);
+
+        $stmt->bindValue(6, $model->data_modificacao);
+
+        $stmt->bindValue(7, $model->id);
 
         return $stmt->execute();
         
     }
 
-    public function Delete(int $id) : bool
+    public function Deactivate(int $id) : bool
     {
 
-        $sql = "DELETE FROM Produto WHERE id = ?";
+        $sql = "UPDATE Produto SET ativo = 0 WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $id);
 
         return $stmt->execute();
-    
+
+    }
+
+    public function Reactivate(int $id) : bool
+    {
+
+        $sql = "UPDATE Produto SET ativo = 1 WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        return $stmt->execute();
+
     }
 
     public function Select() : array

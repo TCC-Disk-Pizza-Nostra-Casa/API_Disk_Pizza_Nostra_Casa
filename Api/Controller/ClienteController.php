@@ -20,9 +20,28 @@ class ClienteController extends Controller
             $model = new ClienteModel();
 
             $model->id = $json_object->id;
+
             $model->nome = $json_object->nome;
+
+            $model->nome_social = $json_object->nome_social;
+
+            $model->genero = $json_object->genero;
+
+            $model->pronome = $json_object->pronome;
+
+            $model->cpf = str_replace([".","-"], "", $json_object->cpf);
+
+            $model->cep = str_replace([".","-"], "", $json_object->cep);
+
             $model->email = $json_object->email;
-            $model->telefone = $json_object->telefone;
+
+            $model->telefone = str_replace(["(",")"," ","-"], "", $json_object->telefone);
+
+            $model->observacoes = $json_object->observacoes;
+
+            $model->data_nascimento = $json_object->data_nascimento;
+
+            $model->data_modificacao = $json_object->data_modificacao;
 
             parent::SendReturnAsJson($model->Save());
 
@@ -37,7 +56,7 @@ class ClienteController extends Controller
 
     }
 
-    public static function DeleteAsyncCliente() : void
+    public static function EnableAsyncCliente() : void
     {
 
         try
@@ -45,7 +64,28 @@ class ClienteController extends Controller
 
             $id = json_decode(file_get_contents("php://input"));
 
-            parent::SendReturnAsJson((new ClienteModel())->Erase((int) $id));
+            parent::SendReturnAsJson((new ClienteModel())->Enable((int) $id));
+
+        }
+
+        catch(Exception $ex)
+        {
+
+            parent::SendExceptionAsJson($ex);
+
+        }
+
+    }
+
+    public static function DisableAsyncCliente() : void
+    {
+
+        try
+        {
+
+            $id = json_decode(file_get_contents("php://input"));
+
+            parent::SendReturnAsJson((new ClienteModel())->Disable((int) $id));
 
         }
 
