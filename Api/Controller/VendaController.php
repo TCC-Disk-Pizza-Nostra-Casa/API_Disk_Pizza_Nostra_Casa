@@ -13,7 +13,7 @@ class VendaController extends Controller{
         try
         {
 
-            $data = json_decode(file_get_contents("php://input"));
+            $data = self::getData();
 
             $Venda = new VendaModel();
             parent::fillModel($Venda, $data);
@@ -52,7 +52,14 @@ class VendaController extends Controller{
     
     public static function SearchAsyncVenda() : void
     {
+        $filter = self::getData();
 
+        (new VendaModel())->getRows($filter);
+    }
+
+    public static function getData()
+    {
+        return json_decode(file_get_contents("php://input"));
     }
 }
 

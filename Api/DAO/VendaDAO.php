@@ -16,7 +16,7 @@ class VendaDAO extends DAO
         
     }
 
-    public function select()
+    public function select() : array
     {
         $sql = "select v.id,  date_format(data_venda, '%d de %M de %Y %H:%i') as data_venda, delivery, valor_total, f.nome as funcionario, c.nome as cliente, p.nome as produto, vp.quantidade_produto, vp.valor_total_item_venda from Venda as v join Venda_Produto_Assoc as vp on v.id = vp.id_venda join Produto as p on vp.id_produto = p.id join Cliente as c on v.id_cliente = c.id join Funcionario as f on v.id_funcionario = v.id group by id";
         $stmt = $this->conexao->prepare($sql);
@@ -30,21 +30,25 @@ class VendaDAO extends DAO
             $id = $response[$index]->id;
             
             $response[$index]->produto = array();
+            $response[$index]->quantidade_produto = array();
+            $response[$index]->valor_total_item_venda = array();            
             
             $vendaItemList = (new VendaProdutoAssocDAO)->select($id);
 
             foreach ($vendaItemList as $item){
                 $response[$index]->produto[] = $item->produto;
+                $response[$index]->quantidade_produto[] = $item->quantidade_produto;
+                $response[$index]->valor_total_item_venda[] = $item->valor_total_item_venda;
             }
 
             $index ++;
         }
         
-        exit(var_dump($response));
+        return $response;
     }
 
     public function search(string $query){
-
+        exit("foi");
     }
 
     public function insert(VendaModel $modelVenda, VendaProdutoAssocModel $modelVendaProdutoAssocModel) : bool
