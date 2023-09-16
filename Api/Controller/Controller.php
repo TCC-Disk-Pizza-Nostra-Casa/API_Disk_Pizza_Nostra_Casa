@@ -91,7 +91,7 @@ abstract class Controller
 
     }
 
-    protected static function fillModel($model, $objectToFill): void{
+    protected static function fillModel(object $model, object $objectToFill): void{
         foreach ((get_object_vars($objectToFill)) as $key => $value):
             //$key => $value: separa cada variável em chave e valor, utilizando o operador de vetores "=>"
 

@@ -70,7 +70,7 @@ abstract class DAO extends PDO
         $placeholderString = implode(",", $placeholderList);
         /* forma string com os marcadores que serão substituídos. Exemplo: (?, ?) */
 
-        $insert = "INSERT INTO " . $table . " (" . $column . ") values (" . $placeholderString . ")";
+        $insert = "INSERT INTO " . $table . " (" . $column . ") VALUES (" . $placeholderString . ")";
 
         return $insert;
     }
@@ -105,7 +105,7 @@ abstract class DAO extends PDO
             $index --;
         }
 
-        $update = "UPDATE " . $table . " SET " . $column . "where id = ? ";
+        $update = "UPDATE " . $table . " SET " . $column . "WHERE id = ? ";
         
         return $update;
 

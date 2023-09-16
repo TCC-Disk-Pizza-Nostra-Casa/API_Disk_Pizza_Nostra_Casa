@@ -2,18 +2,21 @@
 
 namespace Api\Controller;
 
-use Api\Model\VendaModel;
-use Api\Model\VendaProdutoAssocModel;
+use Api\Model\{
+    VendaModel,
+    VendaProdutoAssocModel
+};
+
 use Exception;
 
-class VendaController extends Controller{
+class VendaController extends Controller
+{
 
-    public static function SaveAsyncVenda() : void
+    public static function SaveAsyncVenda(): void
     {
-        try
-        {
+        try {
 
-            $data = self::getData();
+            $data = self::getDataFromRequest();
 
             $Venda = new VendaModel();
             parent::fillModel($Venda, $data);
@@ -22,60 +25,44 @@ class VendaController extends Controller{
             parent::fillModel($vendaProdutoAssoc, $data);
 
             parent::SendReturnAsJson($Venda->save($vendaProdutoAssoc));
-            
-        }
-        catch(Exception $ex)
-        {
+        } catch (Exception $ex) {
 
             parent::SendExceptionAsJson($ex);
-
         }
     }
 
-    public static function GetListAsyncVenda() : void
+    public static function GetListAsyncVenda(): void
     {
-        try
-        {
+        try {
 
             $model = new VendaModel();
             $model->getRows();
             parent::SendReturnAsJson($model->rows);
-
-        }
-        catch(Exception $ex)
-        {
+        } catch (Exception $ex) {
 
             parent::SendExceptionAsJson($ex);
-
         }
     }
-    
-    public static function SearchAsyncVenda() : void
+
+    public static function SearchAsyncVenda(): void
     {
 
-        try{
-            
-        $filter = self::getData();
+        try {
 
-        $model = new VendaModel();
-        $model->getRows($filter);
+            $filter = self::getDataFromRequest();
 
-        parent::SendReturnAsJson($model->rows);
+            $model = new VendaModel();
+            $model->getRows($filter->filter);
 
-        }
-        catch (Exception $ex)
-        {
+            parent::SendReturnAsJson($model->rows);
+        } catch (Exception $ex) {
 
             parent::SendExceptionAsJson($ex);
-
         }
-
     }
 
-    public static function getData()
+    public static function getDataFromRequest()
     {
         return json_decode(file_get_contents("php://input"));
     }
 }
-
-?>

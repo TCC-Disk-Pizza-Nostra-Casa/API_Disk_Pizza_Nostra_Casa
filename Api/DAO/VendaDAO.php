@@ -2,67 +2,115 @@
 
 namespace Api\DAO;
 
-use Api\Model\VendaModel;
-use Api\Model\VendaProdutoAssocModel;
+use Api\Model\{
+    VendaModel,
+    VendaProdutoAssocModel
+};
 use PDO;
 
 class VendaDAO extends DAO
 {
-    
+
     public function __construct()
     {
-
         parent::__construct();
-        
     }
 
-    public function select() : array
+    public function select(): array
     {
-        $sql = "select v.id,  date_format(data_venda, '%d de %M de %Y %H:%i') as data_venda, delivery, valor_total, f.nome as funcionario, c.nome as cliente, p.nome as produto, vp.quantidade_produto, vp.valor_total_item_venda from Venda as v join Venda_Produto_Assoc as vp on v.id = vp.id_venda join Produto as p on vp.id_produto = p.id join Cliente as c on v.id_cliente = c.id join Funcionario as f on v.id_funcionario = v.id_funcionario group by v.id";
+        $sql = "SELECT
+                    v.id,  
+                    DATE_FORMAT(data_venda, '%d de %M de %Y %H:%i') AS data_venda, 
+                    delivery, 
+                    valor_total, 
+                    f.nome AS funcionario, 
+                    c.nome AS cliente, 
+                    MAX(p.nome) AS produto, 
+                    MAX(vp.quantidade_produto) AS quantidade_produto, 
+                    MAX(vp.valor_total_item_venda) AS valor_total_item_venda 
+                FROM 
+                    Venda AS v
+                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.id_venda 
+                    JOIN Produto AS p ON vp.id_produto = p.id
+                    JOIN Cliente AS c ON v.id_cliente = c.id
+                    JOIN Funcionario AS f ON v.id_funcionario = f.id
+                GROUP BY v.id";
+
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
-        
+
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);
 
-        $index = 0;
-        while ($index < count($response))
-        {
+        $response = $this->setVendaItemsDetails($response);
 
-            $id = $response[$index]->id;
-            
-            $response[$index]->produto = array();
-            $response[$index]->quantidade_produto = array();
-            $response[$index]->valor_total_item_venda = array();            
-            
-            $vendaItemList = (new VendaProdutoAssocDAO)->select($id);
-
-            foreach ($vendaItemList as $item){
-                $response[$index]->produto[] = $item->produto;
-                $response[$index]->quantidade_produto[] = $item->quantidade_produto;
-                $response[$index]->valor_total_item_venda[] = $item->valor_total_item_venda;
-            }
-
-            $index ++;
-        }
-        
         return $response;
     }
 
-    public function search(string $query)
+    public function search(string $query): array
     {
-        $sql = "select v.id,  date_format(data_venda, '%d de %M de %Y %H:%i') as data_venda, delivery, valor_total, f.nome as funcionario, c.nome as cliente, p.nome as produto, vp.quantidade_produto, vp.valor_total_item_venda from Venda as v join Venda_Produto_Assoc as vp on v.id = vp.id_venda join Produto as p on vp.id_produto = p.id join Cliente as c on v.id_cliente = c.id join Funcionario as f on v.id_funcionario = v.id_funcionario where v.id = ? group by v.id";
+        $filter = "%" . $query . "%";
 
-        //exit(var_dump($query));
+        $sql = "SELECT
+                    v.id,
+                    DATE_FORMAT(data_venda, '%d de %M de %Y %H:%i') AS data_venda,
+                    delivery,
+                    valor_total,
+                    f.nome AS funcionario,
+                    c.nome AS cliente,
+                    MAX(p.nome) AS produto,
+                    MAX(vp.quantidade_produto) AS quantidade_produto,
+                    MAX(vp.valor_total_item_venda) AS valor_total_item_venda
+                FROM
+                    Venda AS v
+                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.id_venda
+                    JOIN Produto AS p ON vp.id_produto = p.id
+                    JOIN Cliente AS c ON v.id_cliente = c.id
+                    JOIN Funcionario AS f ON v.id_funcionario = f.id
+                WHERE
+                    c.nome LIKE :keyword OR f.nome LIKE :keyword
+                GROUP BY
+                    v.id";
+
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $query);
+        $stmt->bindParam(":keyword", $filter);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS);
+        $response = $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        $response = $this->setVendaItemsDetails($response);
+
+        return $response;
     }
 
-    public function insert(VendaModel $modelVenda, VendaProdutoAssocModel $modelVendaProdutoAssocModel) : bool
+    public function setVendaItemsDetails(array $vendaObject): array
     {
-        
+
+        $index = 0;
+        while ($index < count($vendaObject)) {
+
+            $id = $vendaObject[$index]->id;
+
+            $vendaObject[$index]->produto = array();
+            $vendaObject[$index]->quantidade_produto = array();
+            $vendaObject[$index]->valor_total_item_venda = array();
+
+            $vendaItemList = (new VendaProdutoAssocDAO)->select($id);
+
+            foreach ($vendaItemList as $item) {
+                $vendaObject[$index]->produto[] = $item->produto;
+                $vendaObject[$index]->quantidade_produto[] = $item->quantidade_produto;
+                $vendaObject[$index]->valor_total_item_venda[] = $item->valor_total_item_venda;
+            }
+
+            $index++;
+        }
+
+        return $vendaObject;
+    }
+
+    public function insert(VendaModel $modelVenda, VendaProdutoAssocModel $modelVendaProdutoAssocModel): bool
+    {
+
         $allowedColumns = [
             "delivery", "id_funcionario", "id_cliente", "valor_total"
         ];
@@ -76,38 +124,13 @@ class VendaDAO extends DAO
         return $response;
     }
 
-    public function update(VendaModel $model) : bool
+    public function update(VendaModel $model): bool
     {
 
         $allowedColumns = [
             "delivery", "id"
         ];
-      
+
         return $this->automatedUpdate("Venda", $allowedColumns, $model);
-
     }
-
 }
-
-/* 
-
-inserções para teste das tabelas da venda:
-insert into Cliente(nome, cpf) values ("teste", "12345678909");
-insert into Funcionario(nome, senha, cpf, rg, cep, cargo, telefone) values ("teste", "123", "12345678909", "123456789", "17209233", "balconista", "996592724");
-insert into Produto(nome, estoque, preco) values ("teste", 1, 2);
-insert into Produto(nome, estoque, preco) values ("asdf", 1, 2);
-
-envio de solicitação http com envio de json para api para o recurso /venda/save pelo curl:
-curl -X POST -H "Content-Type: application/json" -d '{
-    "delivery": "1",
-    "id_funcionario": "1",
-    "id_cliente": "1",
-    "id_produto": ["1", "2"],
-    "quantidade_produto": ["100", "200"],
-    "valor_total": "600",
-    "valor_total_item_venda": ["200", "400"]
-}' http://localhost:8000/venda/save
-
-*/
-
-?>
