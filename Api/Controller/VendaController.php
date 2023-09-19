@@ -17,7 +17,7 @@ class VendaController extends Controller
         try {
 
             $data = self::getDataFromRequest();
-
+            
             $Venda = new VendaModel();
             parent::fillModel($Venda, $data);
 

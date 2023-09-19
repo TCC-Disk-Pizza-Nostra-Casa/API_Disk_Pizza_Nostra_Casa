@@ -14,7 +14,14 @@ class VendaProdutoAssocDAO extends DAO{
 
     public function select(int $id_venda) : array
     {
-        $sql = "select v.id_venda, p.nome as produto, v.quantidade_produto, v.valor_total_item_venda from Venda_Produto_Assoc as v join Produto as p on v.id_produto = p.id where id_venda = ?";
+        $sql = "SELECT 
+                    v.id_venda, 
+                    p.nome as produto, 
+                    v.quantidade_produto, 
+                    v.valor_total_item_venda 
+                FROM Venda_Produto_Assoc AS v 
+                    JOIN Produto AS p ON v.id_produto = p.id 
+                WHERE id_venda = ?";
        
         $stmt = $this->conexao->prepare($sql);
 
@@ -31,21 +38,19 @@ class VendaProdutoAssocDAO extends DAO{
     {
         $response = false;
 
-        $allowedColumns = [
-            "id_venda", "id_produto", "quantidade_produto", "valor_total_item_venda"
-        ];
+        $sql = "INSERT INTO Venda_produto_assoc (id_venda, id_produto, quantidade_produto, valor_total_item_venda) VALUES (?, ?, ?, ?)";
+
+        $stmt = $this->conexao->prepare($sql);
 
         $quantidadeProduto = count($model->id_produto);
-
         for ($index = 0; $index < $quantidadeProduto; $index ++)
         {
-            $objectToInsert = clone $model;
-
-            $objectToInsert->id_produto = $model->id_produto[$index];
-            $objectToInsert->quantidade_produto = $model->quantidade_produto[$index];
-            $objectToInsert->valor_total_item_venda = $model->valor_total_item_venda[$index];
+            $stmt->bindValue(1, $model->id_venda);
+            $stmt->bindValue(2, $model->id_produto[$index]);
+            $stmt->bindValue(3, $model->quantidade_produto[$index]);
+            $stmt->bindValue(4, $model->valor_total_item_venda[$index]);
             
-            $response += $this->automatedInsert("Venda_Produto_Assoc", $allowedColumns, $objectToInsert);
+            $response += $stmt->execute();
         }
 
         return $response;

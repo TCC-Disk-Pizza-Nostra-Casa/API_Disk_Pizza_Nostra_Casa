@@ -110,12 +110,16 @@ class VendaDAO extends DAO
 
     public function insert(VendaModel $modelVenda, VendaProdutoAssocModel $modelVendaProdutoAssocModel): bool
     {
+        $sql = "INSERT INTO Venda (delivery, id_funcionario, id_cliente, valor_total) VALUES (?, ?, ?, ?)";
 
-        $allowedColumns = [
-            "delivery", "id_funcionario", "id_cliente", "valor_total"
-        ];
+        $stmt = $this->conexao->prepare($sql);
+        
+        $stmt->bindValue(1, $modelVenda->delivery);
+        $stmt->bindValue(2, $modelVenda->id_funcionario);
+        $stmt->bindValue(3, $modelVenda->id_cliente);
+        $stmt->bindValue(4, $modelVenda->valor_total);
 
-        $response = $this->automatedInsert("Venda", $allowedColumns, $modelVenda);
+        $response = $stmt->execute();
 
         $modelVenda->id = $this->conexao->lastInsertId();
 
@@ -126,11 +130,13 @@ class VendaDAO extends DAO
 
     public function update(VendaModel $model): bool
     {
+        $sql = "UPDATE Venda SET delivery = ? WHERE id = ?";
 
-        $allowedColumns = [
-            "delivery", "id"
-        ];
+        $stmt = $this->conexao->prepare($sql);
+        
+        $stmt->bindValue(1, $model->delivery);
+        $stmt->bindValue(2, $model->id);
 
-        return $this->automatedUpdate("Venda", $allowedColumns, $model);
+        return $stmt->execute();
     }
 }
