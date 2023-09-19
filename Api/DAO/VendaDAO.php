@@ -115,7 +115,15 @@ class VendaDAO extends DAO
             "delivery", "id_funcionario", "id_cliente", "valor_total"
         ];
 
+        $sql = "INSERT INTO Venda (delivery, id_funcionario, id_cliente, valor_total) VALUES (?, ?, ?, ?)";
+
         $response = $this->automatedInsert("Venda", $allowedColumns, $modelVenda);
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $this->bindValuesToStatement($stmt, $allowedColumns, $modelVenda);
+
+        $response = $stmt->execute();
 
         $modelVenda->id = $this->conexao->lastInsertId();
 
