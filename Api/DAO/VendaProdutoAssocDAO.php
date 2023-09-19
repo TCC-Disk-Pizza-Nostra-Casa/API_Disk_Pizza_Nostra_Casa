@@ -38,7 +38,7 @@ class VendaProdutoAssocDAO extends DAO{
     {
         $response = false;
 
-        $sql = "INSERT INTO Venda_produto_assoc (id_venda, id_produto, quantidade_produto, valor_total_item_venda) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Venda_Produto_Assoc (id_venda, id_produto, quantidade_produto, valor_total_item_venda) VALUES (?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
