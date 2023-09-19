@@ -38,17 +38,17 @@ class VendaProdutoAssocDAO extends DAO{
     {
         $response = false;
 
-        $sql = "INSERT INTO Venda (id_venda, id_produto, quantidade_produto, valor_total_item_venda) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Venda_produto_assoc (id_venda, id_produto, quantidade_produto, valor_total_item_venda) VALUES (?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $quantidadeProduto = count($model->id_produto);
         for ($index = 0; $index < $quantidadeProduto; $index ++)
         {
-            $stmt->bindValue(1, $modelVenda->id_venda);
-            $stmt->bindValue(2, $modelVenda->id_produto);
-            $stmt->bindValue(3, $modelVenda->quantidade_produto[$index]);
-            $stmt->bindValue(4, $modelVenda->valor_total_item_venda[$index]);
+            $stmt->bindValue(1, $model->id_venda);
+            $stmt->bindValue(2, $model->id_produto[$index]);
+            $stmt->bindValue(3, $model->quantidade_produto[$index]);
+            $stmt->bindValue(4, $model->valor_total_item_venda[$index]);
             
             $response += $stmt->execute();
         }

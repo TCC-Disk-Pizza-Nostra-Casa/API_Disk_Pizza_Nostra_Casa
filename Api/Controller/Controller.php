@@ -102,7 +102,6 @@ abstract class Controller
             {
                 $model->$attributeName = $value;
             }
-            
         endforeach;
     }
 
