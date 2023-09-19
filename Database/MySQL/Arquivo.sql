@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS Venda (
 CREATE TABLE IF NOT EXISTS Venda_Produto_Assoc (
 
     id_venda INT,
-    FOREIGN KEY(id_venda) REFERENCES Venda(id),
+    FOREIGN KEY(id_venda) REFERENCES Venda(id) ON DELETE CASCADE,
 
     id_produto INT,
     FOREIGN KEY(id_produto) REFERENCES Produto(id),

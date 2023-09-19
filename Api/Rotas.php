@@ -90,6 +90,10 @@ switch($url)
         VendaController::SearchAsyncVenda();
     break;
 
+    case "/venda/delete":
+        VendaController::DeleteAsyncVenda();
+    break;
+
     default:
         //echo "Erro 404!";
         http_response_code(404);

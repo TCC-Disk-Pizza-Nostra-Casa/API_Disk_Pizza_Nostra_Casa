@@ -46,7 +46,6 @@ class VendaController extends Controller
 
     public static function SearchAsyncVenda(): void
     {
-
         try {
 
             $filter = self::getDataFromRequest();
@@ -55,6 +54,22 @@ class VendaController extends Controller
             $model->getRows($filter->filter);
 
             parent::SendReturnAsJson($model->rows);
+        } catch (Exception $ex) {
+
+            parent::SendExceptionAsJson($ex);
+        }
+    }
+
+    public static function DeleteAsyncVenda(): void
+    {
+        try {
+
+            $id = self::getDataFromRequest();
+
+            $model = new VendaModel();
+            $model->id = $id->id;
+
+            parent::SendReturnAsJson($model->delete());
         } catch (Exception $ex) {
 
             parent::SendExceptionAsJson($ex);

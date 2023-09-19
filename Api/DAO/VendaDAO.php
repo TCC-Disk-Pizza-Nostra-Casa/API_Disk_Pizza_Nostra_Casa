@@ -139,4 +139,15 @@ class VendaDAO extends DAO
 
         return $stmt->execute();
     }
+
+    public function delete(VendaModel $model) : bool
+    {
+        $sql = "DELETE FROM Venda_Produto_Assoc WHERE id_venda = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $model->id);
+
+        return $stmt->execute();
+    }
 }
