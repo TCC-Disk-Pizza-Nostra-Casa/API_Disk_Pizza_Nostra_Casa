@@ -3,9 +3,12 @@
 namespace Api\DAO;
 
 use Api\Model\{
+
     VendaModel,
     VendaProdutoAssocModel
+
 };
+
 use PDO;
 
 class VendaDAO extends DAO
@@ -13,11 +16,14 @@ class VendaDAO extends DAO
 
     public function __construct()
     {
+
         parent::__construct();
+
     }
 
     public function select(): array
     {
+
         $sql = "SELECT
                     v.id,  
                     DATE_FORMAT(data_venda, '%d de %M de %Y %H:%i') AS data_venda, 
@@ -44,10 +50,12 @@ class VendaDAO extends DAO
         $response = $this->setVendaItemsDetails($response);
 
         return $response;
+
     }
 
     public function search(string $query): array
     {
+
         $filter = "%" . $query . "%";
 
         $sql = "SELECT
@@ -80,13 +88,16 @@ class VendaDAO extends DAO
         $response = $this->setVendaItemsDetails($response);
 
         return $response;
+
     }
 
     public function setVendaItemsDetails(array $vendaObject): array
     {
 
         $index = 0;
-        while ($index < count($vendaObject)) {
+
+        while($index < count($vendaObject))
+        {
 
             $id = $vendaObject[$index]->id;
 
@@ -96,20 +107,26 @@ class VendaDAO extends DAO
 
             $vendaItemList = (new VendaProdutoAssocDAO)->select($id);
 
-            foreach ($vendaItemList as $item) {
+            foreach($vendaItemList as $item)
+            {
+
                 $vendaObject[$index]->produto[] = $item->produto;
                 $vendaObject[$index]->quantidade_produto[] = $item->quantidade_produto;
                 $vendaObject[$index]->valor_total_item_venda[] = $item->valor_total_item_venda;
+
             }
 
             $index++;
+
         }
 
         return $vendaObject;
+
     }
 
     public function insert(VendaModel $modelVenda, VendaProdutoAssocModel $modelVendaProdutoAssocModel): bool
     {
+
         $sql = "INSERT INTO Venda (delivery, id_funcionario, id_cliente, valor_total) VALUES (?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
@@ -126,10 +143,12 @@ class VendaDAO extends DAO
         $modelVendaProdutoAssocModel->id_venda = $modelVenda->id;
 
         return $response;
+
     }
 
     public function update(VendaModel $model): bool
     {
+
         $sql = "UPDATE Venda SET delivery = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
@@ -138,10 +157,12 @@ class VendaDAO extends DAO
         $stmt->bindValue(2, $model->id);
 
         return $stmt->execute();
+
     }
 
     public function delete(VendaModel $model) : bool
     {
+
         $sql = "DELETE FROM Venda_Produto_Assoc WHERE id_venda = ?";
 
         $stmt = $this->conexao->prepare($sql);
@@ -149,5 +170,6 @@ class VendaDAO extends DAO
         $stmt->bindValue(1, $model->id);
 
         return $stmt->execute();
+
     }
 }
