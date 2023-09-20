@@ -19,6 +19,8 @@ switch($url)
         echo "Início.";
     break;
 
+    // Módulo - Funcionário:
+
     case "/funcionario/save":
         FuncionarioController::SaveAsyncFuncionario();
     break;
@@ -35,51 +37,66 @@ switch($url)
         FuncionarioController::GetListAsyncFuncionario();
     break;
 
-    case "/funcionario/search":
+    /*case "/funcionario/search":
         FuncionarioController::SearchAsyncFuncionario();
-    break;
+    break;*/
 
     case "/funcionario/login":
         FuncionarioController::LoginAsyncFuncionario();
     break;
 
+    // Módulo - Cliente:
 
     case "/cliente/save":
         ClienteController::SaveAsyncCliente();
     break;
 
+    case "/cliente/enable":
+        ProdutoController::EnableAsyncProduto();
+    break;
+
     case "/cliente/delete":
-        ClienteController::DeleteAsyncCliente();
+        ClienteController::DisableAsyncCliente();
     break;
 
     case "/cliente/list":
         ClienteController::GetListAsyncCliente();
     break;
 
-    case "/cliente/search":
+    /*case "/cliente/search":
         ClienteController::SearchAsyncCliente();
-    break;
+    break;*/
 
+    // Módulo - Produto:
 
     case "/produto/save":
         ProdutoController::SaveAsyncProduto();
     break;
 
-    case "/produto/delete":
-        ProdutoController::DeleteAsyncProduto();
+    case "/produto/enable":
+        ProdutoController::EnableAsyncProduto();
+    break;
+
+    case "/produto/disable":
+        ProdutoController::DisableAsyncProduto();
     break;
 
     case "/produto/list":
         ProdutoController::GetListAsyncProduto();
     break;
 
-    case "/produto/search":
+    /*case "/produto/search":
         ProdutoController::SearchAsyncProduto();
-    break;
+    break;*/
 
+    // Módulo - Venda:
 
     case "/venda/save":
         VendaController::SaveAsyncVenda();
+    break;
+
+    case "/venda/delete":
+        VendaController::DeleteAsyncVenda();
     break;
 
     case "/venda/list":
@@ -88,10 +105,6 @@ switch($url)
 
     case "/venda/search":
         VendaController::SearchAsyncVenda();
-    break;
-
-    case "/venda/delete":
-        VendaController::DeleteAsyncVenda();
     break;
 
     default:
