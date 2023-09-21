@@ -10,7 +10,7 @@ class FornecedorDAO extends DAO
     public function Insert(FornecedorModel $model) : FornecedorModel
     {
 
-        $sql = "INSERT INTO Fornecedor(nome, cnpj, telefone) VALUES(?,?,?)";
+        $sql = "INSERT INTO Fornecedor(nome, cnpj, telefone, observacoes) VALUES(?,?,?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -19,6 +19,8 @@ class FornecedorDAO extends DAO
         $stmt->bindValue(2, $model->cnpj);
 
         $stmt->bindValue(3, $model->telefone);
+        
+        $stmt->bindValue(4, $model->observacoes);
 
         $stmt->execute();
 
