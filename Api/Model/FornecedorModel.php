@@ -7,7 +7,7 @@ use Api\DAO\FornecedorDAO;
 class FornecedorModel extends Model
 {
 
-    public $id, $nome, $cnpj, $telefone, $data_cadastro, $data_modificacao, $ativo;
+    public $id, $nome, $cnpj, $telefone, $observacoes, $data_cadastro, $data_modificacao, $ativo;
 
     public function Save()
     {

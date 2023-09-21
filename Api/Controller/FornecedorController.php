@@ -27,6 +27,8 @@ class FornecedorController extends Controller
 
             $model->telefone = str_replace(["(",")"," ","-"], "", $json_object->telefone);
 
+            $model->observacoes = $json_object->observacoes;
+
             $model->data_modificacao = $json_object->data_modificacao;
 
             parent::SendReturnAsJson($model->Save());
