@@ -23,17 +23,13 @@ class FuncionarioController extends Controller
 
             $model->nome = $json_object->nome;
 
-            $model->nome_social = $json_object->nome_social;
-
             $model->genero = $json_object->genero;
 
-            $model->pronome = $json_object->pronome;
+            $model->estado_civil = $json_object->estado_civil;
 
             $model->cpf = str_replace([".","-"], "", $json_object->cpf);
 
             $model->rg = str_replace([".","-"], "", $json_object->rg);
-
-            $model->cargo = $json_object->cargo;
 
             $model->cep = str_replace([".","-"], "", $json_object->cep);
 

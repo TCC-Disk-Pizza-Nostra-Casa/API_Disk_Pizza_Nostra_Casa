@@ -6,12 +6,10 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    nome_social varchar(255) DEFAULT "Não possui",
-    genero VARCHAR(30) DEFAULT "Não informado",
-    pronome varchar(13) DEFAULT "Não informado",
+    genero VARCHAR(20) NOT NULL,
+    estado_civil VARCHAR(13) NOT NULL,
     cpf CHAR(11) UNIQUE NOT NULL,
     rg CHAR(9) UNIQUE NOT NULL,
-    cargo VARCHAR(20) NOT NULL,
     cep CHAR(8) NOT NULL,
     email VARCHAR(60) UNIQUE DEFAULT "Não informado",
     telefone VARCHAR(20) UNIQUE NOT NULL,
@@ -49,6 +47,7 @@ CREATE TABLE IF NOT EXISTS Fornecedor (
     nome VARCHAR(255) NOT NULL,
     cnpj CHAR(14) UNIQUE NOT NULL,
     telefone VARCHAR(20) UNIQUE DEFAULT "Não informado",
+    observacoes VARCHAR(255) DEFAULT "Nenhuma observação",
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ativo BOOL DEFAULT 1
