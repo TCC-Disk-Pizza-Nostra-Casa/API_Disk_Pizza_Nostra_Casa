@@ -7,7 +7,7 @@ use Api\Model\FornecedorModel;
 class FornecedorDAO extends DAO
 {
 
-    public function Insert(FornecedorModel $model) : FornecedorModel
+    public function Insert(FornecedorModel $model) : ?FornecedorModel
     {
 
         $sql = "INSERT INTO Fornecedor(nome, cnpj, telefone, observacoes) VALUES(?,?,?,?)";
@@ -25,6 +25,9 @@ class FornecedorDAO extends DAO
         $stmt->execute();
 
         $model->id = $this->conexao->lastInsertId();
+
+        var_dump($model);
+        
 
         return $model;
 
