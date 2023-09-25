@@ -23,13 +23,13 @@ class FornecedorController extends Controller
 
             $model->nome = $json_object->nome;
 
-            $model->cnpj = str_replace([".","-","/"], "", $json_object->cpf);
+            $model->cnpj = str_replace([".","-","/"], "", $json_object->cnpj);
 
             $model->telefone = str_replace(["(",")"," ","-"], "", $json_object->telefone);
 
             $model->observacoes = $json_object->observacoes;
 
-            $model->data_modificacao = $json_object->data_modificacao;
+            //$model->data_modificacao = $json_object->data_modificacao;
 
             parent::SendReturnAsJson($model->Save());
 

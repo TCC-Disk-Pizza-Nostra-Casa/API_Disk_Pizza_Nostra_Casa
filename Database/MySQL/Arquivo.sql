@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS Fornecedor (
     nome VARCHAR(255) NOT NULL,
     cnpj CHAR(14) UNIQUE NOT NULL,
     telefone VARCHAR(20) UNIQUE DEFAULT "Não informado",
+    observacoes VARCHAR(255) DEFAULT "Nenhuma observação",
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ativo BOOL DEFAULT 1

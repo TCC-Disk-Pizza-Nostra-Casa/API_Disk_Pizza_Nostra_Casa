@@ -6,7 +6,8 @@ use Api\Controller\
     FuncionarioController,
     ClienteController,
     ProdutoController,
-    VendaController
+    VendaController,
+    FornecedorController
 
 };
 
@@ -106,6 +107,24 @@ switch($url)
     case "/venda/search":
         VendaController::SearchAsyncVenda();
     break;
+
+    // Módulo - Fornecedor:
+
+    case "/fornecedor/save":
+        FornecedorController::SaveAsyncFornecedor();
+    break;
+
+    /*case "/fornecedor/delete":
+        FornecedorController::DeleteAsyncFornecedor();
+    break;*/
+
+    case "/fornecedor/list":
+        FornecedorController::GetListAsyncFornecedor();
+    break;
+    
+    /*case "/fornecedor/search":
+        FornecedorController::SearchAsyncFornecedor();
+    break;*/
 
     default:
         //echo "Erro 404!";
