@@ -1,58 +1,90 @@
 Funcionario (
 
-id,
-administrador,
-nome,
-genero,
-cpf,
-email,
-telefone,
-senha,
-data_cadastro,
-ativo
+    id,
+    nome,
+    nome_social,
+    genero,
+    pronome,
+    cpf,
+    rg,
+    cargo,
+    cep,
+    email,
+    telefone,
+    senha,
+    administrador,
+    observacoes,
+    data_cadastro,
+    data_modificacao,
+    ativo
 
-)
+);
 
 Cliente (
 
-id,
-nome,
-genero,
-cpf,
-telefone,
-data_nascimento,
-ativo
+    id,
+    nome,
+    nome_social,
+    genero,
+    pronome,
+    cpf,
+    cep,
+    email,
+    telefone,
+    observacoes,
+    data_nascimento,
+    data_cadastro,
+    data_modificacao,
+    ativo
 
-)
+);
+
+Fornecedor (
+
+    id,
+    nome,
+    cnpj,
+    telefone,
+    data_cadastro,
+    data_modificacao,
+    ativo
+
+);
 
 Produto (
 
-id,
-nome,
-estoque,
-preco,
-observacoes
+    id,
+    nome,
+    estoque,
+    preco DOUBLE,
+    observacoes,
+    data_cadastro,
+    data_modificacao,
 
-)
+    id_fornecedor
+
+);
 
 Venda (
 
-id,
-data_venda,
-delivery,
-valor_total,
+    id,
+    data_venda,
+    delivery,
+    valor_total,
 
-id_funcionario,
-id_cliente
+    id_funcionario,
+
+    id_cliente
 
 )
 
 Venda_Produto_Assoc (
 
-id_venda,
-id_produto,
+    id_venda,
 
-quantidade_produto,
-valor_total_item_venda
+    id_produto,
+
+    quantidade_produto,
+    valor_total_item_venda
 
 )
