@@ -29,7 +29,11 @@ class FornecedorController extends Controller
 
             $model->observacoes = $json_object->observacoes;
 
-            //$model->data_modificacao = $json_object->data_modificacao;
+            $model->data_cadastro = $json_object->data_cadastro;
+
+            $model->data_modificacao = $json_object->data_modificacao;
+
+            $model->ativo = $json_object->ativo;
 
             parent::SendReturnAsJson($model->Save());
 
