@@ -19,7 +19,7 @@ class FuncionarioDAO extends DAO
 
         $sql = "INSERT INTO Funcionario(nome, genero, estado_civil, cpf, rg, " .
                "cep, email, telefone, senha, observacoes, administrador) " .
-               "VALUES(?,?,?,?,?,?,?,?,?,?,MD5(?),?,?)";
+               "VALUES(?,?,?,?,?,?,?,?,MD5(?),?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 

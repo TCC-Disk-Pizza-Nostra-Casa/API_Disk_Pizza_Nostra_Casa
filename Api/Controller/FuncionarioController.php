@@ -163,7 +163,7 @@ class FuncionarioController extends Controller
 
         $model->LoginValidation($cpf, $senha);
 
-        parent::SendReturnAsJson($model->rows);
+        parent::SendReturnAsJson($model->rows[0]);
 
     }
 
