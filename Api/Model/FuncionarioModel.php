@@ -7,9 +7,9 @@ use Api\DAO\FuncionarioDAO;
 class FuncionarioModel extends Model
 {
     
-    public $id, $nome, $nome_social, $genero, $pronome, $cpf, $rg, $cargo, $cep, $email;
+    public $id, $nome, $genero, $estado_civil, $cpf, $rg, $cep, $email, $telefone, $senha;
 
-    public $telefone, $senha, $observacoes, $administrador, $data_cadastro, $data_modificacao, $ativo;
+    public $observacoes, $administrador, $data_cadastro, $data_modificacao, $ativo;
 
     public function Save()
     {
