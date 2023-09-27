@@ -126,6 +126,14 @@ switch($url)
         FornecedorController::SearchAsyncFornecedor();
     break;
 
+    case "/fornecedor/enable":
+        FornecedorController::EnableAsyncFornecedor();
+    break;
+
+    case "/fornecedor/disable":
+        FornecedorController::DisableAsyncFornecedor();
+    break;
+
     default:
         //echo "Erro 404!";
         http_response_code(404);
