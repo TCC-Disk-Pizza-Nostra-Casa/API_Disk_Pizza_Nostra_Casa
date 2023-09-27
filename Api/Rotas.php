@@ -122,9 +122,9 @@ switch($url)
         FornecedorController::GetListAsyncFornecedor();
     break;
     
-    /*case "/fornecedor/search":
+    case "/fornecedor/search":
         FornecedorController::SearchAsyncFornecedor();
-    break;*/
+    break;
 
     default:
         //echo "Erro 404!";
