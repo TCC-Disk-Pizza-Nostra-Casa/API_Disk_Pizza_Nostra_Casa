@@ -7,7 +7,7 @@ use Api\DAO\ClienteDAO;
 class ClienteModel extends Model
 {
 
-    public $id, $nome, $nome_social, $genero, $pronome, $cpf, $cep, $email, $telefone;
+    public $id, $nome, $sexo, $cpf, $cep, $email, $telefone;
 
     public $observacoes, $data_nascimento, $data_cadastro, $data_modificacao, $ativo;
 

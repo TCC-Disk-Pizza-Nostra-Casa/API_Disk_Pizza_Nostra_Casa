@@ -23,15 +23,13 @@ class FuncionarioController extends Controller
 
             $model->nome = $json_object->nome;
 
-            $model->genero = $json_object->genero;
+            $model->sexo = $json_object->sexo;
 
             $model->estado_civil = $json_object->estado_civil;
 
             $model->cpf = str_replace([".","-"], "", $json_object->cpf);
 
-            $model->rg = str_replace([".","-"], "", $json_object->rg);
-
-            $model->cep = str_replace([".","-"], "", $json_object->cep);
+            $model->cep = str_replace("-", "", $json_object->cep);
 
             $model->email = $json_object->email;
 
@@ -157,13 +155,13 @@ class FuncionarioController extends Controller
 
         $model = new FuncionarioModel();
 
-        $cpf = $json_object[0];
+        $cpf = str_replace([".","-"], "", $json_object[0]);
 
         $senha = $json_object[1];
 
         $model->LoginValidation($cpf, $senha);
 
-        parent::SendReturnAsJson($model->rows[0]);
+        (count($model->rows) > 0) ? parent::SendReturnAsJson($model->rows[0]) : null;
 
     }
 

@@ -38,9 +38,9 @@ switch($url)
         FuncionarioController::GetListAsyncFuncionario();
     break;
 
-    /*case "/funcionario/search":
+    case "/funcionario/search":
         FuncionarioController::SearchAsyncFuncionario();
-    break;*/
+    break;
 
     case "/funcionario/login":
         FuncionarioController::LoginAsyncFuncionario();
@@ -64,9 +64,9 @@ switch($url)
         ClienteController::GetListAsyncCliente();
     break;
 
-    /*case "/cliente/search":
+    case "/cliente/search":
         ClienteController::SearchAsyncCliente();
-    break;*/
+    break;
 
     // Módulo - Produto:
 
@@ -86,9 +86,9 @@ switch($url)
         ProdutoController::GetListAsyncProduto();
     break;
 
-    /*case "/produto/search":
+    case "/produto/search":
         ProdutoController::SearchAsyncProduto();
-    break;*/
+    break;
 
     // Módulo - Venda:
 
@@ -114,9 +114,13 @@ switch($url)
         FornecedorController::SaveAsyncFornecedor();
     break;
 
-    /*case "/fornecedor/delete":
-        FornecedorController::DeleteAsyncFornecedor();
-    break;*/
+    case "/fornecedor/enable":
+        FornecedorController::EnableAsyncFornecedor();
+    break;
+
+    case "/fornecedor/disable":
+        FornecedorController::DisableAsyncFornecedor();
+    break;
 
     case "/fornecedor/list":
         FornecedorController::GetListAsyncFornecedor();
@@ -124,14 +128,6 @@ switch($url)
     
     case "/fornecedor/search":
         FornecedorController::SearchAsyncFornecedor();
-    break;
-
-    case "/fornecedor/enable":
-        FornecedorController::EnableAsyncFornecedor();
-    break;
-
-    case "/fornecedor/disable":
-        FornecedorController::DisableAsyncFornecedor();
     break;
 
     default:

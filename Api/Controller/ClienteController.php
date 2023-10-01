@@ -23,23 +23,19 @@ class ClienteController extends Controller
 
             $model->nome = $json_object->nome;
 
-            $model->nome_social = $json_object->nome_social;
-
-            $model->genero = $json_object->genero;
-
-            $model->pronome = $json_object->pronome;
+            $model->sexo = $json_object->sexo;
 
             $model->cpf = str_replace([".","-"], "", $json_object->cpf);
 
-            $model->cep = str_replace([".","-"], "", $json_object->cep);
+            $model->cep = str_replace("-", "", $json_object->cep);
 
             $model->email = $json_object->email;
 
             $model->telefone = str_replace(["(",")"," ","-"], "", $json_object->telefone);
 
-            $model->observacoes = $json_object->observacoes;
-
             $model->data_nascimento = $json_object->data_nascimento;
+
+            $model->observacoes = $json_object->observacoes;
 
             $model->data_modificacao = $json_object->data_modificacao;
 

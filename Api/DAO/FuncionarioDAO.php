@@ -17,33 +17,31 @@ class FuncionarioDAO extends DAO
     public function Insert(FuncionarioModel $model) : FuncionarioModel
     {
 
-        $sql = "INSERT INTO Funcionario(nome, genero, estado_civil, cpf, rg, " .
+        $sql = "INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, " .
                "cep, email, telefone, senha, observacoes, administrador) " .
-               "VALUES(?,?,?,?,?,?,?,?,MD5(?),?,?)";
+               "VALUES(?,?,?,?,?,?,?,MD5(?),?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
 
-        $stmt->bindValue(2, $model->genero);
+        $stmt->bindValue(2, $model->sexo);
 
         $stmt->bindValue(3, $model->estado_civil);
 
         $stmt->bindValue(4, $model->cpf);
 
-        $stmt->bindValue(5, $model->rg);
+        $stmt->bindValue(5, $model->cep);
 
-        $stmt->bindValue(6, $model->cep);
+        $stmt->bindValue(6, $model->email);
 
-        $stmt->bindValue(7, $model->email);
+        $stmt->bindValue(7, $model->telefone);
 
-        $stmt->bindValue(8, $model->telefone);
+        $stmt->bindValue(8, $model->senha);
 
-        $stmt->bindValue(9, $model->senha);
+        $stmt->bindValue(9, $model->observacoes);
 
-        $stmt->bindValue(10, $model->observacoes);
-
-        $stmt->bindValue(11, $model->administrador);
+        $stmt->bindValue(10, $model->administrador);
 
         $stmt->execute();
 
@@ -56,7 +54,7 @@ class FuncionarioDAO extends DAO
     public function Update(FuncionarioModel $model) : bool
     {
 
-        $sql = "UPDATE Funcionario SET nome = ?, genero = ?, estado_civil = ?, cpf = ?, rg = ?, " .
+        $sql = "UPDATE Funcionario SET nome = ?, sexo = ?, estado_civil = ?, cpf = ?, " .
                "cep = ?, email = ?, telefone = ?, senha = MD5(?), observacoes = ?, " .
                "data_modificacao = ?, administrador = ? WHERE id = ?";
 
@@ -66,29 +64,27 @@ class FuncionarioDAO extends DAO
 
         $stmt->bindValue(1, $model->nome);
 
-        $stmt->bindValue(2, $model->genero);
+        $stmt->bindValue(2, $model->sexo);
 
         $stmt->bindValue(3, $model->estado_civil);
 
         $stmt->bindValue(4, $model->cpf);
 
-        $stmt->bindValue(5, $model->rg);
+        $stmt->bindValue(5, $model->cep);
 
-        $stmt->bindValue(6, $model->cep);
+        $stmt->bindValue(6, $model->email);
 
-        $stmt->bindValue(7, $model->email);
+        $stmt->bindValue(7, $model->telefone);
 
-        $stmt->bindValue(8, $model->telefone);
+        $stmt->bindValue(8, $model->senha);
 
-        $stmt->bindValue(9, $model->senha);
+        $stmt->bindValue(9, $model->observacoes);
 
-        $stmt->bindValue(10, $model->observacoes);
+        $stmt->bindValue(10, $model->data_modificacao);
 
-        $stmt->bindValue(11, $model->data_modificacao);
+        $stmt->bindValue(11, $model->administrador);
 
-        $stmt->bindValue(12, $model->administrador);
-
-        $stmt->bindValue(13, $model->id);
+        $stmt->bindValue(12, $model->id);
 
         return $stmt->execute();
 
