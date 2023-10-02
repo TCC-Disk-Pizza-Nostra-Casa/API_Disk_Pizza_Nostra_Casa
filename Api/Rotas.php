@@ -34,6 +34,14 @@ switch($url)
         FuncionarioController::DisableAsyncFuncionario();
     break;
 
+    case "/funcionario/promote":
+        FuncionarioController::PromoteAsyncFuncionario();
+    break;
+
+    case "/funcionario/demote":
+        FuncionarioController::DemoteAsyncFuncionario();
+    break;
+
     case "/funcionario/list":
         FuncionarioController::GetListAsyncFuncionario();
     break;

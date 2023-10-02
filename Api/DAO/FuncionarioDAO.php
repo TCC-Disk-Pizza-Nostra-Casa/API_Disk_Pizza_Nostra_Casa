@@ -116,6 +116,32 @@ class FuncionarioDAO extends DAO
 
     }
 
+    public function Ascend(int $id) : bool
+    {
+
+        $sql = "UPDATE Funcionario SET administrador = 1 WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        return $stmt->execute();
+
+    }
+
+    public function Descend(int $id) : bool
+    {
+
+        $sql = "UPDATE Funcionario SET administrador = 0 WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        return $stmt->execute();
+
+    }
+
     public function Select() : array
     {
 

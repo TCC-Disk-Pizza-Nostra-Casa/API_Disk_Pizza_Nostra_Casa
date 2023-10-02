@@ -100,6 +100,48 @@ class FuncionarioController extends Controller
 
     }
 
+    public static function PromoteAsyncFuncionario() : void
+    {
+
+        try
+        {
+
+            $id = json_decode(file_get_contents("php://input"));
+
+            parent::SendReturnAsJson((new FuncionarioModel())->Promote((int) $id));
+
+        }
+
+        catch(Exception $ex)
+        {
+
+            parent::SendExceptionAsJson($ex);
+
+        }
+
+    }
+
+    public static function DemoteAsyncFuncionario() : void
+    {
+
+        try
+        {
+
+            $id = json_decode(file_get_contents("php://input"));
+
+            parent::SendReturnAsJson((new FuncionarioModel())->Demote((int) $id));
+
+        }
+
+        catch(Exception $ex)
+        {
+
+            parent::SendExceptionAsJson($ex);
+
+        }
+
+    }
+
     public static function GetListAsyncFuncionario() : void
     {
 
