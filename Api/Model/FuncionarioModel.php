@@ -32,6 +32,20 @@ class FuncionarioModel extends Model
 
     }
 
+    public function Promote(int $id)
+    {
+
+        return (new FuncionarioDAO())->Ascend($id);
+
+    }
+
+    public function Demote(int $id)
+    {
+
+        return (new FuncionarioDAO())->Descend($id);
+
+    }
+
     public function GetRows(string $query = null)
     {
 
