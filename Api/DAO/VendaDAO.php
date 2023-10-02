@@ -163,7 +163,7 @@ class VendaDAO extends DAO
     public function delete(VendaModel $model) : bool
     {
 
-        $sql = "DELETE FROM Venda_Produto_Assoc WHERE id_venda = ?";
+        $sql = "DELETE FROM Venda WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 

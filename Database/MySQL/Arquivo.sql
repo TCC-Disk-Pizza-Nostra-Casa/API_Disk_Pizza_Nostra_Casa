@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS db_pizzaria;
 
 USE db_pizzaria;
 
+SET GLOBAL lc_time_names=pt_BR;
+
 CREATE TABLE IF NOT EXISTS Funcionario (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
