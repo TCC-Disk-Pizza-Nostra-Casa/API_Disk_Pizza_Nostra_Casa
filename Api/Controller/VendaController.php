@@ -51,7 +51,7 @@ class VendaController extends Controller
             $filter = self::getDataFromRequest();
 
             $model = new VendaModel();
-            $model->getRows($filter->filter);
+            $model->getRows($filter);
 
             parent::SendReturnAsJson($model->rows);
         } catch (Exception $ex) {
@@ -67,7 +67,7 @@ class VendaController extends Controller
             $id = self::getDataFromRequest();
 
             $model = new VendaModel();
-            $model->id = $id->id;
+            $model->id = $id;
 
             parent::SendReturnAsJson($model->delete());
         } catch (Exception $ex) {
