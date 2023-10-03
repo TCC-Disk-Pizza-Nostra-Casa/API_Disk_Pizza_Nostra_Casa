@@ -17,7 +17,7 @@ class ProdutoDAO extends DAO
     public function Insert(ProdutoModel $model) : ProdutoModel
     {
 
-        $sql = "INSERT INTO Produto(nome, estoque, preco, observacoes, id_fornecedor) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO Produto(nome, estoque, preco, observacoes, fk_fornecedor) VALUES (?,?,?,?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 

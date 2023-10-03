@@ -132,8 +132,8 @@ class VendaDAO extends DAO
         $stmt = $this->conexao->prepare($sql);
         
         $stmt->bindValue(1, $modelVenda->delivery);
-        $stmt->bindValue(2, $modelVenda->id_funcionario);
-        $stmt->bindValue(3, $modelVenda->id_cliente);
+        $stmt->bindValue(2, $modelVenda->fk_funcionario);
+        $stmt->bindValue(3, $modelVenda->fk_cliente);
         $stmt->bindValue(4, $modelVenda->valor_total);
 
         $response = $stmt->execute();
