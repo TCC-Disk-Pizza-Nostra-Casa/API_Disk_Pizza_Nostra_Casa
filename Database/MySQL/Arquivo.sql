@@ -62,9 +62,10 @@ CREATE TABLE IF NOT EXISTS Produto (
     observacoes VARCHAR(255) DEFAULT "Nenhuma observação",
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOL DEFAULT 1,
 
-    id_fornecedor INT,
-    FOREIGN KEY(id_fornecedor) REFERENCES Fornecedor(id)
+    fk_fornecedor INT,
+    FOREIGN KEY(fk_fornecedor) REFERENCES Fornecedor(id)
 
 );
 
@@ -75,21 +76,21 @@ CREATE TABLE IF NOT EXISTS Venda (
     delivery BOOL DEFAULT 0,
     valor_total DOUBLE DEFAULT 0,
 
-    id_funcionario INT,
-    FOREIGN KEY(id_funcionario) REFERENCES Funcionario(id),
+    fk_funcionario INT,
+    FOREIGN KEY(fk_funcionario) REFERENCES Funcionario(id),
 
-    id_cliente INT,
-    FOREIGN KEY(id_cliente) REFERENCES Cliente(id)
+    fk_cliente INT,
+    FOREIGN KEY(fk_cliente) REFERENCES Cliente(id)
 
 );
 
 CREATE TABLE IF NOT EXISTS Venda_Produto_Assoc (
 
-    id_venda INT,
-    FOREIGN KEY(id_venda) REFERENCES Venda(id) ON DELETE CASCADE,
+    fk_venda INT,
+    FOREIGN KEY(fk_venda) REFERENCES Venda(id) ON DELETE CASCADE,
 
-    id_produto INT,
-    FOREIGN KEY(id_produto) REFERENCES Produto(id),
+    fk_produto INT,
+    FOREIGN KEY(fk_produto) REFERENCES Produto(id),
 
     quantidade_produto INT,
     valor_total_item_venda DOUBLE DEFAULT 0

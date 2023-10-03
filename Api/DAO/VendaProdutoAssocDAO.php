@@ -16,7 +16,7 @@ class VendaProdutoAssocDAO extends DAO
 
     }
 
-    public function select(int $id_venda) : array
+    public function select(int $fk_venda) : array
     {
 
         $sql = "SELECT 
@@ -26,11 +26,11 @@ class VendaProdutoAssocDAO extends DAO
                     v.valor_total_item_venda 
                 FROM Venda_Produto_Assoc AS v 
                     JOIN Produto AS p ON v.id_produto = p.id 
-                WHERE id_venda = ?";
+                WHERE fk_venda = ?";
        
         $stmt = $this->conexao->prepare($sql);
 
-        $stmt->bindValue(1, $id_venda);
+        $stmt->bindValue(1, $fk_venda);
 
         $stmt->execute();
 
@@ -49,12 +49,12 @@ class VendaProdutoAssocDAO extends DAO
 
         $stmt = $this->conexao->prepare($sql);
 
-        $quantidadeProduto = count($model->id_produto);
+        $quantidadeProduto = count($model->fk_produto);
         for ($index = 0; $index < $quantidadeProduto; $index ++)
         {
 
-            $stmt->bindValue(1, $model->id_venda);
-            $stmt->bindValue(2, $model->id_produto[$index]);
+            $stmt->bindValue(1, $model->fk_venda);
+            $stmt->bindValue(2, $model->fk_produto[$index]);
             $stmt->bindValue(3, $model->quantidade_produto[$index]);
             $stmt->bindValue(4, $model->valor_total_item_venda[$index]);
             

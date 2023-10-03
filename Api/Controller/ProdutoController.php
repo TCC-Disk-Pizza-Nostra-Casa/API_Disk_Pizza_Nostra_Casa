@@ -22,7 +22,7 @@ class ProdutoController extends Controller
 
             $model->nome = $json_object->nome;
             
-            $model->estoque = $json_object->estoque;
+            $model->estoque = doubleval(str_replace(["'", '"', "(", ")", "[", "]", ":", "?", "/"], "", $json_object->estoque));
             
             $model->preco = $json_object->preco;
             
