@@ -18,19 +18,26 @@ class ProdutoController extends Controller
 
             $model = new ProdutoModel();
 
-            $model->id = $json_object->id;
+            if($json_object->id != null)
+            {
+
+                $model->id = $json_object->id;
+
+            }
 
             $model->nome = $json_object->nome;
             
-            $model->estoque = doubleval(str_replace(["'", '"', "(", ")", "[", "]", ":", "?", "/"], "", $json_object->estoque));
+            $model->estoque = $json_object->estoque;
             
-            $model->preco = $json_object->preco;
+            $model->preco = doubleval(str_replace(["'", '"', "(", ")", "[", "]", ":", "?", "/"], "", $json_object->preco));
             
             $model->observacoes = $json_object->observacoes;
 
             $model->data_modificacao = $json_object->data_modificacao;
 
             $model->fk_fornecedor = $json_object->fk_fornecedor;
+
+            $model->ativo = $json_object->ativo;
 
             parent::SendReturnAsJson($model->Save());
 
