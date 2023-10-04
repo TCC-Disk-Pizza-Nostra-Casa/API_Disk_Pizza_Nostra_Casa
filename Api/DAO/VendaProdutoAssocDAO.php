@@ -20,12 +20,12 @@ class VendaProdutoAssocDAO extends DAO
     {
 
         $sql = "SELECT 
-                    v.id_venda, 
+                    v.fk_venda, 
                     p.nome as produto, 
                     v.quantidade_produto, 
                     v.valor_total_item_venda 
                 FROM Venda_Produto_Assoc AS v 
-                    JOIN Produto AS p ON v.id_produto = p.id 
+                    JOIN Produto AS p ON v.fk_produto = p.id 
                 WHERE fk_venda = ?";
        
         $stmt = $this->conexao->prepare($sql);
@@ -45,7 +45,7 @@ class VendaProdutoAssocDAO extends DAO
 
         $response = false;
 
-        $sql = "INSERT INTO Venda_Produto_Assoc (id_venda, id_produto, quantidade_produto, valor_total_item_venda) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Venda_Produto_Assoc (fk_venda, fk_produto, quantidade_produto, valor_total_item_venda) VALUES (?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 

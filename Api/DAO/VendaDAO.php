@@ -36,10 +36,10 @@ class VendaDAO extends DAO
                     MAX(vp.valor_total_item_venda) AS valor_total_item_venda 
                 FROM 
                     Venda AS v
-                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.id_venda 
-                    JOIN Produto AS p ON vp.id_produto = p.id
-                    JOIN Cliente AS c ON v.id_cliente = c.id
-                    JOIN Funcionario AS f ON v.id_funcionario = f.id
+                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.fk_venda 
+                    JOIN Produto AS p ON vp.fk_produto = p.id
+                    JOIN Cliente AS c ON v.fk_cliente = c.id
+                    JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 GROUP BY v.id";
 
         $stmt = $this->conexao->prepare($sql);
@@ -70,10 +70,10 @@ class VendaDAO extends DAO
                     MAX(vp.valor_total_item_venda) AS valor_total_item_venda
                 FROM
                     Venda AS v
-                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.id_venda
-                    JOIN Produto AS p ON vp.id_produto = p.id
-                    JOIN Cliente AS c ON v.id_cliente = c.id
-                    JOIN Funcionario AS f ON v.id_funcionario = f.id
+                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.fk_venda
+                    JOIN Produto AS p ON vp.fk_produto = p.id
+                    JOIN Cliente AS c ON v.fk_cliente = c.id
+                    JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 WHERE
                     c.nome LIKE :keyword OR f.nome LIKE :keyword
                 GROUP BY
@@ -127,7 +127,7 @@ class VendaDAO extends DAO
     public function insert(VendaModel $modelVenda, VendaProdutoAssocModel $modelVendaProdutoAssocModel): bool
     {
 
-        $sql = "INSERT INTO Venda (delivery, id_funcionario, id_cliente, valor_total) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Venda (delivery, fk_funcionario, fk_cliente, valor_total) VALUES (?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
         
@@ -140,7 +140,7 @@ class VendaDAO extends DAO
 
         $modelVenda->id = $this->conexao->lastInsertId();
 
-        $modelVendaProdutoAssocModel->id_venda = $modelVenda->id;
+        $modelVendaProdutoAssocModel->fk_venda = $modelVenda->id;
 
         return $response;
 
