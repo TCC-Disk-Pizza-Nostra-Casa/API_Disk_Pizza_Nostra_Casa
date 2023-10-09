@@ -59,6 +59,8 @@ CREATE TABLE IF NOT EXISTS Produto (
     nome VARCHAR(255) UNIQUE NOT NULL,
     estoque INT NOT NULL, -- Campo em reavaliação (Envolve funcionamentos relativamente complexos.).
     preco DOUBLE NOT NULL,
+    tamanho VARCHAR(6) NOT NULL,
+    categoria VARCHAR(20) NOT NULL,
     observacoes VARCHAR(255) DEFAULT "Nenhuma observação",
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

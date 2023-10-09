@@ -30,6 +30,10 @@ class ProdutoController extends Controller
             $model->estoque = $json_object->estoque;
             
             $model->preco = doubleval(str_replace(["'", '"', "(", ")", "[", "]", ":", "?", "/"], "", (string) $json_object->preco));
+
+            $model->tamanho = $json_object->tamanho;
+
+            $model->categoria = $json_object->categoria;
             
             $model->observacoes = $json_object->observacoes;
 
