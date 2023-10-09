@@ -25,7 +25,7 @@ class VendaModel extends Model
 
     public function getRows(string $query = null) : void
     {
-        $this->rows = ($query == null) ? (new VendaDAO)->select() : (new VendaDAO)->search($query);
+        $this->rows = ($query == null) ? (new VendaDAO)->select() : (new VendaDAO)->search($query, $this);
     }
 
     public function delete() : bool
