@@ -17,7 +17,7 @@ INSERT INTO Produto(nome, estoque, preco, fk_fornecedor) VALUES ("Água", 20, 2.
 INSERT INTO Produto(nome, estoque, preco, fk_fornecedor) VALUES ("Latinha Coca Cola 225ml", 20, 5, 1);
 INSERT INTO Produto(nome, estoque, preco, fk_fornecedor) VALUES ("Latinha Conti Zero Grau 225ml", 20, 4, 1);
 INSERT INTO Produto(nome, estoque, preco, fk_fornecedor) VALUES ("Latinha Conti Brahma 225ml", 20, 5, 1);
-/******* PIZZAS 1) *******/
+/******* PIZZAS TRADICIONAIS *******/
 -- GRANDE --
 INSERT INTO Produto(nome, estoque, preco, fk_fornecedor) VALUES ("Alho e Óleo (Grande)", 20, 35, 1);
 INSERT INTO Produto(nome, estoque, preco, fk_fornecedor) VALUES ("Bacon (Grande)", 20, 35, 1);
@@ -46,7 +46,7 @@ INSERT INTO Produto(nome, estoque, preco, fk_fornecedor) VALUES ("lombo (Broto)"
 
 
 
-/******* PIZZAS 2) *******/
+/******* PIZZAS VARIADAS *******/
 -- GRANDE --
 INSERT INTO Produto(nome, estoque, preco, fk_fornecedor) VALUES ("Escondidinho (Grande)", 20, 35, 1);
 INSERT INTO Produto(nome, estoque, preco, fk_fornecedor) VALUES ("Nostra Italia (Grande)", 20, 35, 1);
