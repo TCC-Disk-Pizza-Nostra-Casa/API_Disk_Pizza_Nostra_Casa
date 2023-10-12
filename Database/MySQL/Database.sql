@@ -28,12 +28,13 @@ CREATE TABLE IF NOT EXISTS Cliente (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     sexo VARCHAR(12) NOT NULL,
+    estado_civil VARCHAR(13) NOT NULL,
     cpf CHAR(11) UNIQUE NOT NULL,
     cep CHAR(8) NOT NULL,
     email VARCHAR(60) UNIQUE DEFAULT "Não informado",
     telefone VARCHAR(20) UNIQUE NOT NULL,
     observacoes VARCHAR(255) DEFAULT "Nenhuma observação",
-    data_nascimento TIMESTAMP DEFAULT NULL,
+    data_nascimento DATE DEFAULT NULL,
     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ativo BOOL DEFAULT 1
@@ -43,7 +44,7 @@ CREATE TABLE IF NOT EXISTS Cliente (
 CREATE TABLE IF NOT EXISTS Fornecedor (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
+    nome VARCHAR(255) UNIQUE NOT NULL,
     cnpj CHAR(14) UNIQUE NOT NULL,
     telefone VARCHAR(20) UNIQUE NOT NULL,
     observacoes VARCHAR(255) DEFAULT "Nenhuma observação",

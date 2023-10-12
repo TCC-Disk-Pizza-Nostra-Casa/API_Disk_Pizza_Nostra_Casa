@@ -51,7 +51,7 @@ class FuncionarioDAO extends DAO
 
     }
 
-    public function Update(FuncionarioModel $model) : bool
+    public function Update(FuncionarioModel $model) : ?FuncionarioModel
     {
 
         $sql = "UPDATE Funcionario SET nome = ?, sexo = ?, estado_civil = ?, cpf = ?, " .
@@ -86,7 +86,7 @@ class FuncionarioDAO extends DAO
 
         $stmt->bindValue(12, $model->id);
 
-        return $stmt->execute();
+        return ($stmt->execute()) ? $model : null;
 
     }
 
