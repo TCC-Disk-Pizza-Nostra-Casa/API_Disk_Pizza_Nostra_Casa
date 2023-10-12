@@ -61,10 +61,10 @@ switch($url)
     break;
 
     case "/cliente/enable":
-        ProdutoController::EnableAsyncProduto();
+        ClienteController::EnableAsyncCliente();
     break;
 
-    case "/cliente/delete":
+    case "/cliente/disable":
         ClienteController::DisableAsyncCliente();
     break;
 
@@ -74,6 +74,28 @@ switch($url)
 
     case "/cliente/search":
         ClienteController::SearchAsyncCliente();
+    break;
+
+    // Módulo - Fornecedor:
+
+    case "/fornecedor/save":
+        FornecedorController::SaveAsyncFornecedor();
+    break;
+
+    case "/fornecedor/enable":
+        FornecedorController::EnableAsyncFornecedor();
+    break;
+
+    case "/fornecedor/disable":
+        FornecedorController::DisableAsyncFornecedor();
+    break;
+
+    case "/fornecedor/list":
+        FornecedorController::GetListAsyncFornecedor();
+    break;
+    
+    case "/fornecedor/search":
+        FornecedorController::SearchAsyncFornecedor();
     break;
 
     // Módulo - Produto:
@@ -116,27 +138,7 @@ switch($url)
         VendaController::SearchAsyncVenda();
     break;
 
-    // Módulo - Fornecedor:
-
-    case "/fornecedor/save":
-        FornecedorController::SaveAsyncFornecedor();
-    break;
-
-    case "/fornecedor/enable":
-        FornecedorController::EnableAsyncFornecedor();
-    break;
-
-    case "/fornecedor/disable":
-        FornecedorController::DisableAsyncFornecedor();
-    break;
-
-    case "/fornecedor/list":
-        FornecedorController::GetListAsyncFornecedor();
-    break;
-    
-    case "/fornecedor/search":
-        FornecedorController::SearchAsyncFornecedor();
-    break;
+    // Resposta padrão.
 
     default:
         //echo "Erro 404!";

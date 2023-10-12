@@ -44,7 +44,7 @@ class ProdutoDAO extends DAO
 
     }
     
-    public function Update(ProdutoModel $model) : bool
+    public function Update(ProdutoModel $model) : ?ProdutoModel
     {
 
         $sql = "UPDATE Produto SET nome = ?, estoque = ?, preco = ?, " .
@@ -71,7 +71,7 @@ class ProdutoDAO extends DAO
 
         $stmt->bindValue(9, $model->id);
 
-        return $stmt->execute();
+        return ($stmt->execute()) ? $model : null;
         
     }
 

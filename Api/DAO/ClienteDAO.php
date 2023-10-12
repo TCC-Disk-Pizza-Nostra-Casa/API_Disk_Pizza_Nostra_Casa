@@ -17,26 +17,28 @@ class ClienteDAO extends DAO
     public function Insert(ClienteModel $model) : ClienteModel
     {
 
-        $sql = "INSERT INTO Cliente(nome, sexo, cpf, cep, email, telefone, " .
-               "data_nascimento, observacoes) VALUES(?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, " .
+               "data_nascimento, observacoes) VALUES(?,?,?,?,?,?,?,?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
 
         $stmt->bindValue(2, $model->sexo);
+        
+        $stmt->bindValue(3, $model->estado_civil);
 
-        $stmt->bindValue(3, $model->cpf);
+        $stmt->bindValue(4, $model->cpf);
 
-        $stmt->bindValue(4, $model->cep);
+        $stmt->bindValue(5, $model->cep);
 
-        $stmt->bindValue(5, $model->email);
+        $stmt->bindValue(6, $model->email);
 
-        $stmt->bindValue(6, $model->telefone);
+        $stmt->bindValue(7, $model->telefone);
 
-        $stmt->bindValue(7, $model->data_nascimento);
+        $stmt->bindValue(8, $model->data_nascimento);
 
-        $stmt->bindValue(8, $model->observacoes);
+        $stmt->bindValue(9, $model->observacoes);
 
         $stmt->execute();
 
@@ -46,35 +48,37 @@ class ClienteDAO extends DAO
 
     }
 
-    public function Update(ClienteModel $model) : bool
+    public function Update(ClienteModel $model) : ?ClienteModel
     {
 
-        $sql = "UPDATE Cliente SET nome = ?, sexo = ?, cpf = ?, cep = ?, email = ?, telefone = ?, " .
-               "data_nascimento = ?, observacoes = ?, data_modificacao = ? WHERE id = ?";
+        $sql = "UPDATE Cliente SET nome = ?, sexo = ?, estado_civil = ?, cpf = ?, cep = ?, email = ?, " .
+               "telefone = ?, data_nascimento = ?, observacoes = ?, data_modificacao = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
 
         $stmt->bindValue(2, $model->sexo);
+        
+        $stmt->bindValue(3, $model->estado_civil);
 
-        $stmt->bindValue(3, $model->cpf);
+        $stmt->bindValue(4, $model->cpf);
 
-        $stmt->bindValue(4, $model->cep);
+        $stmt->bindValue(5, $model->cep);
 
-        $stmt->bindValue(5, $model->email);
+        $stmt->bindValue(6, $model->email);
 
-        $stmt->bindValue(6, $model->telefone);
+        $stmt->bindValue(7, $model->telefone);
 
-        $stmt->bindValue(7, $model->data_nascimento);
+        $stmt->bindValue(8, $model->data_nascimento);
 
-        $stmt->bindValue(8, $model->observacoes);
+        $stmt->bindValue(9, $model->observacoes);
 
-        $stmt->bindValue(9, $model->data_modificacao);
+        $stmt->bindValue(10, $model->data_modificacao);
 
-        $stmt->bindValue(10, $model->id);
+        $stmt->bindValue(11, $model->id);
 
-        return $stmt->execute();
+        return ($stmt->execute()) ? $model : null;
 
     }
 
