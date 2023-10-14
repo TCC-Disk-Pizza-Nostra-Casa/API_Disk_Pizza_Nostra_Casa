@@ -51,7 +51,9 @@ class VendaController extends Controller
             $filter = self::getDataFromRequest();
 
             $model = new VendaModel();
-            $model->getRows($filter);
+            $model->data_venda = $filter->data_venda;
+            
+            $model->getRows($filter->cliente);
 
             parent::SendReturnAsJson($model->rows);
         } catch (Exception $ex) {

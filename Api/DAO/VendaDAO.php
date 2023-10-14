@@ -3,7 +3,7 @@
 namespace Api\DAO;
 
 use Api\Model\{
-
+    Model,
     VendaModel,
     VendaProdutoAssocModel
 
@@ -53,7 +53,7 @@ class VendaDAO extends DAO
 
     }
 
-    public function search(string $query): array
+    public function search(string $query, VendaModel $model): array
     {
 
         $filter = "%" . $query . "%";
@@ -75,12 +75,12 @@ class VendaDAO extends DAO
                     JOIN Cliente AS c ON v.fk_cliente = c.id
                     JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 WHERE
-                    c.nome LIKE :keyword OR f.nome LIKE :keyword
-                GROUP BY
-                    v.id";
+                    ((c.nome LIKE :keyword OR f.nome LIKE :keyword) AND ((DATE(v.data_venda)) = :dateToSearch))  OR ((DATE(v.data_venda)) = :dateToSearch) OR (c.nome LIKE :keyword OR f.nome LIKE :keyword)
+                GROUP BY v.id";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindParam(":keyword", $filter);
+        $stmt->bindParam(":dateToSearch", $model->data_venda);
         $stmt->execute();
 
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);
