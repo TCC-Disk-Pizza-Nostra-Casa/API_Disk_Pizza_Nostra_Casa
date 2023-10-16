@@ -17,61 +17,61 @@ class ProdutoDAO extends DAO
     public function Insert(ProdutoModel $model) : ProdutoModel
     {
 
-        $sql = "INSERT INTO Produto(nome, estoque, preco, tamanho, categoria, observacoes, fk_fornecedor) " .
+        $sql = "INSERT INTO Produto(nome, preco, tamanho, categoria, observacoes, fk_fornecedor) " .
                "VALUES (?,?,?,?,?,?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
         
-        $stmt->bindValue(2, $model->estoque);
+        $stmt->bindValue(2, $model->preco);
+
+        $stmt->bindValue(3, $model->tamanho);
+
+        $stmt->bindValue(4, $model->categoria);
         
-        $stmt->bindValue(3, $model->preco);
+        $stmt->bindValue(5, $model->observacoes);
 
-        $stmt->bindValue(4, $model->tamanho);
-
-        $stmt->bindValue(5, $model->categoria);
-        
-        $stmt->bindValue(6, $model->observacoes);
-
-        $stmt->bindValue(7, $model->fk_fornecedor);
+        $stmt->bindValue(6, $model->fk_fornecedor);
 
         $stmt->execute();
 
         $model->id = $this->conexao->lastInsertId();
 
-        return $model;
+        return (!$model->id) ? null : $model;
 
     }
     
     public function Update(ProdutoModel $model) : ?ProdutoModel
     {
 
-        $sql = "UPDATE Produto SET nome = ?, estoque = ?, preco = ?, " .
-               "tamanho = ?, categoria = ?, observacoes = ?, fk_fornecedor = ?, " .
+        $sql = "UPDATE Produto SET nome = ?, preco = ?, tamanho = ?, " .
+               "categoria = ?, observacoes = ?, fk_fornecedor = ?, " .
                "data_modificacao = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->nome);
         
-        $stmt->bindValue(2, $model->estoque);
+        $stmt->bindValue(2, $model->preco);
+
+        $stmt->bindValue(3, $model->tamanho);
+
+        $stmt->bindValue(4, $model->categoria);
         
-        $stmt->bindValue(3, $model->preco);
+        $stmt->bindValue(5, $model->observacoes);
 
-        $stmt->bindValue(4, $model->tamanho);
+        $stmt->bindValue(6, $model->fk_fornecedor);
 
-        $stmt->bindValue(5, $model->categoria);
-        
-        $stmt->bindValue(6, $model->observacoes);
+        $stmt->bindValue(7, $model->data_modificacao);
 
-        $stmt->bindValue(7, $model->fk_fornecedor);
+        $stmt->bindValue(8, $model->id);
 
-        $stmt->bindValue(8, $model->data_modificacao);
+        $stmt->execute();
 
-        $stmt->bindValue(9, $model->id);
+        $model->id = $this->conexao->lastInsertId();
 
-        return ($stmt->execute()) ? $model : null;
+        return (!$model->id) ? null : $model;
         
     }
 

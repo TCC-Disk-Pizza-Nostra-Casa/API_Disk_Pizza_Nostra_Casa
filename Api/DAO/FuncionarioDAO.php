@@ -14,7 +14,7 @@ class FuncionarioDAO extends DAO
         
     }
 
-    public function Insert(FuncionarioModel $model) : FuncionarioModel
+    public function Insert(FuncionarioModel $model) : ?FuncionarioModel
     {
 
         $sql = "INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, " .
@@ -47,7 +47,7 @@ class FuncionarioDAO extends DAO
 
         $model->id = $this->conexao->lastInsertId();
 
-        return $model;
+        return (!$model->id) ? null : $model;
 
     }
 
@@ -57,8 +57,6 @@ class FuncionarioDAO extends DAO
         $sql = "UPDATE Funcionario SET nome = ?, sexo = ?, estado_civil = ?, cpf = ?, " .
                "cep = ?, email = ?, telefone = ?, senha = MD5(?), observacoes = ?, " .
                "data_modificacao = ?, administrador = ? WHERE id = ?";
-
-        $stmt = $this->conexao->prepare($sql);
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -86,7 +84,11 @@ class FuncionarioDAO extends DAO
 
         $stmt->bindValue(12, $model->id);
 
-        return ($stmt->execute()) ? $model : null;
+        $stmt->execute();
+
+        $model->id = $this->conexao->lastInsertId();
+
+        return (!$model->id) ? null : $model;
 
     }
 

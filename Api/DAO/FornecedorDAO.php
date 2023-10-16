@@ -9,7 +9,9 @@ class FornecedorDAO extends DAO
 
     public function __construct()
     {
+
         parent::__construct();
+        
     }
 
     public function Insert(FornecedorModel $model) : FornecedorModel
@@ -31,7 +33,7 @@ class FornecedorDAO extends DAO
 
         $model->id = $this->conexao->lastInsertId();
 
-        return $model;
+        return (!$model->id) ? null : $model;
 
     }
 
@@ -52,7 +54,11 @@ class FornecedorDAO extends DAO
 
         $stmt->bindValue(5, $model->id);
 
-        return ($stmt->execute()) ? $model : null;
+        $stmt->execute();
+
+        $model->id = $this->conexao->lastInsertId();
+
+        return (!$model->id) ? null : $model;
 
     }
 

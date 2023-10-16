@@ -58,7 +58,6 @@ CREATE TABLE IF NOT EXISTS Produto (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) UNIQUE NOT NULL,
-    estoque INT NOT NULL, -- Campo em reavaliação (Envolve funcionamentos relativamente complexos.).
     preco DOUBLE NOT NULL,
     tamanho VARCHAR(6) NOT NULL,
     categoria VARCHAR(20) NOT NULL,
