@@ -23,9 +23,14 @@ class VendaModel extends Model
         return $response;
     }
 
-    public function getRows(string $query = null) : void
+    public function getAllRows() : void
     {
-        $this->rows = ($query == null) ? (new VendaDAO)->select() : (new VendaDAO)->search($query, $this);
+        $this->rows = (new VendaDAO)->select();
+    }
+
+    public function search(string $query = null) : void
+    {
+        $this->rows = (new VendaDAO)->search($query, $this);
     }
 
     public function delete() : bool
