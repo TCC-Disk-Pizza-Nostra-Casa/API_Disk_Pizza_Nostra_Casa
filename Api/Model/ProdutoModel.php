@@ -7,7 +7,7 @@ use Api\DAO\ProdutoDAO;
 class ProdutoModel extends Model
 {
     
-    public $id, $nome, $estoque, $preco, $tamanho, $categoria, $observacoes, $data_cadastro, $data_modificacao, $ativo, $fk_fornecedor;
+    public $id, $nome, $preco, $tamanho, $categoria, $observacoes, $data_cadastro, $data_modificacao, $ativo, $fk_fornecedor;
     
     public function Save()
     {

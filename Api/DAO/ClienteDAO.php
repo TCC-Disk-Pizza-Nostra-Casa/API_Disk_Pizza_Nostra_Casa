@@ -44,7 +44,7 @@ class ClienteDAO extends DAO
 
         $model->id = $this->conexao->lastInsertId();
 
-        return $model;
+        return (!$model->id) ? null : $model;
 
     }
 
@@ -78,7 +78,11 @@ class ClienteDAO extends DAO
 
         $stmt->bindValue(11, $model->id);
 
-        return ($stmt->execute()) ? $model : null;
+        $stmt->execute();
+
+        $model->id = $this->conexao->lastInsertId();
+
+        return (!$model->id) ? null : $model;
 
     }
 
