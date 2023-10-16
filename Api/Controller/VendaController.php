@@ -36,7 +36,7 @@ class VendaController extends Controller
         try {
 
             $model = new VendaModel();
-            $model->getRows();
+            $model->getAllRows();
             parent::SendReturnAsJson($model->rows);
         } catch (Exception $ex) {
 
@@ -53,7 +53,7 @@ class VendaController extends Controller
             $model = new VendaModel();
             $model->data_venda = $filter->data_venda;
             
-            $model->getRows($filter->cliente);
+            $model->search($filter->cliente);
 
             parent::SendReturnAsJson($model->rows);
         } catch (Exception $ex) {
