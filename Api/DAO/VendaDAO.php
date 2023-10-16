@@ -75,9 +75,8 @@ class VendaDAO extends DAO
                     JOIN Cliente AS c ON v.fk_cliente = c.id
                     JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 WHERE
-                    (c.nome LIKE :keyword OR f.nome LIKE :keyword) AND (DATE(v.data_venda)) = :dateToSearch
-                GROUP BY
-                    v.id";
+                    ((c.nome LIKE :keyword OR f.nome LIKE :keyword) AND ((DATE(v.data_venda)) = :dateToSearch))  OR ((DATE(v.data_venda)) = :dateToSearch) OR (c.nome LIKE :keyword OR f.nome LIKE :keyword)
+                GROUP BY v.id";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindParam(":keyword", $filter);

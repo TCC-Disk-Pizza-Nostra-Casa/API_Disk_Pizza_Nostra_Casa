@@ -25,6 +25,8 @@ class ClienteController extends Controller
 
             $model->sexo = $json_object->sexo;
 
+            $model->estado_civil = $json_object->estado_civil;
+
             $model->cpf = str_replace([".","-"], "", $json_object->cpf);
 
             $model->cep = str_replace("-", "", $json_object->cep);
@@ -38,6 +40,8 @@ class ClienteController extends Controller
             $model->observacoes = $json_object->observacoes;
 
             $model->data_modificacao = $json_object->data_modificacao;
+
+            $model->ativo = $json_object->ativo;
 
             parent::SendReturnAsJson($model->Save());
 

@@ -31,13 +31,11 @@ class FornecedorDAO extends DAO
 
         $model->id = $this->conexao->lastInsertId();
 
-        //var_dump($model);
-
         return $model;
 
     }
 
-    public function Update(FornecedorModel $model) : bool
+    public function Update(FornecedorModel $model) : ?FornecedorModel
     {
 
         $sql = "UPDATE Fornecedor SET nome = ?, cnpj = ?, telefone = ?, data_modificacao = ? WHERE id = ?";
@@ -54,7 +52,7 @@ class FornecedorDAO extends DAO
 
         $stmt->bindValue(5, $model->id);
 
-        return $stmt->execute();
+        return ($stmt->execute()) ? $model : null;
 
     }
 

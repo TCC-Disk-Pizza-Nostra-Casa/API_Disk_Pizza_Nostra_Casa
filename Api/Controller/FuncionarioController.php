@@ -19,12 +19,7 @@ class FuncionarioController extends Controller
 
             $model = new FuncionarioModel();
 
-            if($json_object->id != null)
-            {
-
-                $model->id = $json_object->id;
-
-            }
+            $model->id = $json_object->id;
 
             $model->nome = $json_object->nome;
 
