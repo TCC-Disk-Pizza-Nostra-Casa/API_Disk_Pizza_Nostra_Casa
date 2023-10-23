@@ -134,8 +134,16 @@ switch($url)
         VendaController::GetListAsyncVenda();
     break;
 
-    case "/venda/search":
-        VendaController::SearchAsyncVenda();
+    case "/venda/searchByClient":
+        VendaController::SearchByClientAsyncVenda();
+    break;
+
+    case "/venda/searchByFunctionary":
+        VendaController::searchByFunctionaryAsyncVenda();
+    break;
+
+    case "/venda/searchByDate":
+        VendaController::searchByDateAsyncVenda();
     break;
 
     // Resposta padrão.

@@ -28,9 +28,19 @@ class VendaModel extends Model
         $this->rows = (new VendaDAO)->select();
     }
 
-    public function search(string $query = null) : void
+    public function searchByClient(string $query = null) : void
     {
-        $this->rows = (new VendaDAO)->search($query, $this);
+        $this->rows = (new VendaDAO)->searchByClient($query, $this);
+    }
+
+    public function searchByFunctionary(string $query = null) : void
+    {
+        $this->rows = (new VendaDAO)->searchByFunctionary($query, $this);
+    }
+
+    public function searchByDate() : void
+    {
+        $this->rows = (new VendaDAO)->searchByDate($this);
     }
 
     public function delete() : bool
