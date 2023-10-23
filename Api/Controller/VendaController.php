@@ -44,16 +44,51 @@ class VendaController extends Controller
         }
     }
 
-    public static function SearchAsyncVenda(): void
+    public static function SearchByClientAsyncVenda(): void
     {
         try {
 
             $filter = self::getDataFromRequest();
 
             $model = new VendaModel();
-            $model->data_venda = $filter->data_venda;
             
-            $model->search($filter->cliente);
+            $model->searchByClient($filter);
+
+            parent::SendReturnAsJson($model->rows);
+        } catch (Exception $ex) {
+
+            parent::SendExceptionAsJson($ex);
+        }
+    }
+
+    public static function SearchByFunctionaryAsyncVenda(): void
+    {
+        try {
+
+            $filter = self::getDataFromRequest();
+
+            $model = new VendaModel();
+            
+            $model->searchByFunctionary($filter);
+
+            parent::SendReturnAsJson($model->rows);
+        } catch (Exception $ex) {
+
+            parent::SendExceptionAsJson($ex);
+        }
+    }
+
+    public static function SearchByDateAsyncVenda(): void
+    {
+        try {
+
+            $filter = self::getDataFromRequest();
+
+            $model = new VendaModel();
+            
+            $model->data_venda = $filter;
+            
+            $model->searchByDate();
 
             parent::SendReturnAsJson($model->rows);
         } catch (Exception $ex) {

@@ -53,7 +53,7 @@ class VendaDAO extends DAO
 
     }
 
-    public function search(string $query, VendaModel $model): array
+    public function searchByClient(string $query): array
     {
 
         $filter = "%" . $query . "%";
@@ -75,12 +75,82 @@ class VendaDAO extends DAO
                     JOIN Cliente AS c ON v.fk_cliente = c.id
                     JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 WHERE
-                    ((c.nome LIKE :keyword OR f.nome LIKE :keyword) AND ((DATE(v.data_venda)) = :dateToSearch))  OR ((DATE(v.data_venda)) = :dateToSearch) OR (c.nome LIKE :keyword OR f.nome LIKE :keyword)
+                    c.nome LIKE :keyword
                 GROUP BY v.id";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindParam(":keyword", $filter);
-        $stmt->bindParam(":dateToSearch", $model->data_venda);
+        $stmt->execute();
+
+        $response = $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        $response = $this->setVendaItemsDetails($response);
+
+        return $response;
+
+    }
+
+    public function searchByFunctionary(string $query): array
+    {
+
+        $filter = "%" . $query . "%";
+
+        $sql = "SELECT
+                    v.id,
+                    DATE_FORMAT(data_venda, '%d de %M de %Y %H:%i') AS data_venda,
+                    delivery,
+                    valor_total,
+                    f.nome AS funcionario,
+                    c.nome AS cliente,
+                    MAX(p.nome) AS produto,
+                    MAX(vp.quantidade_produto) AS quantidade_produto,
+                    MAX(vp.valor_total_item_venda) AS valor_total_item_venda
+                FROM
+                    Venda AS v
+                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.fk_venda
+                    JOIN Produto AS p ON vp.fk_produto = p.id
+                    JOIN Cliente AS c ON v.fk_cliente = c.id
+                    JOIN Funcionario AS f ON v.fk_funcionario = f.id
+                WHERE
+                    f.nome LIKE :keyword
+                GROUP BY v.id";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindParam(":keyword", $filter);
+        $stmt->execute();
+
+        $response = $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        $response = $this->setVendaItemsDetails($response);
+
+        return $response;
+
+    }
+
+    public function searchByDate(VendaModel $model): array
+    {
+        $sql = "SELECT
+                    v.id,
+                    DATE_FORMAT(data_venda, '%d de %M de %Y %H:%i') AS data_venda,
+                    delivery,
+                    valor_total,
+                    f.nome AS funcionario,
+                    c.nome AS cliente,
+                    MAX(p.nome) AS produto,
+                    MAX(vp.quantidade_produto) AS quantidade_produto,
+                    MAX(vp.valor_total_item_venda) AS valor_total_item_venda
+                FROM
+                    Venda AS v
+                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.fk_venda
+                    JOIN Produto AS p ON vp.fk_produto = p.id
+                    JOIN Cliente AS c ON v.fk_cliente = c.id
+                    JOIN Funcionario AS f ON v.fk_funcionario = f.id
+                WHERE
+                    DATE(v.data_venda) = :dataVenda
+                GROUP BY v.id";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindParam(":dataVenda", $model->data_venda);
         $stmt->execute();
 
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);
