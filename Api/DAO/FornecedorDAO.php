@@ -29,11 +29,7 @@ class FornecedorDAO extends DAO
         
         $stmt->bindValue(4, $model->observacoes);
 
-        $stmt->execute();
-
-        $model->id = $this->conexao->lastInsertId();
-
-        return (!$model->id) ? null : $model;
+        return (!$stmt->execute()) ? null : $model;
 
     }
 
@@ -54,11 +50,7 @@ class FornecedorDAO extends DAO
 
         $stmt->bindValue(5, $model->id);
 
-        $stmt->execute();
-
-        $model->id = $this->conexao->lastInsertId();
-
-        return (!$model->id) ? null : $model;
+        return (!$stmt->execute()) ? null : $model;
 
     }
 
