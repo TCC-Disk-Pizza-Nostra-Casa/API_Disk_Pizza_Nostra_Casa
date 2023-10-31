@@ -43,11 +43,7 @@ class FuncionarioDAO extends DAO
 
         $stmt->bindValue(10, $model->administrador);
 
-        $stmt->execute();
-
-        $model->id = $this->conexao->lastInsertId();
-
-        return (!$model->id) ? null : $model;
+        return (!$stmt->execute()) ? null : $model;
 
     }
 
@@ -84,11 +80,7 @@ class FuncionarioDAO extends DAO
 
         $stmt->bindValue(12, $model->id);
 
-        $stmt->execute();
-
-        $model->id = $this->conexao->lastInsertId();
-
-        return (!$model->id) ? null : $model;
+        return (!$stmt->execute()) ? null : $model;
 
     }
 

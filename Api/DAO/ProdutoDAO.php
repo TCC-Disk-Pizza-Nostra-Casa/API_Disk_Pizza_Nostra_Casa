@@ -18,7 +18,7 @@ class ProdutoDAO extends DAO
     {
 
         $sql = "INSERT INTO Produto(nome, preco, tamanho, categoria, observacoes, fk_fornecedor) " .
-               "VALUES (?,?,?,?,?,?,?)";
+               "VALUES (?,?,?,?,?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -34,11 +34,7 @@ class ProdutoDAO extends DAO
 
         $stmt->bindValue(6, $model->fk_fornecedor);
 
-        $stmt->execute();
-
-        $model->id = $this->conexao->lastInsertId();
-
-        return (!$model->id) ? null : $model;
+        return (!$stmt->execute()) ? null : $model;
 
     }
     
@@ -67,11 +63,7 @@ class ProdutoDAO extends DAO
 
         $stmt->bindValue(8, $model->id);
 
-        $stmt->execute();
-
-        $model->id = $this->conexao->lastInsertId();
-
-        return (!$model->id) ? null : $model;
+        return (!$stmt->execute()) ? null : $model;
         
     }
 
