@@ -75,10 +75,8 @@ class VendaDAO extends DAO
 
     }
 
-    public function searchByIdFunctionary(string $query): array
+    public function searchByIdFunctionary(string $id): array
     {
-
-        $filter = "%" . $query . "%";
 
         $sql = "SELECT
                     v.id,
@@ -96,7 +94,7 @@ class VendaDAO extends DAO
                 GROUP BY v.id";
 
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindParam(":id", $filter);
+        $stmt->bindParam(":id", $id);
         $stmt->execute();
 
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);

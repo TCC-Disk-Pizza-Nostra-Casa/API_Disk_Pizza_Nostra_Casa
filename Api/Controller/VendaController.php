@@ -69,9 +69,10 @@ class VendaController extends Controller
 
             $model = new VendaModel();
             
-            $model->searchByIdFunctionary($id);
+            $model->searchByIdFunctionary($id->id);
 
             parent::SendReturnAsJson($model->rows);
+            
         } catch (Exception $ex) {
 
             parent::SendExceptionAsJson($ex);
