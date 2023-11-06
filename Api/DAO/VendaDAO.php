@@ -75,10 +75,8 @@ class VendaDAO extends DAO
 
     }
 
-    public function searchByFunctionary(string $query): array
+    public function searchByIdFunctionary(string $id): array
     {
-
-        $filter = "%" . $query . "%";
 
         $sql = "SELECT
                     v.id,
@@ -92,11 +90,11 @@ class VendaDAO extends DAO
                     JOIN Cliente AS c ON v.fk_cliente = c.id
                     JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 WHERE
-                    f.nome LIKE :keyword
+                    f.id = :id
                 GROUP BY v.id";
 
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindParam(":keyword", $filter);
+        $stmt->bindParam(":id", $id);
         $stmt->execute();
 
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);

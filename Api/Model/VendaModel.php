@@ -33,9 +33,9 @@ class VendaModel extends Model
         $this->rows = (new VendaDAO)->searchByClient($query, $this);
     }
 
-    public function searchByFunctionary(string $query = null) : void
+    public function searchByIdFunctionary(?int $id) : void
     {
-        $this->rows = (new VendaDAO)->searchByFunctionary($query);
+        $this->rows = (new VendaDAO)->searchByIdFunctionary($id);
     }
 
     public function searchByDate() : void
