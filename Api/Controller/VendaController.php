@@ -61,15 +61,15 @@ class VendaController extends Controller
         }
     }
 
-    public static function SearchByFunctionaryAsyncVenda(): void
+    public static function searchByIDFunctionaryAsyncVenda(): void
     {
         try {
 
-            $filter = self::getDataFromRequest();
+            $id = self::getDataFromRequest();
 
             $model = new VendaModel();
             
-            $model->searchByFunctionary($filter);
+            $model->searchByIdFunctionary($id);
 
             parent::SendReturnAsJson($model->rows);
         } catch (Exception $ex) {

@@ -139,8 +139,8 @@ switch($url)
         VendaController::SearchByClientAsyncVenda();
     break;
 
-    case "/venda/searchByFunctionary":
-        VendaController::searchByFunctionaryAsyncVenda();
+    case "/venda/searchByIDFunctionary":
+        VendaController::searchByIDFunctionaryAsyncVenda();
     break;
 
     case "/venda/searchByDate":
