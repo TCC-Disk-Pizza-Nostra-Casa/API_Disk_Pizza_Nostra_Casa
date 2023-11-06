@@ -30,14 +30,9 @@ class VendaDAO extends DAO
                     delivery, 
                     valor_total, 
                     f.nome AS funcionario, 
-                    c.nome AS cliente, 
-                    MAX(p.nome) AS produto, 
-                    MAX(vp.quantidade_produto) AS quantidade_produto, 
-                    MAX(vp.valor_total_item_venda) AS valor_total_item_venda 
+                    c.nome AS cliente
                 FROM 
                     Venda AS v
-                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.fk_venda 
-                    JOIN Produto AS p ON vp.fk_produto = p.id
                     JOIN Cliente AS c ON v.fk_cliente = c.id
                     JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 GROUP BY v.id";
@@ -47,10 +42,7 @@ class VendaDAO extends DAO
 
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);
 
-        $response = $this->setVendaItemsDetails($response);
-
         return $response;
-
     }
 
     public function searchByClient(string $query): array
@@ -64,14 +56,9 @@ class VendaDAO extends DAO
                     delivery,
                     valor_total,
                     f.nome AS funcionario,
-                    c.nome AS cliente,
-                    MAX(p.nome) AS produto,
-                    MAX(vp.quantidade_produto) AS quantidade_produto,
-                    MAX(vp.valor_total_item_venda) AS valor_total_item_venda
+                    c.nome AS cliente
                 FROM
                     Venda AS v
-                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.fk_venda
-                    JOIN Produto AS p ON vp.fk_produto = p.id
                     JOIN Cliente AS c ON v.fk_cliente = c.id
                     JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 WHERE
@@ -83,8 +70,6 @@ class VendaDAO extends DAO
         $stmt->execute();
 
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);
-
-        $response = $this->setVendaItemsDetails($response);
 
         return $response;
 
@@ -101,14 +86,9 @@ class VendaDAO extends DAO
                     delivery,
                     valor_total,
                     f.nome AS funcionario,
-                    c.nome AS cliente,
-                    MAX(p.nome) AS produto,
-                    MAX(vp.quantidade_produto) AS quantidade_produto,
-                    MAX(vp.valor_total_item_venda) AS valor_total_item_venda
+                    c.nome AS cliente
                 FROM
                     Venda AS v
-                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.fk_venda
-                    JOIN Produto AS p ON vp.fk_produto = p.id
                     JOIN Cliente AS c ON v.fk_cliente = c.id
                     JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 WHERE
@@ -120,8 +100,6 @@ class VendaDAO extends DAO
         $stmt->execute();
 
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);
-
-        $response = $this->setVendaItemsDetails($response);
 
         return $response;
 
@@ -135,14 +113,9 @@ class VendaDAO extends DAO
                     delivery,
                     valor_total,
                     f.nome AS funcionario,
-                    c.nome AS cliente,
-                    MAX(p.nome) AS produto,
-                    MAX(vp.quantidade_produto) AS quantidade_produto,
-                    MAX(vp.valor_total_item_venda) AS valor_total_item_venda
+                    c.nome AS cliente
                 FROM
                     Venda AS v
-                    JOIN Venda_Produto_Assoc AS vp ON v.id = vp.fk_venda
-                    JOIN Produto AS p ON vp.fk_produto = p.id
                     JOIN Cliente AS c ON v.fk_cliente = c.id
                     JOIN Funcionario AS f ON v.fk_funcionario = f.id
                 WHERE
@@ -155,42 +128,7 @@ class VendaDAO extends DAO
 
         $response = $stmt->fetchAll(PDO::FETCH_CLASS);
 
-        $response = $this->setVendaItemsDetails($response);
-
         return $response;
-
-    }
-
-    public function setVendaItemsDetails(array $vendaObject): array
-    {
-
-        $index = 0;
-
-        while($index < count($vendaObject))
-        {
-
-            $id = $vendaObject[$index]->id;
-
-            $vendaObject[$index]->produto = array();
-            $vendaObject[$index]->quantidade_produto = array();
-            $vendaObject[$index]->valor_total_item_venda = array();
-
-            $vendaItemList = (new VendaProdutoAssocDAO)->select($id);
-
-            foreach($vendaItemList as $item)
-            {
-
-                $vendaObject[$index]->produto[] = $item->produto;
-                $vendaObject[$index]->quantidade_produto[] = $item->quantidade_produto;
-                $vendaObject[$index]->valor_total_item_venda[] = $item->valor_total_item_venda;
-
-            }
-
-            $index++;
-
-        }
-
-        return $vendaObject;
 
     }
 
