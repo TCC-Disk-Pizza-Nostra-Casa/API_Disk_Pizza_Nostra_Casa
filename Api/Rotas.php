@@ -7,6 +7,7 @@ use Api\Controller\
     ClienteController,
     ProdutoController,
     VendaController,
+    VendaProdutoAssocController,
     FornecedorController
 
 };
@@ -144,6 +145,11 @@ switch($url)
 
     case "/venda/searchByDate":
         VendaController::searchByDateAsyncVenda();
+    break;
+
+    // Módulo - VendaProdutoAssocModel:
+    case "/detalhesVenda/search":
+        VendaProdutoAssocController::SearchByIdAsyncVendaProdutoAssoc();
     break;
 
     // Resposta padrão.

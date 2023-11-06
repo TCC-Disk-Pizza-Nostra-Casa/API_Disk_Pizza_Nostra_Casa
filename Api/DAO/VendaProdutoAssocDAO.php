@@ -16,7 +16,7 @@ class VendaProdutoAssocDAO extends DAO
 
     }
 
-    public function select(int $fk_venda) : array
+    public function selectByFKVenda(int $fk_venda) : array
     {
 
         $sql = "SELECT 

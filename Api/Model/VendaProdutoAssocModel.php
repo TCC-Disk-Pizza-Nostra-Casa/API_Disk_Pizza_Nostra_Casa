@@ -17,4 +17,11 @@ class VendaProdutoAssocModel extends Model
 
     }
 
+    public function getDetalhesVenda(?int $id) : array
+    {
+        
+        return (new VendaProdutoAssocDAO())->selectByFKVenda($id);
+
+    }
+
 }
