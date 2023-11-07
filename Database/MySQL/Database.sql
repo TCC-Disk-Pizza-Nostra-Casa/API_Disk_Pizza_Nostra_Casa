@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS Produto (
     data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ativo BOOL DEFAULT 1,
 
-    fk_fornecedor INT,
+    fk_fornecedor INT NOT NULL,
     FOREIGN KEY(fk_fornecedor) REFERENCES Fornecedor(id)
 
 );
@@ -80,20 +80,20 @@ CREATE TABLE IF NOT EXISTS Venda (
     data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ativo BOOL DEFAULT 1,
 
-    fk_funcionario INT,
+    fk_funcionario INT NOT NULL,
     FOREIGN KEY(fk_funcionario) REFERENCES Funcionario(id),
 
-    fk_cliente INT,
+    fk_cliente INT NOT NULL,
     FOREIGN KEY(fk_cliente) REFERENCES Cliente(id)
 
 );
 
 CREATE TABLE IF NOT EXISTS Venda_Produto_Assoc (
 
-    fk_venda INT,
+    fk_venda INT NOT NULL,
     FOREIGN KEY(fk_venda) REFERENCES Venda(id) ON DELETE CASCADE,
 
-    fk_produto INT,
+    fk_produto INT NOT NULL,
     FOREIGN KEY(fk_produto) REFERENCES Produto(id),
 
     quantidade_produto INT,

@@ -7,9 +7,37 @@ use Api\DAO\VendaProdutoAssocDAO;
 class VendaProdutoAssocModel extends Model
 {
 
-    public $fk_produto, $fk_venda, $quantidade_produto, $valor_total_item_venda;
+    public $fk_venda, $fk_produto, $quantidade_produto, $valor_total_item_venda, $ativo;
 
-    public function save() : bool
+    public function Save()
+    {
+
+        return (new VendaProdutoAssocDAO())->Insert($this);
+
+    }
+
+    public function Enable(int $id)
+    {
+
+        return (new VendaProdutoAssocDAO())->Reactivate($id);
+
+    }
+
+    public function Disable(int $id)
+    {
+
+        return (new VendaProdutoAssocDAO())->Deactivate($id);
+
+    }
+
+    public function GetRows(int $id_venda)
+    {
+
+        $this->rows = (new VendaProdutoAssocDAO())->Search($id_venda);
+
+    }
+
+    /*public function save() : bool
     {
 
         $dao = new VendaProdutoAssocDAO();
@@ -22,6 +50,6 @@ class VendaProdutoAssocModel extends Model
         
         return (new VendaProdutoAssocDAO())->selectByFKVenda($id);
 
-    }
+    }*/
 
 }

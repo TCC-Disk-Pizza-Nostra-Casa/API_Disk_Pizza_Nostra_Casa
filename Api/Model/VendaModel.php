@@ -12,7 +12,7 @@ class VendaModel extends Model
     public function Save()
     {
 
-        (new VendaDAO())->Insert($this);
+        return (new VendaDAO())->Insert($this);
 
     }
 

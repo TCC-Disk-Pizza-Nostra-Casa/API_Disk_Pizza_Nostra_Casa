@@ -4,8 +4,6 @@ namespace Api\DAO;
 
 use Api\Model\VendaModel;
 
-use PDO;
-
 class VendaDAO extends DAO
 {
 
