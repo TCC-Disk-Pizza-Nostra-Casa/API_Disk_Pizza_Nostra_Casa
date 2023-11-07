@@ -113,17 +113,29 @@ class VendaController extends Controller
     public static function SearchAsyncVenda() : void
     {
 
-        $json_object = json_decode(file_get_contents("php://input"));
+        try
+        {
 
-        $model = new VendaModel();
+            $json_object = json_decode(file_get_contents("php://input"));
 
-        $id_funcionario = $json_object[0];
+            $model = new VendaModel();
 
-        $id_cliente = $json_object[1];
+            $id_funcionario = $json_object[0];
 
-        $model->GetRows($id_funcionario, $id_cliente);
+            $id_cliente = $json_object[1];
 
-        parent::SendReturnAsJson($model->rows);
+            $model->GetRows($id_funcionario, $id_cliente);
+
+            parent::SendReturnAsJson($model->rows);
+
+        }
+
+        catch(Exception $ex)
+        {
+
+            parent::SendExceptionAsJson($ex);
+
+        }
 
     }
 

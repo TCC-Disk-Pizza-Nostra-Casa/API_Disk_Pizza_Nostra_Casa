@@ -17,10 +17,6 @@ $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 switch($url)
 {
 
-    case "/":
-        echo "Início.";
-    break;
-
     // Módulo - Funcionário:
 
     case "/funcionario/save":
@@ -141,6 +137,24 @@ switch($url)
 
     case "/venda/search":
         VendaController::SearchAsyncVenda();
+    break;
+
+    // Módulo - VendaProdutoAssoc:
+
+    case "/venda_produto/save":
+        VendaProdutoAssocController::SaveAsyncVendaProdutoAssoc();
+    break;
+
+    case "/venda_produto/enable":
+        VendaProdutoAssocController::EnableAsyncVendaProdutoAssoc();
+    break;
+
+    case "/venda_produto/disable":
+        VendaProdutoAssocController::DisableAsyncVendaProdutoAssoc();
+    break;
+
+    case "/venda_produto/search":
+        VendaProdutoAssocController::SearchAsyncVendaProdutoAssoc();
     break;
 
     /*case "/venda/searchByClient":
