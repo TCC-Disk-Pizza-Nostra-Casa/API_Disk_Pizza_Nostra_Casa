@@ -5,10 +5,10 @@ use Api\Controller\
 
     FuncionarioController,
     ClienteController,
+    FornecedorController,
     ProdutoController,
     VendaController,
-    VendaProdutoAssocController,
-    FornecedorController
+    VendaProdutoAssocController
 
 };
 
@@ -127,15 +127,23 @@ switch($url)
         VendaController::SaveAsyncVenda();
     break;
 
-    case "/venda/delete":
-        VendaController::DeleteAsyncVenda();
+    case "/venda/enable":
+        VendaController::EnableAsyncVenda();
+    break;
+
+    case "/venda/disable":
+        VendaController::DisableAsyncVenda();
     break;
 
     case "/venda/list":
         VendaController::GetListAsyncVenda();
     break;
 
-    case "/venda/searchByClient":
+    case "/venda/search":
+        VendaController::SearchAsyncVenda();
+    break;
+
+    /*case "/venda/searchByClient":
         VendaController::SearchByClientAsyncVenda();
     break;
 
@@ -150,12 +158,11 @@ switch($url)
     // Módulo - VendaProdutoAssocModel:
     case "/detalhesVenda/search":
         VendaProdutoAssocController::SearchByIdAsyncVendaProdutoAssoc();
-    break;
+    break;*/
 
-    // Resposta padrão.
+    // Resposta padrão:
 
     default:
-        //echo "Erro 404!";
         http_response_code(404);
     break;
     
