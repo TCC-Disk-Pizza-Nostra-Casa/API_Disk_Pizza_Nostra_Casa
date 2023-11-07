@@ -1,147 +1,160 @@
 /******** CLIENTE, FUNCIONÁRIO E FORNECEDOR ********/
-INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES ("Joaquim", "Masculino", "Casado", "30796392862", "17203300", "joaquim@email.com", "14989776109", "2000-06-02");
-INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES ("Irineu", "Masculino", "Casado", "62756274844", "17209002", "irineu@email.com", "14997699554", "2000-06-03");
 
-INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha) VALUES ("John", "Masculino", "Casado", "44096140880", "17206410", "john@gmail.com", "14983729944", MD5("123"));
+	INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES ("Joaquim", "Masculino", "Casado", "30796392862", "17203300", "joaquim@email.com", "14989776109", "2000-06-02");
 
-INSERT INTO Fornecedor (nome, cnpj, telefone) VALUES ("Fornecedor Teste", "33254529000190", "11981001696");
+	INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES ("Irineu", "Masculino", "Casado", "62756274844", "17209002", "irineu@email.com", "14997699554", "2000-06-03");
 
+	INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha) VALUES ("John", "Masculino", "Casado", "44096140880", "17206410", "john@gmail.com", "14983729944", MD5("123"));
+
+	INSERT INTO Fornecedor (nome, cnpj, telefone) VALUES ("Fornecedor Teste", "33254529000190", "11981001696");
 
 /******* BEBIDAS *******/
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Guaraná 2L", 8, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Soda 2L", 8, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Cola 2L", 8, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Coca-Cola 2L", 14, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Antártica 1L", 7, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Suco Tampico 2L", 12, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Suco Tampico 450mL", 5, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Água", 2.50, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Latinha Coca-Cola 225mL", 5, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Latinha Conti Zero Grau 225mL", 4, "Único", "Bebidas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Latinha Brahma 225mL", 5, "Único", "Bebidas", 1);
+
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Guaraná 2L", 8, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Soda 2L", 8, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Cola 2L", 8, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Coca-Cola 2L", 14, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Refrigerante Antártica 1L", 7, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Suco Tampico 2L", 12, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Suco Tampico 450mL", 5, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Água", 2.50, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Latinha Coca-Cola 225mL", 5, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Latinha Conti Zero Grau 225mL", 4, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Latinha Brahma 225mL", 5, "Único", "Bebida", 1);
 
 /******* PIZZAS TRADICIONAIS *******/
--- GRANDE --
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Alho e Óleo (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Bacon (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Baiana (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Bauru (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Calabresa (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Canadense (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Catupiry (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Corn Bacon (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escarola (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Frango (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Lombo (Grande)", 35, "Grande", "Pizzas Tradicionais", 1);
 
--- BROTO --
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Alho e Óleo (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Bacon (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Baiana (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Bauru (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Calabresa (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Canadense (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Catupiry (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Corn Bacon (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escarola (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Frango (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Lombo (Broto)", 20, "Broto", "Pizzas Tradicionais", 1);
+	-- GRANDE --
+
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Alho e Óleo (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Bacon (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Baiana (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Bauru (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Calabresa (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Canadense (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Catupiry (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Corn Bacon (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escarola (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Frango (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Lombo (Grande)", 35, "Grande", "Pizza Tradicional", 1);
+
+	-- BROTO --
+
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Alho e Óleo (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Bacon (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Baiana (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Bauru (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Calabresa (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Canadense (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Catupiry (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Corn Bacon (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escarola (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Frango (Broto)", 20, "Broto", "Pizza Tradicional", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Lombo (Broto)", 20, "Broto", "Pizza Tradicional", 1);
 
 /******* PIZZAS VARIADAS *******/
--- GRANDE --
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escondidinho (Grande)", 35, "Grande", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nostra Italia (Grande)", 35, "Grande", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Parmegiana (Grande)", 35, "Grande", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Strogonoff Frango (Grande)", 35, "Grande", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Strogonoff Carne (Grande)", 35, "Grande", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Picanha (Grande)", 35, "Grande", "Pizzas Variadas", 1);
 
--- BROTO --
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escondidinho (Broto)", 30, "Broto", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nostra Italia (Broto)", 30, "Broto", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Parmegiana (Broto)", 30, "Broto", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Strogonoff Frango (Broto)", 30, "Broto", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Strogonoff Carne (Broto)", 30, "Broto", "Pizzas Variadas", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Picanha (Broto)", 30, "Broto", "Pizzas Variadas", 1);
+	-- GRANDE --
+
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escondidinho (Grande)", 35, "Grande", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nostra Italia (Grande)", 35, "Grande", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Parmegiana (Grande)", 35, "Grande", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Strogonoff Frango (Grande)", 35, "Grande", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Strogonoff Carne (Grande)", 35, "Grande", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Picanha (Grande)", 35, "Grande", "Pizza Variada", 1);
+
+	-- BROTO --
+    
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escondidinho (Broto)", 30, "Broto", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nostra Italia (Broto)", 30, "Broto", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Parmegiana (Broto)", 30, "Broto", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Strogonoff Frango (Broto)", 30, "Broto", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Strogonoff Carne (Broto)", 30, "Broto", "Pizza Variada", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Picanha (Broto)", 30, "Broto", "Pizza Variada", 1);
 
 
 /******* PIZZAS ESPECIAIS *******/
--- GRANDE --
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("4 Queijos (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("5 Queijos (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Amazonas (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Aliche (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("A Moda da Casa (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Carijo (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Catufrango (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Cheddar (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Italiana (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Jahu (Grande)", 43, "Grande", "Pizzas Especiais", 1);
---
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Atum (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brasileira (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Lasanha (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Light (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Maria Bonita (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nostra Casa (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Portuguesa (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Provolone (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Rainha (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Siciliana (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Tomate Seco (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("X-Burguer (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brócolis (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Champignon (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Caipira (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escarola 2 (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Palmito (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Paulista (Grande)", 43, "Grande", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Vegetariana (Grande)", 43, "Grande", "Pizzas Especiais", 1);
 
--- BROTO --
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("4 Queijos (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("5 Queijos (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Amazonas (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Aliche (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("A Moda da Casa (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Carijo (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Catufrango (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Cheddar (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Italiana (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Jahu (Broto)", 25, "Broto", "Pizzas Especiais", 1);
---
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Atum (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brasileira (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Lasanha (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Light (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Maria Bonita (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nostra Casa (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Portuguesa (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Provolone (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Rainha (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Siciliana (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Tomate Seco (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("X-Burguer (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brócolis (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Champignon (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Caipira (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escarola 2 (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Palmito (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Paulista (Broto)", 25, "Broto", "Pizzas Especiais", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Vegetariana (Broto)", 25, "Broto", "Pizzas Especiais", 1);
+	-- GRANDE --
+    
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("4 Queijos (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("5 Queijos (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Amazonas (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Aliche (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("A Moda da Casa (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Carijo (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Catufrango (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Cheddar (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Italiana (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Jahu (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Atum (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brasileira (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Lasanha (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Light (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Maria Bonita (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nostra Casa (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Portuguesa (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Provolone (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Rainha (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Siciliana (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Tomate Seco (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("X-Burguer (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brócolis (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Champignon (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Caipira (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escarola 2 (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Palmito (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Paulista (Grande)", 43, "Grande", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Vegetariana (Grande)", 43, "Grande", "Pizza Especial", 1);
+
+	-- BROTO --
+    
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("4 Queijos (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("5 Queijos (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Amazonas (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Aliche (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("A Moda da Casa (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Carijo (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Catufrango (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Cheddar (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Italiana (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Jahu (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Atum (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brasileira (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Lasanha (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Light (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Maria Bonita (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nostra Casa (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Portuguesa (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Provolone (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Rainha (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Siciliana (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Tomate Seco (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("X-Burguer (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brócolis (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Champignon (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Caipira (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Escarola 2 (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Palmito (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Paulista (Broto)", 25, "Broto", "Pizza Especial", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Vegetariana (Broto)", 25, "Broto", "Pizza Especial", 1);
 
 /******* PIZZAS DOCES *******/
--- GRANDE --
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brigadeiro (Grande)", 35, "Grande", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Macaca (Grande)", 35, "Grande", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Romeu e Julieta (Grande)", 35, "Grande", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Prestigio (Grande)", 35, "Grande", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nutella (Grande)", 43, "Grande", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Sonho Meu (Grande)", 35, "Grande", "Pizzas Doces", 1);
--- BROTO --
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brigadeiro (Broto)", 25, "Broto", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Macaca (Broto)", 25, "Broto", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Romeu e Julieta (Broto)", 25, "Broto", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Prestigio (Broto)", 25, "Broto", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nutella (Broto)", 25, "Broto", "Pizzas Doces", 1);
-INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Sonho Meu (Broto)", 25, "Broto", "Pizzas Doces", 1);
+
+	-- GRANDE --
+    
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brigadeiro (Grande)", 35, "Grande", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Macaca (Grande)", 35, "Grande", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Romeu e Julieta (Grande)", 35, "Grande", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Prestigio (Grande)", 35, "Grande", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nutella (Grande)", 43, "Grande", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Sonho Meu (Grande)", 35, "Grande", "Pizza Doce", 1);
+    
+	-- BROTO --
+    
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Brigadeiro (Broto)", 25, "Broto", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Macaca (Broto)", 25, "Broto", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Romeu e Julieta (Broto)", 25, "Broto", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Prestigio (Broto)", 25, "Broto", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Nutella (Broto)", 25, "Broto", "Pizza Doce", 1);
+		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES ("Sonho Meu (Broto)", 25, "Broto", "Pizza Doce", 1);

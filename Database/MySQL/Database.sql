@@ -74,9 +74,11 @@ CREATE TABLE IF NOT EXISTS Produto (
 CREATE TABLE IF NOT EXISTS Venda (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
-    data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     delivery BOOL DEFAULT 0,
     valor_total DOUBLE DEFAULT 0,
+    observacoes VARCHAR(255) DEFAULT "Nenhuma observação",
+    data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOL DEFAULT 1,
 
     fk_funcionario INT,
     FOREIGN KEY(fk_funcionario) REFERENCES Funcionario(id),
@@ -95,6 +97,7 @@ CREATE TABLE IF NOT EXISTS Venda_Produto_Assoc (
     FOREIGN KEY(fk_produto) REFERENCES Produto(id),
 
     quantidade_produto INT,
-    valor_total_item_venda DOUBLE DEFAULT 0
+    valor_total_item_venda DOUBLE DEFAULT 0,
+    ativo BOOL DEFAULT 1
 
 );
