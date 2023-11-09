@@ -37,7 +37,7 @@ class VendaProdutoAssocDAO extends DAO
     public function Deactivate(int $id) : bool
     {
 
-        $sql = "UPDATE Venda_Produto_Assoc SET ativo = 0 WHERE id = ?";
+        $sql = "UPDATE Venda_Produto_Assoc SET ativo = 0 WHERE fk_venda = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -50,7 +50,7 @@ class VendaProdutoAssocDAO extends DAO
     public function Reactivate(int $id) : bool
     {
 
-        $sql = "UPDATE Venda_Produto_Assoc SET ativo = 1 WHERE id = ?";
+        $sql = "UPDATE Venda_Produto_Assoc SET ativo = 1 WHERE fk_venda = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
