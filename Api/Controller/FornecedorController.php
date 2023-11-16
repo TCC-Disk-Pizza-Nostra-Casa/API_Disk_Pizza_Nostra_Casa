@@ -25,6 +25,8 @@ class FornecedorController extends Controller
 
             $model->cnpj = str_replace([".","-","/"], "", $json_object->cnpj);
 
+            $model->email = $json_object->email;
+
             $model->telefone = str_replace(["(",")"," ","-"], "", $json_object->telefone);
 
             $model->observacoes = $json_object->observacoes;

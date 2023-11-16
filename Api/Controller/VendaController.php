@@ -124,7 +124,9 @@ class VendaController extends Controller
 
             $id_cliente = $json_object[1];
 
-            $model->GetRows($id_funcionario, $id_cliente);
+            $data_venda = $json_object[2];
+
+            $model->GetRows((int) $id_funcionario, (int) $id_cliente, $data_venda);
 
             parent::SendReturnAsJson($model->rows);
 

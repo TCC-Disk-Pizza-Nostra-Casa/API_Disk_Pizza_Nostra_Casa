@@ -1,26 +1,28 @@
 /******** CLIENTE, FUNCIONÁRIO E FORNECEDOR ********/
 
-	INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Joaquim", "Masculino", "Casado", "30796392862", "17203300", "joaquim@email.com", "14989776109", "2000-06-02");
+	INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Valentina Mariane Pinto", "Feminino", "Casado(a)", "01475208863", "17202130", "vale@hotmail.com", "14994545381", "2000-06-02");
 
-	INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Irineu", "Masculino", "Casado", "62756274844", "17209002", "irineu@email.com", "14997699554", "2000-06-03");
+	INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha) VALUES("Manoel Joaquim Duarte", "Masculino", "Solteiro(a)", "27249089889", "17210804", "mjduarte@gmail.com", "14985655639", MD5("1234"));
 
-	INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha) VALUES("John", "Masculino", "Casado", "44096140880", "17206410", "john@gmail.com", "14983729944", MD5("1234"));
-
-	INSERT INTO Fornecedor (nome, cnpj, telefone) VALUES("Fornecedor Teste", "33254529000190", "11981001696");
+	INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Local", "85899346000126", "diskpizzanostracasa@hotmail.com", "1430321313");
+    
+    INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Nestle", "60409075000152", "falecom@nestle.com.br", "08007701176");
+    
+    INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Coca-Cola", "61186888009301", "falecom@cocacola.com.br", "08007271100");
 
 /******* BEBIDAS *******/
 
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Guaraná 2L", 8, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Soda 2L", 8, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Cola 2L", 8, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Coca-Cola 2L", 14, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Antártica 1L", 7, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Suco Tampico 2L", 12, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Suco Tampico 450mL", 5, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Água", 2.50, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Latinha Coca-Cola 225mL", 5, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Latinha Conti Zero Grau 225mL", 4, "Único", "Bebida", 1);
-	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Latinha Brahma 225mL", 5, "Único", "Bebida", 1);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Guaraná 2L", 8, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Soda 2L", 8, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Cola 2L", 8, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Coca-Cola 2L", 14, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Refrigerante Antártica 1L", 7, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Suco Tampico 2L", 12, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Suco Tampico 450mL", 5, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Água", 2.50, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Latinha Coca-Cola 225mL", 5, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Latinha Conti Zero Grau 225mL", 4, "Único", "Bebida", 3);
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Latinha Brahma 225mL", 5, "Único", "Bebida", 3);
 
 /******* PIZZAS TRADICIONAIS *******/
 
@@ -158,3 +160,8 @@
 		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Prestigio (Broto)", 25, "Broto", "Pizza Doce", 1);
 		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Nutella (Broto)", 25, "Broto", "Pizza Doce", 1);
 		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Sonho Meu (Broto)", 25, "Broto", "Pizza Doce", 1);
+        
+/******* DOCES *******/
+
+	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Sonho de Valsa", 2, "Único", "Doce", 2);
+    INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Ouro Branco", 2, "Único", "Doce", 2);

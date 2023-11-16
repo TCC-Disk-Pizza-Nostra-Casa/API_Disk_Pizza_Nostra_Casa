@@ -3,6 +3,7 @@
 namespace Api\DAO;
 
 use Api\Model\VendaModel;
+use DateTime;
 
 class VendaDAO extends DAO
 {
@@ -79,16 +80,18 @@ class VendaDAO extends DAO
 
     }
 
-    public function Search(int $id_funcionario, int $id_cliente) : array
+    public function Search(int $id_funcionario, int $id_cliente, string $data_venda) : array
     {
 
-        $sql = "SELECT * FROM Venda WHERE fk_funcionario = ? AND fk_cliente = ? ORDER BY data_venda DESC";
+        $sql = "SELECT * FROM Venda WHERE fk_funcionario = ? AND fk_cliente = ? AND DATE_FORMAT(data_venda, '%Y-%m-%d')  = ? ORDER BY data_venda DESC";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $id_funcionario);
 
         $stmt->bindValue(2, $id_cliente);
+
+        $stmt->bindValue(3, $data_venda);
 
         $stmt->execute();
 
