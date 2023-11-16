@@ -30,10 +30,10 @@ class VendaModel extends Model
 
     }
 
-    public function GetRows(int $id_funcionario = null, int $id_cliente = null)
+    public function GetRows(int $id_funcionario = null, int $id_cliente = null, string $data_venda = null)
     {
 
-        $this->rows = ($id_funcionario != null && $id_cliente != null) ? (new VendaDAO())->Search($id_funcionario, $id_cliente) : (new VendaDAO())->Select();
+        $this->rows = ($id_funcionario != null && $id_cliente != null) ? (new VendaDAO())->Search($id_funcionario, $id_cliente, $data_venda) : (new VendaDAO())->Select();
 
     }
 

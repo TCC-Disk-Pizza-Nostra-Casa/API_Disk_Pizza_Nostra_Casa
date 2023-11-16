@@ -17,7 +17,7 @@ class FornecedorDAO extends DAO
     public function Insert(FornecedorModel $model) : FornecedorModel
     {
 
-        $sql = "INSERT INTO Fornecedor(nome, cnpj, telefone, observacoes) VALUES(?,?,?,?)";
+        $sql = "INSERT INTO Fornecedor(nome, cnpj, email, telefone, observacoes) VALUES(?,?,?,?,?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -25,9 +25,11 @@ class FornecedorDAO extends DAO
 
         $stmt->bindValue(2, $model->cnpj);
 
-        $stmt->bindValue(3, $model->telefone);
+        $stmt->bindValue(3, $model->email);
+
+        $stmt->bindValue(4, $model->telefone);
         
-        $stmt->bindValue(4, $model->observacoes);
+        $stmt->bindValue(5, $model->observacoes);
 
         return (!$stmt->execute()) ? null : $model;
 
@@ -36,7 +38,7 @@ class FornecedorDAO extends DAO
     public function Update(FornecedorModel $model) : ?FornecedorModel
     {
 
-        $sql = "UPDATE Fornecedor SET nome = ?, cnpj = ?, telefone = ?, data_modificacao = ? WHERE id = ?";
+        $sql = "UPDATE Fornecedor SET nome = ?, cnpj = ?, email = ?, telefone = ?, data_modificacao = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -44,11 +46,13 @@ class FornecedorDAO extends DAO
 
         $stmt->bindValue(2, $model->cnpj);
 
-        $stmt->bindValue(3, $model->telefone);
+        $stmt->bindValue(3, $model->email);
 
-        $stmt->bindValue(4, $model->data_modificacao);
+        $stmt->bindValue(4, $model->telefone);
+        
+        $stmt->bindValue(5, $model->data_modificacao);
 
-        $stmt->bindValue(5, $model->id);
+        $stmt->bindValue(6, $model->id);
 
         return (!$stmt->execute()) ? null : $model;
 
