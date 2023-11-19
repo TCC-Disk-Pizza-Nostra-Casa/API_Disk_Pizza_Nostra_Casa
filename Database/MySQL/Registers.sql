@@ -1,8 +1,8 @@
-/******** CLIENTE, FUNCIONÁRIO E FORNECEDOR ********/
+/******** CLIENTE, FUNCIONÁRIOS, FORNECEDORES ********/
 
 	INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Valentina Mariane Pinto", "Feminino", "Casado(a)", "01475208863", "17202130", "vale@hotmail.com", "14994545381", "2000-06-02");
     
-    INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha, observacoes, administrador) VALUES("root", "Não informado", "Solteiro(a)", "12345678909", "17212660", "root@etec.sp.gov.br", "14991116468", MD5("etecjau"), "Usuário de testes", 1);
+    INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha, observacoes, administrador) VALUES("Luiz Geraldo Bernardes", "Não informado", "Solteiro(a)", "12345678909", "17212660", "root@etec.sp.gov.br", "14991116468", MD5("etecjau"), "Usuário de testes", 1);
 
 	INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha) VALUES("Manoel Joaquim Duarte", "Masculino", "Solteiro(a)", "27249089889", "17210804", "mjduarte@gmail.com", "14985655639", MD5("1234"));
 
@@ -167,3 +167,16 @@
 
 	INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Sonho de Valsa", 2, "Único", "Doce", 2);
     INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Ouro Branco", 2, "Único", "Doce", 2);
+    
+/******** VENDAS (COM SEUS ITENS) ********/
+    
+	INSERT INTO Venda(valor_total, data_venda, fk_funcionario, fk_cliente) VALUES(43, "2023-11-10 16:00:00", 1, 1);
+    
+    INSERT INTO Venda_Produto_Assoc(fk_venda, fk_produto, quantidade_produto, valor_total_item_venda) VALUES(1, 13, 1, 35);
+    INSERT INTO Venda_Produto_Assoc(fk_venda, fk_produto, quantidade_produto, valor_total_item_venda) VALUES(1, 1, 1, 8);
+    
+    INSERT INTO Venda(valor_total, data_venda, fk_funcionario, fk_cliente) VALUES(47, "2023-11-16 16:00:00", 2, 1);
+    
+    INSERT INTO Venda_Produto_Assoc(fk_venda, fk_produto, quantidade_produto, valor_total_item_venda) VALUES(2, 16, 1, 35);
+    INSERT INTO Venda_Produto_Assoc(fk_venda, fk_produto, quantidade_produto, valor_total_item_venda) VALUES(2, 3, 1, 8);
+    INSERT INTO Venda_Produto_Assoc(fk_venda, fk_produto, quantidade_produto, valor_total_item_venda) VALUES(2, 117, 2, 4);
