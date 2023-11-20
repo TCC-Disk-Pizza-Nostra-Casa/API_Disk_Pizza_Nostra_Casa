@@ -157,23 +157,6 @@ switch($url)
         VendaProdutoAssocController::SearchAsyncVendaProdutoAssoc();
     break;
 
-    /*case "/venda/searchByClient":
-        VendaController::SearchByClientAsyncVenda();
-    break;
-
-    case "/venda/searchByIDFunctionary":
-        VendaController::searchByIDFunctionaryAsyncVenda();
-    break;
-
-    case "/venda/searchByDate":
-        VendaController::searchByDateAsyncVenda();
-    break;
-
-    // Módulo - VendaProdutoAssocModel:
-    case "/detalhesVenda/search":
-        VendaProdutoAssocController::SearchByIdAsyncVendaProdutoAssoc();
-    break;*/
-
     // Resposta padrão:
 
     default:
