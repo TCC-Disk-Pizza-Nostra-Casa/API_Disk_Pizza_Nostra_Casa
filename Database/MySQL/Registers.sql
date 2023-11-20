@@ -1,16 +1,26 @@
 /******** CLIENTE, FUNCIONÁRIOS, FORNECEDORES ********/
 
 	INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Valentina Mariane Souza", "Feminino", "Casado(a)", "01475208863", "17202130", "vale@hotmail.com", "14994545381", "2000-06-02");
+    INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Marcelo Kaique Rocha", "Masculino", "Casado(a)", "49189585836", "17209325", "marcelorocha91@hotmail.com", "14998820572", "1986-04-05");
+    INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Francisco Miguel Nunes", "Masculino", "Solteiro(a)", "13645127852", "17201340", "francisco.mnunes@hotmail.com", "14998093827", "1960-12-15");
+    INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Alícia Yasmin Lima", "Feminino", "Divorciado(a)", "13023927863", "17212171", "alicia_lima@hotmail.com", "14989734199", "1987-01-30");
+    INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Flávia Gabrielly Oliveira", "Feminino", "Solteiro(a)", "82002323879", "17209312", "flaviagabriellyoliveira@gmail.com", "14992048370", "1994-11-16");
+    INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento, ativo) VALUES("Rafaela Luana Porto", "Feminino", "Casado(a)", "97640514800", "17208530", "rafaela_porto79@gmail.com", "14991143485", "1979-05-01", 0);
+    INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento, ativo) VALUES("Henrique Marcelo Carvalho", "Masculino", "Solteiro(a)", "89573328801", "17214162", "henrique_marcelo_carvalho@gmail.com", "14998907768", "2002-08-10", 0);
     
     INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha, observacoes, administrador) VALUES("Luiz Geraldo Bernardes", "Não informado", "Solteiro(a)", "12345678909", "17212660", "root@etec.sp.gov.br", "14991116468", MD5("etecjau"), "Usuário de testes", 1);
-
 	INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha) VALUES("Manoel Joaquim Duarte", "Masculino", "Solteiro(a)", "27249089889", "17210804", "mjduarte@gmail.com", "14985655639", MD5("1234"));
+	INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha) VALUES("Cristiane Marli Brito", "Feminino", "Casado(a)", "13283116865", "17211360", "cristianebrito94@gmail.com", "14991193011", MD5("cristiane"));
+    INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha, ativo) VALUES("Eduardo Victor Nascimento", "Masculino", "Casado(a)", "80364160853", "17205290", "eduardonascimento88@gmail.com", "14984707155", MD5("eduardo"), 0);
 
+    
 	INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Local", "85899346000126", "diskpizzanostracasa@hotmail.com", "1430321313");
+    INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Tenda", "60409075000152", "tendasupermercados@gmail.com", "11984392794");
+    INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Coca-Cola", "61186888009301", "falecom@cocacola.com.br", "11999533424");
+    INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Jahuba", "79437813000101", "falecom@jahuba.com.br", "16995614254");
+    INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Jaú Serve", "35835426000140", "js.supermercados@hotmail.com", "11981630528");
+    INSERT INTO Fornecedor(nome, cnpj, email, telefone, ativo) VALUES("Casa de Carnes França", "85121261000112", "casadecarnesfranca@hotmail.com", "11995075452", 0);
     
-    INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Nestle", "60409075000152", "falecom@nestle.com.br", "08007701176");
-    
-    INSERT INTO Fornecedor(nome, cnpj, email, telefone) VALUES("Coca-Cola", "61186888009301", "falecom@cocacola.com.br", "08007271100");
 
 /******* BEBIDAS *******/
 
@@ -110,6 +120,9 @@
 		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Palmito (Grande)", 43, "Grande", "Pizza Especial", 1);
 		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Paulista (Grande)", 43, "Grande", "Pizza Especial", 1);
 		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Vegetariana (Grande)", 43, "Grande", "Pizza Especial", 1);
+        INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor, ativo) VALUES("Sushi (Grande)", 43, "Grande", "Pizza Especial", 1, 0);
+        
+        
 
 	-- BROTO --
     
@@ -142,6 +155,7 @@
 		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Palmito (Broto)", 25, "Broto", "Pizza Especial", 1);
 		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Paulista (Broto)", 25, "Broto", "Pizza Especial", 1);
 		INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor) VALUES("Vegetariana (Broto)", 25, "Broto", "Pizza Especial", 1);
+        INSERT INTO Produto(nome, preco, tamanho, categoria, fk_fornecedor, ativo) VALUES("Sushi (Broto)", 25, "Broto", "Pizza Especial", 1, 0);
 
 /******* PIZZAS DOCES *******/
 
