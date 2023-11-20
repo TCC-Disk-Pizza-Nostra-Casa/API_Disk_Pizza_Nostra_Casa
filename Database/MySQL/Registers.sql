@@ -1,6 +1,6 @@
 /******** CLIENTE, FUNCIONÁRIOS, FORNECEDORES ********/
 
-	INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Valentina Mariane Pinto", "Feminino", "Casado(a)", "01475208863", "17202130", "vale@hotmail.com", "14994545381", "2000-06-02");
+	INSERT INTO Cliente(nome, sexo, estado_civil, cpf, cep, email, telefone, data_nascimento) VALUES("Valentina Mariane Souza", "Feminino", "Casado(a)", "01475208863", "17202130", "vale@hotmail.com", "14994545381", "2000-06-02");
     
     INSERT INTO Funcionario(nome, sexo, estado_civil, cpf, cep, email, telefone, senha, observacoes, administrador) VALUES("Luiz Geraldo Bernardes", "Não informado", "Solteiro(a)", "12345678909", "17212660", "root@etec.sp.gov.br", "14991116468", MD5("etecjau"), "Usuário de testes", 1);
 

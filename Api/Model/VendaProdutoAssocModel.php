@@ -37,19 +37,4 @@ class VendaProdutoAssocModel extends Model
 
     }
 
-    /*public function save() : bool
-    {
-
-        $dao = new VendaProdutoAssocDAO();
-        return $dao->insert($this);
-
-    }
-
-    public function getDetalhesVenda(?int $id) : array
-    {
-        
-        return (new VendaProdutoAssocDAO())->selectByFKVenda($id);
-
-    }*/
-
 }

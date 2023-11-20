@@ -2,12 +2,9 @@ Funcionario (
 
     id,
     nome,
-    nome_social,
-    genero,
-    pronome,
+    sexo,
+    estado_civil,
     cpf,
-    rg,
-    cargo,
     cep,
     email,
     telefone,
@@ -24,16 +21,15 @@ Cliente (
 
     id,
     nome,
-    nome_social,
-    genero,
-    pronome,
+    sexo,
+    estado_civil,
     cpf,
     cep,
     email,
     telefone,
     observacoes,
     data_nascimento,
-    data_cadastro,
+    data_cadastro ,
     data_modificacao,
     ativo
 
@@ -44,7 +40,9 @@ Fornecedor (
     id,
     nome,
     cnpj,
+    email,
     telefone,
+    observacoes,
     data_cadastro,
     data_modificacao,
     ativo
@@ -55,36 +53,41 @@ Produto (
 
     id,
     nome,
-    estoque,
-    preco DOUBLE,
+    preco,
+    tamanho,
+    categoria,
     observacoes,
     data_cadastro,
     data_modificacao,
+    ativo,
 
-    id_fornecedor
+    fk_fornecedor
 
 );
 
 Venda (
 
     id,
-    data_venda,
     delivery,
     valor_total,
+    observacoes,
+    data_venda,
+    ativo,
 
-    id_funcionario,
+    fk_funcionario,
 
-    id_cliente
+    fk_cliente
 
-)
+);
 
 Venda_Produto_Assoc (
 
-    id_venda,
+    fk_venda,
 
-    id_produto,
+    fk_produto,
 
     quantidade_produto,
-    valor_total_item_venda
+    valor_total_item_venda,
+    ativo
 
-)
+);
