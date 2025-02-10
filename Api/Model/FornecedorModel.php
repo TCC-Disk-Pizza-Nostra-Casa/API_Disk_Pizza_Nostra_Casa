@@ -30,7 +30,7 @@ class FornecedorModel extends Model
 
     }
 
-    public function GetRows(string $query = null)
+    public function GetRows(?string $query = null)
     {
 
         $this->rows = ($query == null) ? (new FornecedorDAO())->Select() : (new FornecedorDAO())->Search($query);

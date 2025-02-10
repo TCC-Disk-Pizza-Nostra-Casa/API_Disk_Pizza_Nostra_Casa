@@ -30,7 +30,7 @@ class ProdutoModel extends Model
 
     }
 
-    public function GetRows(string $query = null)
+    public function GetRows(?string $query = null)
     {
 
         $this->rows = ($query == null) ? (new ProdutoDAO())->Select() : (new ProdutoDAO())->Search($query);
