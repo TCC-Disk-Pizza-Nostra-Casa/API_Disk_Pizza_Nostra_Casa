@@ -32,7 +32,7 @@ class ClienteModel extends Model
 
     }
 
-    public function GetRows(string $query = null)
+    public function GetRows(?string $query = null)
     {
 
         $dao = new ClienteDAO();
